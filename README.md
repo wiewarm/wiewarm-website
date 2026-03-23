@@ -21,7 +21,7 @@ D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. 
 
 # AI Policy
 
- * Mir hätte fröid amne komplette Rewrite ufenen moderne Stäck, aber müesst chli gschmackvou und durchdacht si. Gärn zersch imne Issue diskutiere.
+ * Mir hätte fröid amne komplette Rewrite ufene moderne Stäck, aber müesst chli gschmackvou und durchdacht si. Gärn zersch imne Issue diskutiere.
  * Chlini änderige: gärn, bitte vorhär usprobiere, minimau mache
  * 50 KLOC PR nume zum d'Schrift ändere lieber nid
 
