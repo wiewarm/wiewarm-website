@@ -1,0 +1,14 @@
+{
+  "name": "ngUpload",
+  "version": "0.3.4",
+  "main": "ng-upload.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~1.9.1",
+    "angular": "~1.0.4"
+  }
+}

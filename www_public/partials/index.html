@@ -1,0 +1,86 @@
+<div class="row-fluid text-center siteheader" ng-show="true">
+
+
+</div>
+
+
+
+
+<div class="row-fluid text-center">
+
+    <div class="span12 maincontent row-fluid">
+
+        <div class="span5" id="indexnews">
+            <h2 class="gfont text-center">Druckfrische Mitteilungen</h2>
+
+            <p ng-show="nothingFound.news" class="nothing_found">{{nothingFoundText}}</p>
+            <table class="frontpage-table text-left table-hover table-condensed" ng-show="news.length > 0">
+
+                <tbody ng-repeat="m in news"  class="table" ng-class-even="fpeven" ng-class-odd="fpodd" >
+      
+
+                    <tr class="frontpage-table-header-row">
+                        <td class="text-left frontpage-table-header-row"><a href="/bad/{{m['badid']}}">{{m['badname']}} {{m['ort']}}, {{m['kanton']}}</a></td>
+                        <td class="frontpage-table-header-row text-right"><em class="timestamp" title="{{m['date']}}">{{m['date_pretty']}}</em></td>
+                    </tr>
+                    <tr class="frontpage-table-content-row" >
+                        <td colspan=2>{{m['info']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="span2">
+            <h2 class="gfont text-center">Neue Bilder</h2>
+
+             <img id="spinner" src="/img/busy.gif" ng-show="spinner.images">
+
+            <p ng-show="nothingFound.images" class="nothing_found">{{nothingFoundText}}</p>
+   
+
+            <a  ng-repeat="img in images" href="/bad/{{img.badid}}" title="{{img.badname}}, {{img.ort}} {{img.description}} {{img.date_pretty}}">
+                <img width="150px" height="150px" src="/img/{{img.thumbnail}}" class="frontpage-thumb img-circle"/>
+            </a>
+        
+        </div>
+
+        <div class="span5" id="indextemp">
+            <h2 class="gfont text-center">Aktuelle Temperaturen</h2>
+
+
+            <p ng-show="showingLatest && false" id="latest_notice">Letzte Temperaturen und Lieblingsbad</p>
+            <p ng-show="nothingFound.temp" class="nothing_found">{{nothingFoundText}}</p>
+
+
+            <table class="frontpage-table table-hover table-condensed" ng-show="model.length > 0">
+
+                <tbody ng-repeat="m in model" class="table" ng-class-even="fpeven" ng-class-odd="fpodd">
+
+                    <tr class="frontpage-table-header-row">
+                        <td colspan=3 class="text-left frontpage-content-header-row">
+                            <a href="/bad/{{m['badid']}}">{{m['badname']}} {{m['ort']}}, {{m['kanton']}}</a>
+                            <i title="Lieblingsbad" ng-show="m.badid == minilieblingsbadi" class="icon-star img-minilieblingsbadi"></i>
+                        </td>
+                    </tr>
+
+                    <tr class="frontpage-table-content-row" ng-repeat="b in m['becken']">
+                        <td class="text-left">{{b['beckenname']}}</td>
+                        <td class="text-right">{{b['temp']}} &deg;C</td>
+                        <td class="text-right"><em class="timestamp" title="{{b['date']}}">{{b['date_pretty']}}</em></td>
+                    </tr>
+
+               </tbody>
+           </table>
+
+
+
+
+
+            </div>
+
+    </div>
+
+    <!-- <div class="span1 hidden-phone">RC</div> -->
+</div>
+
+

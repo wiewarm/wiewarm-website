@@ -1,0 +1,97 @@
+<div class="start-shell">
+    <div class="start-layout">
+        <section class="start-main-panel" id="indextemp">
+            <div class="start-table-topline">
+                <h2 class="gfont">Aktuelle Temperaturen</h2>
+                <em class="timestamp">{{(tableParams && tableParams.total && tableParams.total()) || model.length || 0}} Eintr&auml;ge</em>
+            </div>
+
+            <div class="start-table-shell">
+                <table ng-table="tableParams" show-filter="window.innerWidth > 767" template-pagination="custom/pager" class="table table-hover table-striped start-data-table">
+                    <tr ng-repeat="rec in $data">
+                        <td data-title="'Ort'" sortable="'ort'" filter="{ 'ort': 'text' }" class="start_ort">{{rec.ort}}</td>
+                        <td data-title="'Bad'" sortable="'bad'" filter="{ 'bad': 'text' }"><a href="/bad/{{rec.badid_text}}">{{rec.bad|truncate:21}}</a></td>
+                        <td data-title="'Becken'" sortable="'becken'" filter="{ 'becken': 'text' }">{{rec.becken|truncate:21}}</td>
+                        <td data-title="'Wert'" sortable="'temp'" class="start_wert">{{rec.temp}} &deg;C</td>
+                        <td data-title="'Datum'" sortable="'date'">{{rec.date_pretty}}</td>
+                        <td data-title="'PLZ'" sortable="'plz'" filter="{ 'plz': 'text' }" class="start_plz">{{rec.plz}}</td>
+                        <td data-title="'Kanton'" sortable="'kanton'" filter="{ 'kanton': 'text' }" class="start_kanton">{{rec.kanton}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- simpler non-paginated table only for google indexing -->
+            <table ng-show="isGoogle == true" class="table table-hover table-striped start-data-table">
+                <tr ng-repeat="rec in model">
+                    <td data-title="'Ort'" class="start_ort">{{rec.ort}}</td>
+                    <td data-title="'Bad'"><a href="/bad/{{rec.badid_text}}">{{rec.bad|truncate:21}}</a></td>
+                    <td data-title="'Becken'">{{rec.becken|truncate:21}}</td>
+                    <td data-title="'Wert'">{{rec.temp}} &deg;C</td>
+                    <td data-title="'Datum'">{{rec.date_pretty}}</td>
+                    <td data-title="'PLZ'">{{rec.plz}}</td>
+                    <td data-title="'Kanton'">{{rec.kanton}}</td>
+                </tr>
+            </table>
+
+            <script type="text/ng-template" id="custom/pager">
+                <ul class="pager ng-cloak start-pager">
+                    <li ng-repeat="page in pages"
+                        ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                        ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+                        <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Zur&uuml;ck</a>
+                        <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Vor &raquo;</a>
+                    </li>
+
+                    <li class="start-pager-tools">
+                        <div class="btn-group">
+                            <button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)" class="btn btn-default">10</button>
+                            <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)" class="btn btn-default">25</button>
+                            <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)" class="btn btn-default">50</button>
+                            <button type="button" ng-class="{'active':params.count() == 9999}" ng-click="params.count(9999)" class="btn btn-default">Alle</button>
+                            <button type="button" ng-click="params.resetFilter()" class="btn btn-default">Filter l&ouml;schen</button>
+                        </div><br>
+                        <em class="timestamp">{{params.total()}} Treffer, Seite {{params.page()}} von {{(params.total() / params.count())|ceil}}</em>
+                    </li>
+                </ul>
+            </script>
+        </section>
+
+        <aside class="start-side-panel">
+            <section class="start-side-card">
+                <div class="start-section-head start-side-head">
+                    <div>
+                        <p class="start-section-eyebrow">Neue Bilder</p>
+                    </div>
+                </div>
+                <div class="start-image-list">
+                    <a ng-repeat="img in images" class="start-image-card" href="/bad/{{img.badid}}" title="{{img.badname}}, {{img.ort}} {{img.description}} {{img.date_pretty}}">
+                        <img src="{{img.thumbnail}}" class="start-image-thumb" alt="{{img.badname}}, {{img.ort}}">
+                        <span class="start-image-meta">
+                            <strong>{{img.badname}}</strong>
+                            <span>{{img.ort}} • {{img.date_pretty}}</span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="start-side-card">
+                <div class="start-section-head start-side-head">
+                    <div>
+                        <p class="start-section-eyebrow">News</p>
+                    </div>
+                </div>
+                <div class="start-news-list">
+                    <article class="start-news-card" ng-repeat="entry in news | limitTo:2">
+                        <p class="start-news-source">Mitteilung von <a href="/bad/{{entry.badid}}">{{entry.badname}}, {{entry.ort}}</a></p>
+                        <p class="start-news-body">{{entry.info}}</p>
+                    </article>
+
+                    <article class="start-news-card start-news-card-muted">
+                        <p class="start-news-source">Mitteilung von <a href="mailto:info@wiewarm.ch">info@wiewarm.ch</a></p>
+                        <p class="start-news-body">Probier unsere neue Mobile Site: <a href="https://xn--hndy-loa.wiewarm.ch">h&auml;ndy.wiewarm.ch</a>. Ist K&auml;se? <a href="https://github.com/rc9000/wiewarm-mobile">Hilf mit beim Verbessern</a>.</p>
+                    </article>
+                </div>
+            </section>
+        </aside>
+    </div>
+</div>

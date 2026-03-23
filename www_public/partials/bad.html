@@ -1,0 +1,168 @@
+
+
+
+
+<div class="row-fluid text-center">
+
+  <div class="span2 hidden-phone"><!-- additional crap left --></div>
+
+    <div class="span8 maincontent">
+
+        <h1 class="gfont" ng-show="model['badname']">{{model['badname']}}, {{model['ort']}}</h1> 
+
+        <img id="spinner" src="/img/busy.gif" ng-show="! model['badname']">
+
+
+        <accordion close-others="false">
+
+            <accordion-group heading="Becken und Temperaturen" is-open="1">
+
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Becken</th>
+                            <th>Temperatur</th>
+                            <th>Aktualisiert</th>
+                            <th>Typ</th>
+                            <th>Status</th>
+                        </tr>
+                    <thead>
+                    <tbody>
+                        <tr ng-repeat="b in model['becken']">
+
+                            <td>{{b['beckenname']}}</td>
+                            <td>{{b['temp']}} &deg;C</td>
+                            <td title="{{b['date']}}">{{b['date_pretty']}}</td>
+                            <td>{{b['typ']}}</td>
+                            <td>{{b['status']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </accordion-group>
+
+            <accordion-group heading="Wetter- und UV-Prognose" is-open="1">
+
+                <div class="row-fluid text-center wetter pull-center">
+
+                        <div class="span2" ng-show="model.wetterort">
+                            {{model.wetter[1]['wetter_date_pretty']}} - {{model.wetter[1]['wetter_temp']}} &deg;C
+                                <br>
+                            <img class="wetterimg" ng-src="/img/meteoTest/be_s{{model.wetter[1]['wetter_symbol']}}.gif">
+                                <br>
+                        </div>
+                        <div class="span2" ng-show="model.wetterort">
+                            {{model.wetter[0]['wetter_date_pretty']}} - {{model.wetter[0]['wetter_temp']}} &deg;C
+                                <br>
+                            <img  class="wetterimg" ng-src="/img/meteoTest/be_s{{model.wetter[0]['wetter_symbol']}}.gif">
+                        </div>
+                        <div class="span2">
+                            {{model.uv_date_pretty}}
+                                <br>
+                            <img class="wetterimg" ng-src="/img/uv-index/index_{{model.uv_wert}}.gif">
+                        </div>
+                        <div class="span6 text-left">
+                            <br>
+                            UV-Werte zur Verfügung gestellt von <a href="http://www.meteoschweiz.ch">MeteoSchweiz</a>.<br>
+                            Wetter zur Verfügung gestellt von <a href="http://www.meteotest.ch">Meteotest Bern</a>.<br>
+                        </div>
+                </div>
+
+            </accordion-group>
+
+           <accordion-group heading="Aktuelle Kurzmitteilungen" is-open="model.infos.length">
+                <p ng-hide="model.infos">Keine aktuellen Mitteilungen</p>
+                <table class="table table-striped text-left">
+                    <tr ng-repeat="i in model['infos']"><th title="{{i.date}}">{{i.date_pretty}}</th><td>{{i.info}}</td></tr>
+                </table>
+            </accordion-group>
+
+            <accordion-group heading="Adresse" is-open="0">
+
+                <div class="row-fluid text-left">
+                    <div class="span4">
+                <p>
+                    {{model['adresse1']}}<br>
+                    {{model['adresse2']}}<br>
+                    {{model['plz']}} {{model['ort']}}<br>
+
+                    {{model['www']}} {{model['mail']}} {{model['telefon']}}<br>
+                    
+                </p>
+                <!--
+                <p>
+                    
+                    <a ng-show="minilieblingsbadi != model['badid']" ng-click="favourite(model['badid'])">
+                        Als Lieblingsbad festlegen. Das Lieblingsbad wird immer direkt auf der Startseite angezeigt.</a>
+                    <a ng-show="minilieblingsbadi == model['badid']" ng-click="favourite(0)">Lieblingsbad deaktivieren</a>
+                </p>
+                -->
+
+                    </div>
+                
+                    <div class="span8">
+    
+                        <!--
+                        <google-map class="gmap" center="center" zoom="zoom" markers="markers" ></google-map>
+                        <p class="error" ng-show="maperror">{{maperror}} <img id="mapspinner" src="/img/busy.gif" ng-show="mapspinner"></p>
+                        -->
+
+                       <a target="_BLANK" title="In Google Maps aufmachen" href="{{mapurl.href}}"><img ng-show="mapurl" ng-src="{{mapurl.url}}" alt="Google Map"></a>
+
+                    </div>
+                </div>
+            </accordion-group>
+
+
+
+            <accordion-group ng-model="iacc" heading="Bilder" is-open="$parent.imagesOpen">
+
+                <p ng-hide="slides">Keine Bilder hochgeladen</p>
+
+                <carousel interval="5000">
+                  <slide ng-repeat="slide in slides" active="slide.active">
+                    <img class="caroussel-image" ng-src="{{slide.image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <p>{{$index + 1}}/{{slides.length}} {{slide.text}}</p>
+                    </div>
+                  </slide>
+                </carousel>
+
+            </accordion-group>
+
+            <accordion-group heading="Öffnungszeiten, Preise und Infos">
+                <div class="text-left">
+                    <pre ng-show="model.zeiten">{{model['zeiten'] | linkfilter}}</pre>
+                    <p ng-hide="model.zeiten">Keine Zeiten erfasst</p>
+                </div>
+               <div class="text-left">
+                    <pre ng-show="model.preise">{{model['preise'] | linkfilter }}</pre>
+                    <p ng-hide="model.preise">Keine Preise erfasst</p>
+                </div>
+               <div class="text-left">
+                    <pre ng-show="model.info">{{model['info'] | linkfilter}}</pre>
+                    <p ng-hide="model.info">Keine Zusatzinfos erfasst</p>
+                </div>
+            </accordion-group>
+
+
+
+           <accordion-group heading="Temperaturverlauf">
+           <iframe ng-src="/statng.php?id={{model.badid}}" width="730" height="430" name="recycling">
+               <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
+               Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
+               aufrufen: <a href="/statng.php?id={{model.badid}}">klick!</a></p>
+           </iframe>
+            </accordion-group>
+
+
+        </accordion>
+
+
+    </div>
+
+  <div class="span2 hidden-phone"><!-- additional crap right --></div>
+</div>
+
+

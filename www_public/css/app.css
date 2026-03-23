@@ -1,0 +1,639 @@
+/*
+    wiewarm ci/cd color reference:
+    #018dfa - blue background
+    #ff9801 - dark orange
+    #fff096 - yellowish
+
+    endless wave stock image - need to buy:
+    http://www.istockphoto.com/stock-illustration-13464302-seamless-ocean-wave.php
+
+*/
+
+html, body {
+    background:
+        radial-gradient(circle at top left, rgba(255, 240, 150, 0.8), rgba(255, 240, 150, 0) 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef6ff 46%, #fdfcf7 100%);
+    background-color: #f8fbff;
+    height: 100%;
+}
+
+body {
+    color: #18384f;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+pre {
+    font-size: 0.9em;
+}
+
+
+/*
+A:link {text-decoration: none; color: #ff7900;}
+A:visited {text-decoration: none; color: #ff7900;}
+A:active {text-decoration: none; color: #018dfa;}
+A:hover {text-decoration: none; color: #018dfa;}
+*/
+
+#indextemp {
+}
+
+#indexnews {
+}
+
+.frontpage-table{
+    width: 100%;
+
+}
+
+.wetter {
+    width: 100%;
+}
+
+.wetterimg {
+    height: 55px;
+}
+
+.frontpage-table-content-row td{
+   /* padding-bottom: 1.5em;*/
+   padding-bottom: 0em;
+   border: 0;
+}
+
+.frontpage-table-header-row{
+   /*padding-top: 1em;*/
+   /*background-color:#fff096;*/
+   border-top: 0px solid #DDDDDD;
+}
+
+.fp-odd {
+    background-color: #f9f9f9;
+}
+
+.frontpage-thumb{
+    margin-bottom: 1em;
+}
+
+.admin-textarea {
+    width: 400px;
+    height: 11em ;
+    line-height: 1.2em ;
+    font-family:'Courier New', monospace;
+
+}
+
+.carousel-image {
+    margin: auto;
+    width: 500px;
+}
+
+.carousel-caption {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.input-large.input-mega {
+    width: 600px;
+}
+
+.siteheader {
+    margin-top: 2em;
+}
+
+.gfont {
+    font-family: 'Englebert', sans-serif;
+    color: #ff9801;
+}
+
+.thirdreich_gfont {         
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: #ff9801;
+}
+
+.START_gfont {
+    font-family: 'Press Start 2P';
+    color: #ff9801;
+    font-size: 1em;
+}
+
+.VT323_gfont {
+    font-family: 'VT323';
+    color: #ff9801;
+}
+
+
+.gmap {
+    display: block;
+    height: 16em; 
+    width: 100%;
+}
+
+.tempindex {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.newsbar {
+    margin-left: 4em;
+    margin-right: 4em;
+    font-size: smaller;
+}
+
+.timestamp {
+    color: #aaaaaa;
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: normal;
+    margin-left: 0em;
+    /*float: right;*/
+}
+
+.navbar-inner {
+    background: linear-gradient(135deg, rgba(255, 152, 1, 0.96) 0%, rgba(255, 240, 150, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(16, 60, 94, 0.12);
+    color: black;
+}
+
+.frontpage-gradient {
+    /* http://stackoverflow.com/questions/11196638/change-navbar-color-in-twitter-bootstrap-2-0-4 */
+
+    background: #fff096; /* Old browsers */
+    background: -moz-linear-gradient(top, #fff096 0%, #ffffff 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff096), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fff096 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fff096 0%,#ffffff 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fff096 0%,#ffffff 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #fff096 0%,#ffffff 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff096', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+    color: black;
+}
+
+#logo {
+    color: black;
+} 
+
+#spinner {
+    margin-bottom: 2em;
+} 
+
+#mapspinner {
+    width: 1.0em;
+    margin-bottom: 0.2em;
+} 
+
+
+#cclogo {
+    height: 1em;
+}
+
+#wrap {
+  min-height: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 20px 20px 0;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:50px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -50px; /* negative value of footer height */
+  height: 50px;
+  clear:both;
+  padding-top:0px;
+  padding-left:20px;
+  color: #777777;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(232, 243, 255, 0.95) 52%, rgba(232, 243, 255, 1) 100%);
+} 
+
+.ng-table {
+}
+
+.navbar {
+    margin-bottom: 26px;
+}
+
+.navbar .brand,
+.navbar .nav > li > a {
+    text-shadow: none;
+}
+
+.navbar .nav > li > a {
+    border-radius: 999px;
+    color: #17384b;
+    font-weight: 600;
+    margin: 4px 4px 0;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar .nav > li > a:hover,
+.navbar .nav > li.active > a {
+    background: rgba(255, 255, 255, 0.45);
+    color: #0e2f43;
+    text-decoration: none;
+}
+
+.navbar-search .search-query {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(24, 56, 79, 0.15);
+    box-shadow: none;
+    color: #17384b;
+}
+
+.start-shell {
+    padding-bottom: 28px;
+}
+
+.start-section-eyebrow {
+    color: #018dfa;
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+.start-layout {
+    display: flex;
+    gap: 24px;
+}
+
+.start-main-panel,
+.start-side-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 26px;
+    box-shadow: 0 20px 44px rgba(17, 64, 99, 0.1);
+}
+
+.start-main-panel {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 18px 18px 14px;
+}
+
+.start-side-panel {
+    display: flex;
+    flex: 0 0 360px;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.start-side-card {
+    padding: 22px;
+}
+
+.start-section-head {
+    align-items: end;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.start-section-head h2 {
+    color: #17384b;
+    line-height: 1;
+    margin: 0;
+}
+
+.start-side-head {
+    margin-bottom: 16px;
+}
+
+.start-table-topline {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.start-table-topline h2 {
+    color: #17384b;
+    line-height: 1;
+    margin: 0;
+}
+
+.start-table-shell {
+    border: 1px solid rgba(1, 141, 250, 0.1);
+    border-radius: 22px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.start-data-table {
+    background: rgba(255, 255, 255, 0.66);
+    margin-bottom: 0;
+    min-width: 640px;
+}
+
+.start-data-table thead th,
+.start-data-table .ng-table-filters th,
+.start-data-table th {
+    background: rgba(1, 141, 250, 0.08);
+}
+
+.start-data-table tr:hover > td {
+    background: rgba(255, 240, 150, 0.18);
+}
+
+.start-data-table .ng-table-filters input {
+    box-sizing: border-box;
+    height: 2.25em;
+    margin-bottom: 0;
+    min-width: 0;
+    padding: 0 6px;
+    width: 100%;
+}
+
+.start-data-table a,
+.start-image-card strong,
+.start-news-source a {
+    color: #0e5f91;
+    font-weight: 700;
+}
+
+.start-data-table a:hover,
+.start-news-source a:hover {
+    color: #ff7900;
+    text-decoration: none;
+}
+
+.start-pager {
+    margin-top: 18px;
+    text-align: left;
+}
+
+.start-pager-tools {
+    display: block;
+    margin-top: 12px;
+}
+
+.start-image-list,
+.start-news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.start-image-card {
+    align-items: center;
+    background: linear-gradient(135deg, rgba(248, 251, 255, 0.95), rgba(255, 249, 232, 0.95));
+    border: 1px solid rgba(24, 56, 79, 0.08);
+    border-radius: 20px;
+    display: flex;
+    gap: 14px;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.start-image-thumb {
+    border-radius: 18px;
+    box-shadow: 0 12px 24px rgba(17, 64, 99, 0.16);
+    height: 92px;
+    object-fit: cover;
+    width: 92px;
+}
+
+.start-image-meta {
+    color: #60798b;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.92em;
+    gap: 4px;
+    line-height: 1.35;
+}
+
+.start-news-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(240,247,255,0.92));
+    border: 1px solid rgba(24, 56, 79, 0.08);
+    border-radius: 20px;
+    padding: 16px 18px;
+}
+
+.start-news-card-muted {
+    background: linear-gradient(180deg, rgba(255, 249, 231, 0.96), rgba(255,255,255,0.96));
+}
+
+.start-news-source {
+    color: #60798b;
+    font-size: 0.9em;
+    margin: 0 0 8px;
+}
+
+.start-news-body {
+    color: #17384b;
+    margin: 0;
+    line-height: 1.55;
+}
+
+td.start_ort {
+    width: 8em;
+    text-align: left;
+}
+
+td.start_plz {
+    width: 4em;
+    text-align: right;
+}
+
+td.start_kanton {
+    width: 4em;
+    text-align: left;
+}
+
+td.start_wert {
+    width: 7em;
+    text-align: right;
+}
+
+.pagination {
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px 0;
+    padding-left: 0;
+
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.pagination > li {
+    display: inline;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.ng-table th.sortable.sort-desc, .ng-table th.sortable.sort-asc {
+    background-color: #fff096;
+
+}
+
+.table th, .table td {
+    padding: 4px;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border-radius: 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 2.6em;
+    line-height: 2.6em;
+    margin-bottom: 10px;
+    padding: 0px 3px 0px 3px;
+    vertical-align: middle;
+}
+
+
+@media (max-width: 767px) { 
+
+    #wrap {
+        padding: 10px 10px 0;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    .carousel-image {
+        margin: auto;
+        width: 300px;
+    }
+
+    .siteheader {
+        margin-top: 0em;
+    }
+
+    .navbar, .footer {
+        font-size: 0.8em;
+    }
+
+    .navbar-inner {
+        border-radius: 20px;
+        padding-bottom: 12px;
+    }
+
+
+    .navbar .nav > li > a, .footer {
+        padding: 5px 7px;
+    }
+
+    .navbar .brand {
+        font-size: 15px;
+        font-weight: 200;
+        margin-left: -20px;
+        padding: 5px 7px;
+    }
+
+    .table th, .table td, .frontpage-table td {
+        line-height: 15px;
+        padding: 2px;
+        font-size: 0.8em;
+    }
+
+    .start-layout,
+    .start-section-head {
+        display: block;
+    }
+
+    .start-main-panel,
+    .start-side-card {
+        border-radius: 22px;
+    }
+
+    .start-main-panel {
+        padding: 14px 10px 12px;
+    }
+
+    .start-side-panel {
+        display: block;
+        margin-top: 18px;
+    }
+
+    .start-side-card + .start-side-card {
+        margin-top: 18px;
+    }
+
+    .start-table-shell {
+        border-radius: 18px;
+        margin-left: -1px;
+        margin-right: -1px;
+    }
+
+    .start-table-topline {
+        align-items: flex-start;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .start-table-topline .timestamp {
+        display: block;
+        margin-top: 4px;
+    }
+
+    .start-data-table {
+        min-width: 520px;
+    }
+
+    .start-data-table td.start_plz,
+    .start-data-table td.start_kanton {
+        width: auto;
+    }
+
+    .start-image-card {
+        align-items: flex-start;
+    }
+
+    .start-image-thumb {
+        height: 82px;
+        width: 82px;
+    }
+
+    .start-pager .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .start-pager .btn-group > .btn {
+        border-radius: 999px;
+        float: none;
+    }
+
+    .timestamp {
+        color: #aaaaaa;
+        font-size: 0.6em;
+        margin-left: 0.3em;
+        float: none;
+    }
+
+    .input-large.input-mega {
+        width: 300px;
+    }
+
+}

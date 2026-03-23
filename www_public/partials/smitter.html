@@ -1,0 +1,52 @@
+<div class="row-fluid text-center">
+
+  <div class="span2 hidden-phone"><!-- additional crap left --></div>
+
+    <div class="span8 maincontent">
+
+
+        <h1 class="gfont">Temperaturinformation via SMS</h1> 
+
+        <ul class="text-left">
+            <li>Die aktuelle Temperatur kann dank <a href="http://zwix.ch">ZWIX</a> per SMS abgefragt werden, 
+            indem <b>WIEWARM "KEYWORD"</b> (also z.B. <b>WIEWARM MARZILI</b>) an die Nummer <b>543</b> geschickt wird (40 Rappen pro Abfrage).</li> 
+            <!--
+            <li>Demnächst (ok das sagen wir seit 2009, aber jetzt ist es ernst) können sie Temperaturupdates ihres Bades 
+            durch <a href="https://twitter.com/wiewarm">unseren Twitter-Feed</a> erhalten, indem sie das angezeigte Hashtag verfolgen. 
+            </li> 
+            -->
+        </ul>
+
+
+        <img id="spinner" src="/img/busy.gif" ng-show="spinner">
+
+        <table id="dtsms" class="table table-striped" ng-hide="spinner">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Anschrift</th>
+                    <th>PLZ</th>
+                    <th>Ort</th>
+                    <th>Kanton</th>
+                    <th>SMS</th>
+                    <th><!-- Hashtag --></th>
+                </tr>
+            <thead>
+            <tbody>
+                <tr ng-repeat="b in model">
+
+                    <td><a href="/bad/{{b['badid_text']}}">{{b['badname']}}</a></td>
+                    <td>{{b['adresse1']}} {{b['adresse2']}}</td>
+                    <td>{{b['plz']}}</td>
+                    <td>{{b['ort']}}</td>
+                    <td>{{b['kanton']}}</td>
+                    <td>{{keywords[b['badid']]}}</td>
+                    <td><!-- <a href="https://twitter.com/search/realtime?q=%23wiewarm{{b['badid']}}">#wiewarm{{b['badid']}}</a>--></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+  <div class="span2 hidden-phone"><!-- additional crap right --></div>
+</div>

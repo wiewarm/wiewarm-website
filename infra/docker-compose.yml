@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+
+  ci-postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.ci-postgres
+    ports:
+      - "3779:5432"
+    environment:
+      POSTGRES_DB: devwiewarm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TZ: Europe/Zurich
+    command: postgres -c shared_buffers=2GB -c effective_cache_size=1GB -c maintenance_work_mem=128MB -c work_mem=16MB
+
+  apache-php:
+    build:
+      context: .
+      dockerfile: Dockerfile.apache-php
+    ports:
+      - "3770:3770"
+    volumes:
+      - ../www_public:/var/www/html
+      - ./apache2.conf:/etc/apache2/apache2.conf
+    environment:
+      - TZ=Europe/Zurich
+      - APACHE_PORT=3770
+      - DB_TYPE=postgres
+      - POSTGRES_HOST=ci-postgres
+      - POSTGRES_DB=devwiewarm
+      - POSTGRES_USER=webuser
+      - POSTGRES_PASSWORD=badi
+    depends_on:
+      - ci-postgres
+
+volumes:
+  #live-postgres-vol:
+  postgres-vol:

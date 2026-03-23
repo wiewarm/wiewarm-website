@@ -1,0 +1,25 @@
+FROM docker.io/library/postgres:18
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates curl gzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && printf "%s\n" \
+        "CREATE USER webuser WITH PASSWORD 'badi';" \
+        > /docker-entrypoint-initdb.d/00-create-webuser.sql \
+    && printf "%s\n" \
+        "#!/bin/sh" \
+        "set -eu" \
+        "" \
+        "DUMP_URL=\"\${WIEWARM_DUMP_URL:-https://www.wiewarm.ch/files/db/devwiewarm.sql.gz}\"" \
+        "" \
+        "echo \"Downloading database dump from \${DUMP_URL}\"" \
+        "curl -fsSL \"\$DUMP_URL\" | gunzip | psql -v ON_ERROR_STOP=1 --username \"\$POSTGRES_USER\" --dbname postgres" \
+        > /docker-entrypoint-initdb.d/01-import-devwiewarm.sh \
+    && chmod +x /docker-entrypoint-initdb.d/01-import-devwiewarm.sh
+
+# Set environment variables
+ENV POSTGRES_DB=wiewarm
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
+
+ENTRYPOINT ["docker-entrypoint.sh"]

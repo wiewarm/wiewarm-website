@@ -1,0 +1,38 @@
+[Unit]
+Description=Wiewarm Apache container
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/wiewarm-website/www_public
+ExecStartPre=-/usr/bin/podman rm -i -f wiewarm-apache
+ExecStart=/bin/bash -lc '\
+  . %h/.secrets.sh && \
+  . %h/.env.sh && \
+  exec /usr/bin/podman run \
+    --name wiewarm-apache \
+    --volume %h/wiewarm-website/www_public:/var/www/html:Z \
+    --volume %h/wiewarm-images/img:/var/www/html/img:Z \
+    --volume %h/wiewarm-website/infra/apache2.conf:/etc/apache2/apache2.conf:Z \
+    --env-file %h/.podman-env \
+    --env TZ=Europe/Zurich \
+    --env DB_TYPE=postgres \
+    --env POSTGRES_HOST=127.0.0.1 \
+    --env POSTGRES_DB="$ENV_POSTGRES_DB" \
+    --env POSTGRES_USER="$SECRET_POSTGRES_USER" \
+    --env POSTGRES_PASSWORD="$SECRET_POSTGRES_PASSWORD" \
+    --env SECRET_SUDOPW="$SECRET_SUDOPW" \
+    --env APACHE_PORT="$ENV_APACHE_PORT" \
+    --network host \
+    --rm \
+    --sig-proxy=true \
+    wiewarm-apache:latest'
+ExecStop=/usr/bin/podman stop -t 10 wiewarm-apache
+ExecStopPost=-/usr/bin/podman rm -f wiewarm-apache
+Restart=always
+RestartSec=10
+TimeoutStopSec=30
+
+[Install]
+WantedBy=default.target

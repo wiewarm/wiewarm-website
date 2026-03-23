@@ -1,0 +1,10 @@
+cat \
+	../lib/bootstrap-gh-pages/ui-bootstrap-tpls-0.3.0.min.js \
+	../lib/angular-google-maps.js \
+	../lib/ngUpload/ng-upload.min.js \
+	app.js \
+	services.js \
+	controllers.js \
+	filters.js \
+	directives.js \
+	> fatblob.js

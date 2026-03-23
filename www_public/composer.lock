@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "de7ccdb93c4cd57c4777a38aa2f05da7",
+    "packages": [
+        {
+            "name": "cstuder/parse-hydrodaten",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cstuder/parse-hydrodaten.git",
+                "reference": "46a1bef17e3db3624f1b32a26ed2e9b0c70767cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cstuder/parse-hydrodaten/zipball/46a1bef17e3db3624f1b32a26ed2e9b0c70767cb",
+                "reference": "46a1bef17e3db3624f1b32a26ed2e9b0c70767cb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "cstuder\\ParseHydrodaten\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Studer",
+                    "email": "cstuder@existenz.ch"
+                }
+            ],
+            "description": "Parse Hydrodaten Open Data strings",
+            "support": {
+                "issues": "https://github.com/cstuder/parse-hydrodaten/issues",
+                "source": "https://github.com/cstuder/parse-hydrodaten/tree/v1.2.0"
+            },
+            "time": "2021-05-01T07:37:52+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

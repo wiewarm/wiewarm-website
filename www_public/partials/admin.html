@@ -1,0 +1,248 @@
+
+<div class="row-fluid text-center">
+
+  <div class="span2 hidden-phone"><!-- additional crap left --></div>
+
+    <div class="span8 maincontent">
+
+        <h1 class="gfont">Interner Bereich für Bademeister</h1> 
+        <h1 class="gfont" ng-show="model['badname']">{{model['badname']}}, {{model['ort']}}</h1>
+
+
+        <form ng-submit="checkAuth(badid, pincode)" ng-hide="authorized" class="form-inline" id="loginform">
+            <input ng-model="badid" type="text" class="input-small" placeholder="Bad-Id">
+            <input ng-model="pincode" type="password" class="input-small" placeholder="PIN">
+        <button type="submit" class="btn">Anmelden</button>
+        </form>
+
+        <p class="text-error" ng-show="authfail">{{authfail}}</p>
+
+      
+        <accordion ng-show="authorized" close-others="false">
+
+            <accordion-group heading="Temperatur oder Beckenstatus aktualisieren">
+            
+                <form id="tempform" name="tempform" ng-submit="saveTempAndStatusUpdate(tempform)">
+                    <p>Es sollten nun auch Werte mit einer Dezimalstelle wieder normal eingegeben werden können, bitte <a href="mailto:info@wiewarm.ch">schreibt uns</a> falls es noch Probleme gibt</p>
+                    <table class="table table-striped">
+
+                        <thead><tr><th>Becken</th><th>Typ</th><th>Temperatur &deg;C</th><th>Status</th><th style="min-width: 10em;">&nbsp;</th></tr></thead>
+                        <tbody> 
+                            <tr ng-repeat="b in model.becken" ng-form="tempformsub">
+                                <td>{{b.beckenname}}</td>
+                                <td>{{b.typ}}</td>
+                                <td><input ng-model="tempupdate[b.beckenid]" name="inputtemp" type="number" step="any" class="input-small" placeholder="z.B. 12.3" min=0 max=40></td>
+                                <td><select class="input-medium" ng-options="value as key for (key , value) in beckenstatusMap" ng-model="statusupdate[b.beckenid]"></select></td>
+                                <td>
+                                    <span class="alert error" ng-show="tempformsub.inputtemp.$error.number">Ungültig!</span> 
+                                    <span class="alert error" ng-show="tempformsub.inputtemp.$error.min">Zu kalt!</span> 
+                                    <span class="alert error" ng-show="tempformsub.inputtemp.$error.max">Zu heiss!</span> 
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan=3 class="text-left"><img id="spinner" src="/img/busy.gif" ng-show="spinner.tempupdate"></td>
+                                <td class="pull-right text-right"><button type="submit" class="btn text-right pull-right" ng-disabled="! tempform.$valid">Speichern</button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+
+
+            </accordion-group>
+
+
+            <accordion-group heading="Kurzmitteilung abschicken">
+
+                <form id="newsform" name="newsform" ng-submit="saveNews(newsform, newsupdate)">
+                    <table class="table table-striped">
+
+                        <thead><tr><th>Meldung</th><th style="min-width: 5em;">&nbsp;</th></tr></thead>
+                        <tbody> 
+                            <tr>
+                                <td><input ng-model="newsupdate" name="inputnews" type="text" class="input-large input-mega" placeholder="Ihr Text..." required></td>
+                                <td><span class="alert error" ng-show="newsform.inputnews.$error.required">Zu leer!</span></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-left"><img id="spinner" src="/img/busy.gif" ng-show="spinner.newsupdate"></td>
+                                <td class="pull-right text-right"><button type="submit" class="btn text-right pull-right" ng-disabled="! newsform.$valid">Speichern</button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <table class="table table-striped">
+
+                        <thead> 
+                            <tr>
+                                <td colspan="3">Bisherige Eintr&auml;ge (90 Tage)</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="n in news">
+                                <td class="text-left">{{n.info}}</td>
+                                <td class="text-left">{{n.date}}</td>
+                                <td><button type="button" ng-click='deleteNews(n.infoid)' class="btn pull-right">löschen</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+            </accordion-group>
+
+            <accordion-group heading="Stammdaten verwalten">
+
+
+                <form id="basedataform" name="basedataform" ng-submit="saveBasedataUpdate(model)">
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>Feld</th>
+                                <th>Wert</th>
+                                <th style="min-width: 10em;">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                <th>Adresse 1</th>
+                                <td><input ng-model="model.adresse1" name="adresse1" type="text" class="input-medium" placeholder="Addresse1" required></td>
+                                <td><span class="alert error" ng-show="basedataform.adresse1.$error.required">Zu leer!</span></td>
+                            </tr>
+                           <tr>
+                                <th>Adresse 2</th>
+                                <td><input ng-model="model.adresse2" name="adresse2" type="text" class="input-medium" placeholder="Addresse2"></td>
+                                <td></td>
+                            </tr>
+                           <tr>
+                                <th>PLZ/Ort</th>
+                                <td>
+                                    <input ng-model="model.plz" name="plz" type="text" class="input-small" placeholder="PLZ" required>
+                                    <input ng-model="model.ort" name="ort" type="text" class="input-medium" placeholder="Ort" required>
+                                </td>
+                                <td>
+                                    <span class="alert error" ng-show="basedataform.plz.$error.required">PLZ leer!</span>
+                                    <span class="alert error" ng-show="basedataform.ort.$error.required">Ort leer!</span>
+                                </td>
+                            </tr>
+                           <tr>
+                                <th>Telefon</th>
+                                <td><input ng-model="model.telefon" name="telefon" type="text" class="input-medium" placeholder="Telefon"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>E-Mail</th>
+                                <td><input ng-model="model.email" name="email" type="email" class="input-large" placeholder="hans@muster.ch"></td>
+                                <td>
+                                    <span class="alert error" ng-show="basedataform.email.$error.email">Ungültig!</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Öffnungszeiten</th>
+                                <td><textarea rows="5" class="admin-textarea" ng-model="model.zeiten" name="zeiten"></textarea></td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Preise</th>
+                                <td><textarea rows="5" class="admin-textarea" ng-model="model.preise" name="preise"></textarea></td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Weitere Infos</th>
+                                <td><textarea rows="5" class="admin-textarea" ng-model="model.info" name="info"></textarea></td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <td><img id="spinner" src="/img/busy.gif" ng-show="spinner.basedataupdate"/></td>
+                                <td><button type="submit" class="btn text-right pull-right" ng-disabled="! basedataform.$valid">Speichern</button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+
+            </accordion-group>
+
+            <accordion-group heading="Bild hochladen">
+
+            <div class="text-left pull-center" style="">
+                <form ng-upload class="form-horizontal" id="imageupload" action="/api/image">
+
+                    <input type="hidden" name="badid" ng-model="badid" value="{{badid}}">
+                    <input type="hidden" name="pincode" ng-model="pincode" value="{{pincode}}">
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="description">Bild</label>
+                        <div class="controls">
+                            <input type="file" name="image" title="Auswählen" id="image"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="description">Text</label>
+                        <div class="controls">
+                            <input type="text" ng-model="imagedescription" name="description" id="description" placeholder="kurze Beschreibung (optional)">
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <div class="controls">
+                          
+                            <button id="imageuploadsubmit" type="submit" class="btn" upload-submit="saveImage(content, completed)">Hochladen</button><br>
+                            <img id="spinner" src="/img/busy.gif" ng-show="spinner.image">
+                            <br>
+                            <span class="alert error" ng-show="imageerror">{{imageerror}}</span>
+                        </div>
+                    </div>
+                </form>
+                <p>
+                <ul>
+                    <li>Sie können alle gängigen Formate wie JPEG, PNG oder GIF verwenden.</li>
+                    <li>Die maximal Bildgrösse die verarbeitet werden kann ist ca. 16MB, bitte verkleinern sie grössere Bilder vorher.</li>
+                    <li>Die Bilder werden für die Anzeige im Web automatisch zu JPEG konvertiert und auf eine maximale Breite von 700 Pixeln skaliert</li>
+                </ul>
+                </p>
+                </div>
+
+            </accordion-group>
+
+            <accordion-group heading="Bild löschen">
+                <carousel>
+                  <slide ng-repeat="slide in slides" active="slide.active">
+                    <img class="caroussel-image" ng-src="../{{slide.image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <p>{{$index + 1}}/{{slides.length}} {{slide.text}}</p>
+                        <img id="spinner" src="/img/busy.gif" ng-show="spinner.imagerefresh">
+                        <button type="button" class="btn text-right pull-right" ng-click="deleteImage(slide.image)">Löschen</button>
+                    </div>
+                  </slide>
+                </carousel>
+
+            </accordion-group>
+
+
+
+
+        </accordion>
+
+
+        <form ng-submit="logout()" ng-show="authorized" class="form-inline" id="loginoutform">
+        <button type="submit" class="btn">Abmelden</button>
+        </form>
+    </div>
+
+  <div class="span2 hidden-phone"><!-- additional crap right --></div>
+</div>
