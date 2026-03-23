@@ -12,6 +12,8 @@ Syt lieb zunenang.
  * e2e Tests z.B. robot + Selenimum für Angular + API
  * besseri Lösig für User-supplied Biudli (s3.wiewarm.ch oder so)
  * DB-schema manage so dass me Apassige cha in PRs mitlifere
+ * AGENTS.md
+ * Prod uf das Repo umsteue
 
 # Mitmache
 
