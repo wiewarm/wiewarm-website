@@ -2,9 +2,7 @@
 
 D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. Neu ab Saison 2026 mit Postgres Bäckend.
 
-# Code of Conduct
 
-Syt lieb zunenang.
 
 # Todo Lischte
 
@@ -26,3 +24,7 @@ Syt lieb zunenang.
  * Mir hätte fröid amne komplette Rewrite ufenen moderne Stäck, aber müesst chli gschmackvou und durchdacht si. Gärn zersch imne Issue diskutiere.
  * Chlini änderige: gärn, bitte vorhär usprobiere, minimau mache
  * 50 KLOC PR nume zum d'Schrift ändere lieber nid
+
+# Code of Conduct
+
+Syt lieb zunenang.
