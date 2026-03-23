@@ -11,8 +11,7 @@ D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. 
  * besseri Lösig für User-supplied Biudli (s3.wiewarm.ch oder so)
  * DB-schema manage so dass me Apassige cha in PRs mitlifere
  * AGENTS.md
- * Prod uf das Repo umsteue
-
+   
 # Mitmache
 
  * `cd infra ; docker-compose up ; http://localhost:3770`
