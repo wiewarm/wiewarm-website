@@ -16,6 +16,7 @@ D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. 
 
  * `cd infra ; docker-compose up ; http://localhost:3770`
  * häcke in www_public
+ * i dere lokle Umgäbig/DB is aui Passwörter `badi`
  * hesch öppis guets mach ä Pull Request
 
 # AI Policy
