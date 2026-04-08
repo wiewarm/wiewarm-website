@@ -2,6 +2,8 @@
 
     $__latest__records = 10;
 
+    date_default_timezone_set(getenv('TZ') ?: 'Europe/Zurich');
+
     $www_logfile = '';
     $cli_logfile = '';
 
