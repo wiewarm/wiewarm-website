@@ -248,5 +248,3 @@
         
         return $images;
     }
-
-?> 
