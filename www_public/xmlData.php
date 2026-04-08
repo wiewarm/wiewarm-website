@@ -4,12 +4,12 @@ require_once(__DIR__ . '/api/shared.php');
 
 function xmlLegacyComment() {
     return <<<XML
-  Sämtliche Daten dürfen nur für nicht kommerzielle Zwecke verwendet werden und die Quelle
+  Saemtliche Daten duerfen nur fuer nicht kommerzielle Zwecke verwendet werden und die Quelle
   www.wiewarm.ch ist immer anzugeben.
-  Werden die Daten auf einer Internetseite veröffentlicht, ist auf der entsprechenden Seite jeweils
+  Werden die Daten auf einer Internetseite veroeffentlicht, ist auf der entsprechenden Seite jeweils
   ein gut sichtbarer Link auf die Seite www.wiewarm.ch anzubringen.
 
-  Die Daten von den meisten offenen Gewässern stammen vom Bundesamt für Wasser und Geologie BWG
+  Die Daten von den meisten offenen Gewaessern stammen vom Bundesamt fuer Wasser und Geologie BWG
   http://www.bwg.admin.ch/
 XML;
 }
