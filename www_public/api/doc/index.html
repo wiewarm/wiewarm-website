@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wiewarm API Docs</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui@2.2.10/dist/css/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui@2.2.10/dist/css/typography.css">
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui@2.2.10/dist/css/screen.css">
+  <style>
+    body {
+      margin: 0;
+      background: #fafafa;
+    }
+    #header {
+      padding: 0 20px;
+    }
+    .swagger-ui-wrap {
+      max-width: 1200px;
+    }
+  </style>
+</head>
+<body class="swagger-section">
+  <div id="header">
+    <div class="swagger-ui-wrap">
+      <a id="logo" href="/">
+        <span class="logo__title">wiewarm api</span>
+      </a>
+    </div>
+  </div>
+  <div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+  <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/object-assign-pollyfill.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/jquery-1.8.0.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/jquery.slideto.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/jquery.wiggle.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/jquery.ba-bbq.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/handlebars-4.0.5.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/lodash.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/backbone-min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/swagger-ui.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/highlight.9.1.0.pack.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/highlight.9.1.0.pack_extended.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/jsoneditor.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui@2.2.10/dist/lib/marked.js"></script>
+  <script>
+    $(function () {
+      var match = window.location.search.match(/[?&]url=([^&]+)/);
+      var defaultUrl = window.location.protocol + '//' + window.location.host + '/api/resources.json';
+      var url = match && match[1] ? decodeURIComponent(match[1]) : defaultUrl;
+
+      hljs.configure({
+        highlightSizeThreshold: 5000
+      });
+
+      window.swaggerUi = new SwaggerUi({
+        url: url,
+        dom_id: 'swagger-ui-container',
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+        docExpansion: 'none',
+        jsonEditor: false,
+        defaultModelRendering: 'schema',
+        showRequestHeaders: false,
+        showOperationIds: false,
+        onFailure: function () {
+          if (window.console) {
+            window.console.log('Unable to load Swagger UI');
+          }
+        }
+      });
+
+      window.swaggerUi.load();
+    });
+  </script>
+</body>
+</html>
