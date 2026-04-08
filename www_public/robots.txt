@@ -1,3 +1,4 @@
 # robots.txt
 User-agent: *
 Disallow: /api/doc
+Sitemap: https://www.wiewarm.ch/sitemap.xml

@@ -1,10 +1,20 @@
 <?php
 
-require_once('Log.php');
 require_once(__DIR__ . '/api/shared.php');
 
+class XmlDataFallbackLogger {
+    public function debug($message) {}
+    public function err($message) {
+        error_log($message);
+    }
+}
+
 global $logger;
-$logger = \Log::factory('error_log', PEAR_LOG_TYPE_SYSTEM, 'xmlData.php');
+if (class_exists('\Log')) {
+    $logger = \Log::factory('error_log', PEAR_LOG_TYPE_SYSTEM, 'xmlData.php');
+} else {
+    $logger = new XmlDataFallbackLogger();
+}
 
 function xmlLegacyComment() {
     return <<<XML
