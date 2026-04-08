@@ -7,7 +7,7 @@
             </div>
 
             <div class="start-table-shell">
-                <table ng-table="tableParams" show-filter="window.innerWidth > 767" template-pagination="custom/pager" class="table table-hover table-striped start-data-table">
+                <table ng-table="tableParams" show-filter="true" template-pagination="custom/pager" class="table table-hover table-striped start-data-table">
                     <tr ng-repeat="rec in $data">
                         <td data-title="'Ort'" sortable="'ort'" filter="{ 'ort': 'text' }" class="start_ort">{{rec.ort}}</td>
                         <td data-title="'Bad'" sortable="'bad'" filter="{ 'bad': 'text' }"><a href="/bad/{{rec.badid_text}}">{{rec.bad|truncate:21}}</a></td>
