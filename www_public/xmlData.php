@@ -1,6 +1,10 @@
 <?php
 
+require_once('Log.php');
 require_once(__DIR__ . '/api/shared.php');
+
+global $logger;
+$logger = \Log::factory('error_log', PEAR_LOG_TYPE_SYSTEM, 'xmlData.php');
 
 function xmlLegacyComment() {
     return <<<XML
