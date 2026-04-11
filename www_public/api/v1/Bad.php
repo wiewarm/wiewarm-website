@@ -253,28 +253,30 @@ class Bad {
         }
 
         // Update to PostgreSQL syntax
-        $sql = "UPDATE bad SET 
-                adresse1 = $1, 
-                adresse2 = $2, 
-                plz = $3, 
-                ort = $4, 
-                telefon = $5, 
-                email = $6, 
-                zeiten = $7, 
-                preise = $8, 
-                info = $9 
+        $sql = "UPDATE bad SET
+                adresse1 = $1,
+                adresse2 = $2,
+                plz = $3,
+                ort = $4,
+                telefon = $5,
+                email = $6,
+                zeiten = $7,
+                preise = $8,
+                info = $9,
+                www = $11
                 WHERE id = $10";
 
-        $bind = array($request_data['adresse1'], 
-                     $request_data['adresse2'], 
-                     $request_data['plz'], 
-                     $request_data['ort'], 
-                     $request_data['telefon'], 
-                     $request_data['email'], 
-                     $request_data['zeiten'], 
-                     $request_data['preise'], 
-                     $request_data['info'], 
-                     $badid);
+        $bind = array($request_data['adresse1'],
+                     $request_data['adresse2'],
+                     $request_data['plz'],
+                     $request_data['ort'],
+                     $request_data['telefon'],
+                     $request_data['email'],
+                     $request_data['zeiten'],
+                     $request_data['preise'],
+                     $request_data['info'],
+                     $badid,
+                     $request_data['www']);
 
         $rv = \fbexecute($con, $sql, $bind);
 
