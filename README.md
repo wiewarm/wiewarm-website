@@ -1,12 +1,11 @@
 # wiewarm.ch website
 
-D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. Neu ab Saison 2026 mit Postgres Bäckend.
+D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. Neu ab Saison 2026 mit Postgres Bäckend und Open Source.
 
 
 
 # Todo Lischte
 
- * todos in gh issues konvertiere
  * e2e Tests z.B. robot + Selenimum für Angular + API
  * besseri Lösig für User-supplied Biudli (s3.wiewarm.ch oder so)
  * DB-schema manage so dass me Apassige cha in PRs mitlifere
