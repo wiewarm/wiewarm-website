@@ -224,7 +224,7 @@ class Bad {
      * Update BAD
      *
      * Allows update of the following fields of BAD: 
-     * <pre>addresse1, adresse2, plz, ort, telefon, email, zeiten, preise, info</pre>
+     * <pre>addresse1, adresse2, plz, ort, telefon, email, www, zeiten, preise, info</pre>
      *
      * Body must contain the badid and pincode members.
      *
@@ -276,7 +276,7 @@ class Bad {
                      $request_data['preise'],
                      $request_data['info'],
                      $badid,
-                     $request_data['www']);
+                     isset($request_data['www']) ? $request_data['www'] : null);
 
         $rv = \fbexecute($con, $sql, $bind);
 
