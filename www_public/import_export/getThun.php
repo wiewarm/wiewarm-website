@@ -79,7 +79,8 @@ function checkForInsert($conn, $badmeisterId, $beckenId, $temperature, $changed)
 } // checkForInsert
 
 function getData() {
-    $url = 'https://www.wsct.ch/vantage/wiewarm.txt';
+    #$url = 'https://www.wsct.ch/vantage/wiewarm.txt';
+    $url = 'https://www.thunerwetter.ch/strand/wiewarm.txt';
     $lines = file($url);
     if (!$lines) {
         throw new Exception("Failed to fetch data from $url");
