@@ -1,0 +1,22 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editor settings and swap files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs and local temp files
+*.log
+*.tmp
+
+# Dependency artifacts
+www_public/vendor/
+www_public/composer.phar
+
+# Archive and build leftovers
+*.zip
+*.tar
+*.tar.gz
