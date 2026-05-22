@@ -26,4 +26,4 @@ D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. 
 
 # Code of Conduct
 
-Syt lieb zunenang..
+Syt lieb zunenang.
