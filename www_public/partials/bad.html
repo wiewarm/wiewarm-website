@@ -42,30 +42,18 @@
 
             </accordion-group>
 
-            <accordion-group heading="Wetter- und UV-Prognose" is-open="1">
+            <accordion-group heading="UV-Prognose" is-open="1">
 
                 <div class="row-fluid text-center wetter pull-center">
 
-                        <div class="span2" ng-show="model.wetterort">
-                            {{model.wetter[1]['wetter_date_pretty']}} - {{model.wetter[1]['wetter_temp']}} &deg;C
-                                <br>
-                            <img class="wetterimg" ng-src="/img/meteoTest/be_s{{model.wetter[1]['wetter_symbol']}}.gif">
-                                <br>
-                        </div>
-                        <div class="span2" ng-show="model.wetterort">
-                            {{model.wetter[0]['wetter_date_pretty']}} - {{model.wetter[0]['wetter_temp']}} &deg;C
-                                <br>
-                            <img  class="wetterimg" ng-src="/img/meteoTest/be_s{{model.wetter[0]['wetter_symbol']}}.gif">
-                        </div>
                         <div class="span2">
                             {{model.uv_date_pretty}}
                                 <br>
                             <img class="wetterimg" ng-src="/img/uv-index/index_{{model.uv_wert}}.gif">
                         </div>
-                        <div class="span6 text-left">
+                        <div class="span10 text-left">
                             <br>
                             UV-Werte zur Verfügung gestellt von <a href="http://www.meteoschweiz.ch">MeteoSchweiz</a>.<br>
-                            Wetter zur Verfügung gestellt von <a href="http://www.meteotest.ch">Meteotest Bern</a>.<br>
                         </div>
                 </div>
 
@@ -165,4 +153,3 @@
 
   <div class="span2 hidden-phone"><!-- additional crap right --></div>
 </div>
-
