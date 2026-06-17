@@ -10,6 +10,21 @@ myApp.filter('linkfilter', function() {
     };
 });
 
+myApp.filter('websiteUrl', function() {
+    return function(input) {
+        if (!input) {
+            return '';
+        }
+
+        var url = String(input).replace(/^\s+|\s+$/g, '');
+        if (/^https?:\/\//i.test(url) || /^\/\//.test(url)) {
+            return url;
+        }
+
+        return 'http://' + url;
+    };
+});
+
 myApp.filter('truncate', function () {
         return function (text, length, end) {
             if (isNaN(length))
@@ -34,4 +49,3 @@ myApp.filter('ceil', function () {
 
         };
 });
-
