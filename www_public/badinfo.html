@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Badi Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+        table { border-collapse: collapse; border: none; }
+        th { text-align: left; }
+        td, th { border: none; }
+        td.date-cell, th.date-cell { white-space: nowrap; vertical-align: top; }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f9f9f9;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="output">Loading...</div>
+
+<script>
+// ===============================
+// 1. Read parameters from URL
+// ===============================
+const params = new URLSearchParams(window.location.search);
+const badid = params.get("badid");
+const beckenParam = params.get("beckenname");
+const infosParam = params.get("infos");
+
+// ===============================
+// 2. Parse comma-separated becken list
+// ===============================
+let beckenList = [];
+
+if (beckenParam) {
+    beckenList = beckenParam
+        .split(",")
+        .map(b => b.trim().toLowerCase());
+}
+
+const numer = infosParam ? parseInt(infosParam, 10) : null;
+
+// ===============================
+// Utility: format date for Switzerland (de-CH)
+// ===============================
+function formatSwissDate(dateStr) {
+    if (!dateStr) return '-';
+    const iso = String(dateStr).replace(' ', 'T');
+    const d = new Date(iso);
+    if (isNaN(d)) return String(dateStr).replace('T', ' ');
+    const pad = n => String(n).padStart(2, '0');
+    return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+// ===============================
+// 3. Validate input
+// ===============================
+if (!badid) {
+    document.getElementById("output").innerHTML = "Missing parameter: badid";
+    throw new Error("badid missing");
+}
+
+// ===============================
+// 4. Call API
+// ===============================
+fetch(`https://www.wiewarm.ch/api/v1/bad.json/${badid}`)
+.then(response => response.json())
+.then(data => {
+
+    let html = "";
+
+    // Normalize response into an array of becken items
+    let items = [];
+
+    if (Array.isArray(data)) {
+        items = data;
+    } else if (data && data.becken) {
+        if (Array.isArray(data.becken)) {
+            items = data.becken;
+        } else {
+            items = Object.values(data.becken);
+        }
+    } else if (data && typeof data === 'object') {
+        // single-item shape
+        items = [data];
+    }
+
+    // Ensure each item has a `becken` property (some responses use `beckenname`)
+    items = items.map(it => {
+        if (it && !it.becken && it.beckenname) {
+            return Object.assign({ becken: it.beckenname }, it);
+        }
+        return it;
+    });
+
+    // ===============================
+    // Render as a single table
+    // ===============================
+    let rows = '';
+
+    items.forEach(item => {
+        const beckenName = (item && (item.becken || '')).toLowerCase();
+
+        if (beckenList.length === 0 || beckenList.includes(beckenName)) {
+            rows += `
+                <tr>
+                    <td>${item.becken || '-'}</td>
+                    <td style="text-align:right">${item.temp != null ? item.temp + ' °C' : '-'}</td>
+                    <td class="date-cell">${formatSwissDate(item.date)}</td>
+                    <td>${item.typ || '-'}</td>
+                    <td>${item.status || '-'}</td>
+                </tr>
+            `;
+        }
+    });
+
+    if (rows) {
+        html = `
+            <table cellpadding="6">
+                <thead>
+                    <tr>
+                        <th>Becken</th>
+                        <th>Temp.</th>
+                        <th>Datum</th>
+                        <th>Typ</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows}
+                </tbody>
+            </table>
+        `;
+    } else {
+        html = 'No matching becken found';
+    }
+
+    if (numer > 0 && Array.isArray(data.infos) && data.infos.length > 0) {
+        const lastInfos = data.infos.slice(-numer);
+        let infoRows = '';
+
+        lastInfos.forEach(info => {
+            infoRows += `
+                <tr>
+                    <td class="date-cell">${formatSwissDate(info.date)}</td>
+                    <td>${info.info || '-'}</td>
+                </tr>
+            `;
+        });
+
+        if (infoRows) {
+            html += `
+                <div style="margin-top: 16px;">
+                    <table cellpadding="6">
+                        <thead>
+                            <tr>
+                                <th colspan="2" style="font-weight: bold; text-align:left;">News</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${infoRows}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+    }
+
+    // Output result
+    document.getElementById("output").innerHTML = html;
+
+})
+.catch(error => {
+    document.getElementById("output").innerHTML =
+        "Error loading data";
+    console.error(error);
+});
+</script>
+
+</body>
+</html>
