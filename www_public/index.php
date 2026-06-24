@@ -74,6 +74,7 @@
     -->
     <link href='//fonts.googleapis.com/css?family=Englebert' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="lib/ng-table/ng-table.css"/>
+    <link rel="stylesheet" href="https://mmz-srf.github.io/srf-weather-widget/main.css"/>
     <link rel="stylesheet" href="css/app.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--meta name="fragment" content="!" -->

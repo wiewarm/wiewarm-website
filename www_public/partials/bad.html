@@ -42,19 +42,30 @@
 
             </accordion-group>
 
-            <accordion-group heading="UV-Prognose" is-open="1">
+            <accordion-group heading="UV & Wetter-Prognose" is-open="1">
 
                 <div class="row-fluid text-center wetter pull-center">
 
-                        <div class="span2">
+                        <div class="span4">
                             {{model.uv_date_pretty}}
                                 <br>
                             <img class="wetterimg" ng-src="/img/uv-index/index_{{model.uv_wert}}.gif">
                         </div>
-                        <div class="span10 text-left">
+                       
+                        <div class="span8 text-left">
                             <br>
                             UV-Werte zur Verfügung gestellt von <a href="http://www.meteoschweiz.ch">MeteoSchweiz</a>.<br>
+                            <br><br>
+                            
                         </div>
+                </div>
+                <div class="row-fluid text-center wetter pull-center">
+                    <div class="span4">
+                        <div class="srf-weather-widget" data-size="S" ng-attr-data-location-name="{{model['ort']}}" ng-if="model.ort"></div>
+                    </div>
+                    <div class="span8 text-left">
+                    Wetterprognose zur Verfügung gestellt von <a href="https://www.srf.ch/meteo">SRF Meteo</a>.<br>
+                    </div>
                 </div>
 
             </accordion-group>
