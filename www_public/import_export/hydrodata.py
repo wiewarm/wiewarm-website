@@ -18,7 +18,7 @@ config = {
     "2613": { 'beckenid': 134, 'remarks': "Rhein Basel, Wert aus Weil STRNR=2613 badID=49", 'badid': 49},
     "2091": { 'beckenid': 135, 'remarks': "Rhein Rheinfelden STRNR=2091 badID=50", 'badid': 50},
     "2011": { 'beckenid': 136, 'remarks': "Rhone - Sion STRNR=2011 badID=51", 'badid': 51},
-    "2058": { 'beckenid': 288, 'remarks': "Aare - Hagneck STRNR=2058 badID=124", 'badid': 124},
+    "2085": { 'beckenid': 288, 'remarks': "Aare - Hagneck STRNR=2058 badID=124", 'badid': 124},
     "2462": { 'beckenid': 289, 'remarks': "Inn - S-chanf STRNR=2462 badID=125", 'badid': 125},
     "2159": { 'beckenid': 290, 'remarks': "Guerbe - Belp STRNR=2159 badID=126", 'badid': 126},
 }
