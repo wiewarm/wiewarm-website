@@ -8,7 +8,7 @@ OUT_FILE="/home/wiewarm-pmp/public_html/files/db/devwiewarm.sql"
 psql -v ON_ERROR_STOP=1 postgres <<SQL
 SELECT pg_terminate_backend(pid)
 FROM pg_stat_activity
-WHERE datname = '${DST_DB}'
+WHERE datname = '${SRC_DB}'
   AND pid <> pg_backend_pid();
 
 DROP DATABASE IF EXISTS ${DST_DB};
