@@ -14,39 +14,50 @@ angular.module('myApp.directives', []).
       restrict: 'C',
       link: function(scope, elm, attrs) {
         var src = 'https://mmz-srf.github.io/srf-weather-widget/main.js';
-        var lastLocationName;
+        var lastWidgetKey;
 
-        function loadWidget(locationName) {
-          if (!locationName || locationName === lastLocationName) {
+        function loadWidget(locationName, geolocation) {
+          var widgetKey = geolocation || locationName;
+          if (!widgetKey || widgetKey === lastWidgetKey) {
             return;
           }
 
-          lastLocationName = locationName;
+          lastWidgetKey = widgetKey;
           elm.empty();
 
           var target = document.createElement('div');
           target.className = 'srf-weather-widget';
           target.setAttribute('data-size', attrs.size || 'S');
-          target.setAttribute('data-location-name', locationName);
+
+          if (geolocation) {
+            target.setAttribute('data-geolocation', geolocation);
+          } else if (locationName) {
+            target.setAttribute('data-location-name', locationName);
+          }
+
           elm.append(target);
 
           // The SRF module initializes matching nodes once when it is evaluated.
-          // Load a fresh module URL for each Angular-created widget target.
+          // Load the widget module for the created target using the same pattern as the
+          // published SRF example, with the location details supplied through the DOM.
           var script = document.createElement('script');
           script.async = true;
           script.type = 'module';
-          script.src = src + '?location=' + encodeURIComponent(locationName) + '&t=' + Date.now();
+          script.src = src;
           script.onload = function() {
             target.className = '';
           };
           document.body.appendChild(script);
         }
 
-        attrs.$observe('locationName', function(locationName) {
+        function updateWidget() {
           $timeout(function() {
-            loadWidget(locationName);
+            loadWidget(attrs.locationName, attrs.dataGeolocation);
           });
-        });
+        }
+
+        attrs.$observe('locationName', updateWidget);
+        attrs.$observe('dataGeolocation', updateWidget);
       }
     };
   }]);

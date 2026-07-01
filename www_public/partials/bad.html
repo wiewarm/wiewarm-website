@@ -61,7 +61,8 @@
                 </div>
                 <div class="row-fluid text-center wetter pull-center">
                     <div class="span4">
-                        <div class="srf-weather-widget-loader" size="S" location-name="{{model['ort']}}" ng-if="model.ort"></div>
+                        <div class="srf-weather-widget-loader" size="S" data-geolocation="{{model['lat']/1000000}},{{model['long']/1000000}}"
+                             ng-if="model.ort && model.lat && model.long"></div>
                     </div>
                     <div class="span8 text-left">
                     Wetterprognose zur Verfügung gestellt von <a href="https://www.srf.ch/meteo">SRF Meteo</a>.<br>
