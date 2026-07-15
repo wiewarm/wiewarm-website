@@ -84,7 +84,7 @@ function getSee($conn, $url, $beckenId) {
 
 // Get temperatures
 getSee($conn, "https://www.tecson-data.ch/zurich/tiefenbrunnen/index.php", 43);
-//getSee($conn, "https://www.tecson-data.ch/zurich/mythenquai/index.php", 44);
+getSee($conn, "https://www.tecson-data.ch/zurich/mythenquai/index.php", 44);
 
 pg_close($conn);
 ?>
