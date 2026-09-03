@@ -17,21 +17,6 @@ if (!$conn) {
     die("Failed to connect to PostgreSQL: " . pg_last_error());
 }
 
-function getLastDateTime($conn, $beckenId) {
-    $sql = "SELECT newest_datum as dmax FROM becken WHERE id = $1";
-    $result = pg_query_params($conn, $sql, array($beckenId));
-    if (!$result) {
-        echo "Error getting last date time: " . pg_last_error($conn) . "\n";
-        return 0;
-    }
-
-    $data = pg_fetch_assoc($result);
-    if ($data && $data['dmax']) {
-        return strtotime($data['dmax']);
-    }
-    return 0;
-}
-
 function fetchPage($url) {
     $context = stream_context_create(array(
         'http' => array(
@@ -79,25 +64,6 @@ function extractWaterTemperature($html) {
         $snippet = substr($text, $pos, 220);
         if (preg_match('/Wassertemperatur.*?([0-9]+(?:[.,][0-9]+)?)/is', $snippet, $match)) {
             return str_replace(',', '.', $match[1]);
-        }
-    }
-
-    return null;
-}
-
-function extractUpdateDate($html) {
-    $patterns = array(
-        '/(?:Aktualisiert|Stand|Messung|gemessen|Letzte\s+Messung|Erfasst\s+am)\s*(?:am\s*)?([0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}|[0-9]{4}-[0-9]{2}-[0-9]{2})/i',
-        '/([0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4})\s*(?:um\s*)?[0-9]{1,2}:[0-9]{2}/i',
-        '/([0-9]{4}-[0-9]{2}-[0-9]{2})[T\s][0-9]{2}:[0-9]{2}/i',
-    );
-
-    foreach ($patterns as $pattern) {
-        if (preg_match($pattern, $html, $match)) {
-            $timestamp = strtotime($match[1]);
-            if ($timestamp !== false) {
-                return $timestamp;
-            }
         }
     }
 
