@@ -1,6 +1,8 @@
 # Imports with Byterot
 
-## getUVIndex.php no longer working due to 404 on admin.ch Site
+## UV index
+
+`getUVIndex.php` imports the current MeteoSwiss forecast into `uvwert`.
 
 ## getWetter.php stopped working in 2021 no more input deliver, was e.g
 
