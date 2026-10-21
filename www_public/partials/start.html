@@ -31,7 +31,10 @@
                         <td data-title="'Becken'" sortable="'becken'" filter="{ 'becken': 'text' }">{{rec.becken|truncate:21}}</td>
                         <td data-title="'Wert'" sortable="'temp'" class="start_wert">{{rec.temp}} &deg;C</td>
                         <td data-title="'Datum'" sortable="'date'">{{rec.date_pretty}}</td>
-                        <td data-title="'Distanz'" sortable="'distance'" class="start_distance" ng-show="hasLocation">{{rec.distance === null ? '&ndash;' : (rec.distance | number:1) + ' km'}}</td>
+                        <td data-title="'Distanz'" sortable="'distance'" class="start_distance" ng-show="hasLocation">
+                            <span ng-show="rec.distance === null">&ndash;</span>
+                            <span ng-hide="rec.distance === null">{{rec.distance | number:1}} km</span>
+                        </td>
                         <td data-title="'PLZ'" sortable="'plz'" filter="{ 'plz': 'text' }" class="start_plz">{{rec.plz}}</td>
                         <td data-title="'Kanton'" sortable="'kanton'" filter="{ 'kanton': 'text' }" class="start_kanton">{{rec.kanton}}</td>
                     </tr>
