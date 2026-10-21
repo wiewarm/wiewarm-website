@@ -15,6 +15,72 @@ function StartCtrl($scope, $log, $http, $q, $location, $filter, $window, DataSha
     $scope.Math = window.Math;
     $scope.window = $window;
     $scope.isGoogle = false;
+    $scope.locationState = 'idle';
+    $scope.locationMessage = '';
+    $scope.hasLocation = false;
+
+    function distanceInKm(latitude1, longitude1, latitude2, longitude2) {
+        var earthRadiusKm = 6371;
+        var toRadians = Math.PI / 180;
+        var latitudeDelta = (latitude2 - latitude1) * toRadians;
+        var longitudeDelta = (longitude2 - longitude1) * toRadians;
+        var a = Math.sin(latitudeDelta / 2) * Math.sin(latitudeDelta / 2) +
+            Math.cos(latitude1 * toRadians) * Math.cos(latitude2 * toRadians) *
+            Math.sin(longitudeDelta / 2) * Math.sin(longitudeDelta / 2);
+
+        return earthRadiusKm * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    $scope.sortByUpdateDate = function() {
+        if (!$scope.tableParams) {
+            return;
+        }
+
+        $scope.tableParams.page(1);
+        $scope.tableParams.sorting({date: 'desc'});
+    };
+
+    $scope.sortByProximity = function() {
+        if (!$scope.tableParams || $scope.locationState == 'loading') {
+            return;
+        }
+
+        if (!$window.navigator.geolocation) {
+            $scope.locationState = 'error';
+            $scope.locationMessage = 'Standortbestimmung wird von diesem Browser nicht unterst\u00fctzt.';
+            return;
+        }
+
+        $scope.locationState = 'loading';
+        $scope.locationMessage = 'Standort wird ermittelt ...';
+
+        $window.navigator.geolocation.getCurrentPosition(function(position) {
+            $scope.$apply(function() {
+                angular.forEach($scope.model, function(record) {
+                    var latitude = parseFloat(record.ortlat);
+                    var longitude = parseFloat(record.ortlong);
+
+                    record.distance = isFinite(latitude) && isFinite(longitude) ?
+                        distanceInKm(position.coords.latitude, position.coords.longitude, latitude, longitude) : null;
+                });
+
+                $scope.hasLocation = true;
+                $scope.locationState = 'ready';
+                $scope.locationMessage = 'Nach Entfernung von Ihrem Standort sortiert.';
+                $scope.tableParams.page(1);
+                $scope.tableParams.sorting({distance: 'asc'});
+            });
+        }, function() {
+            $scope.$apply(function() {
+                $scope.locationState = 'error';
+                $scope.locationMessage = 'Standort konnte nicht ermittelt werden. Bitte erlauben Sie den Standortzugriff.';
+            });
+        }, {
+            enableHighAccuracy: false,
+            timeout: 10000,
+            maximumAge: 300000
+        });
+    };
 
 
     $scope.getModel = function(searchtext){
@@ -36,6 +102,11 @@ function StartCtrl($scope, $log, $http, $q, $location, $filter, $window, DataSha
                 defaultSize = 9999; 
             }
 
+            var urlParams = angular.copy($location.search());
+            // A previous proximity sort cannot be restored without asking for the
+            // visitor's location again, so fall back to the normal default.
+            delete urlParams['sorting[distance]'];
+
             $scope.tableParams = new ngTableParams(
                 angular.extend({
                     page: 1,            // show first page
@@ -45,7 +116,7 @@ function StartCtrl($scope, $log, $http, $q, $location, $filter, $window, DataSha
                         //kanton: 'asc',     // initial sorting
                         //ort: 'asc'     // initial sorting
                     }
-                },$location.search()), {
+                }, urlParams), {
                 
                     total: $scope.model.length, // length of data
 
@@ -62,6 +133,27 @@ function StartCtrl($scope, $log, $http, $q, $location, $filter, $window, DataSha
 
                         var data = $scope.model;
                         var orderedData = params.sorting() ?  $filter('orderBy')(data, params.orderBy()) : data;
+
+                        if (params.sorting().distance){
+                            orderedData = data.slice().sort(function(a, b) {
+                                var distanceA = parseFloat(a.distance);
+                                var distanceB = parseFloat(b.distance);
+                                var hasDistanceA = isFinite(distanceA);
+                                var hasDistanceB = isFinite(distanceB);
+
+                                if (!hasDistanceA && !hasDistanceB) {
+                                    return 0;
+                                }
+                                if (!hasDistanceA) {
+                                    return 1;
+                                }
+                                if (!hasDistanceB) {
+                                    return -1;
+                                }
+
+                                return params.sorting().distance == 'desc' ? distanceB - distanceA : distanceA - distanceB;
+                            });
+                        }
 
                         if (params.sorting().temp){
 

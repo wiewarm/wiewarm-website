@@ -327,6 +327,34 @@ A:hover {text-decoration: none; color: #018dfa;}
     margin: 0;
 }
 
+.start-sort-controls {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.start-sort-controls > span:first-child {
+    color: #60798b;
+    font-size: 0.9em;
+}
+
+.start-sort-controls .btn {
+    border-radius: 999px;
+}
+
+.start-location-status {
+    color: #60798b;
+    flex-basis: 100%;
+    font-size: 0.78em;
+    text-align: right;
+}
+
+.start-location-error {
+    color: #a94442;
+}
+
 .start-table-shell {
     border: 1px solid rgba(1, 141, 250, 0.1);
     border-radius: 22px;
@@ -458,6 +486,12 @@ td.start_kanton {
 td.start_wert {
     width: 7em;
     text-align: right;
+}
+
+td.start_distance {
+    text-align: right;
+    white-space: nowrap;
+    width: 7em;
 }
 
 .pagination {
@@ -594,6 +628,15 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     .start-table-topline .timestamp {
         display: block;
         margin-top: 4px;
+    }
+
+    .start-sort-controls {
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    .start-location-status {
+        text-align: left;
     }
 
     .start-data-table {

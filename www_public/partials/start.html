@@ -2,8 +2,25 @@
     <div class="start-layout">
         <section class="start-main-panel" id="indextemp">
             <div class="start-table-topline">
-                <h2 class="gfont">Aktuelle Temperaturen</h2>
-                <em class="timestamp">{{(tableParams && tableParams.total && tableParams.total()) || model.length || 0}} Eintr&auml;ge</em>
+                <div>
+                    <h2 class="gfont">Aktuelle Temperaturen</h2>
+                    <em class="timestamp">{{(tableParams && tableParams.total && tableParams.total()) || model.length || 0}} Eintr&auml;ge</em>
+                </div>
+                <div class="start-sort-controls" ng-show="tableParams">
+                    <span>Sortieren:</span>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default"
+                            ng-class="{'active': tableParams.sorting().date == 'desc'}"
+                            ng-click="sortByUpdateDate()">Neueste</button>
+                        <button type="button" class="btn btn-default"
+                            ng-class="{'active': tableParams.sorting().distance}"
+                            ng-disabled="locationState == 'loading'"
+                            ng-click="sortByProximity()">N&auml;he</button>
+                    </div>
+                    <span class="start-location-status" ng-show="locationMessage"
+                        ng-class="{'start-location-error': locationState == 'error'}"
+                        role="status" aria-live="polite">{{locationMessage}}</span>
+                </div>
             </div>
 
             <div class="start-table-shell">
@@ -14,6 +31,7 @@
                         <td data-title="'Becken'" sortable="'becken'" filter="{ 'becken': 'text' }">{{rec.becken|truncate:21}}</td>
                         <td data-title="'Wert'" sortable="'temp'" class="start_wert">{{rec.temp}} &deg;C</td>
                         <td data-title="'Datum'" sortable="'date'">{{rec.date_pretty}}</td>
+                        <td data-title="'Distanz'" sortable="'distance'" class="start_distance" ng-show="hasLocation">{{rec.distance === null ? '&ndash;' : (rec.distance | number:1) + ' km'}}</td>
                         <td data-title="'PLZ'" sortable="'plz'" filter="{ 'plz': 'text' }" class="start_plz">{{rec.plz}}</td>
                         <td data-title="'Kanton'" sortable="'kanton'" filter="{ 'kanton': 'text' }" class="start_kanton">{{rec.kanton}}</td>
                     </tr>
