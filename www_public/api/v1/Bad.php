@@ -221,6 +221,100 @@ class Bad {
     }
 
     /**
+     * Get daily average temperatures, as used by statng.php
+     *
+     * The range ends at the latest reading across this BAD's pools, or today
+     * if there are no readings. Both boundary dates are included.
+     * Missing readings are null; temperatures are in degrees Celsius.
+     *
+     * @url GET {badid}/timeseries
+     * @param mixed $badid Numeric id of BAD
+     * @param mixed $days Number of days to look back, from 7 to 90 (default 60)
+     * @return mixed
+     */
+    function getTimeseries($badid, $days = 60){
+        if (!(is_int($badid) || is_string($badid))
+            || !preg_match('/^[1-9][0-9]*$/D', (string) $badid)
+            || filter_var($badid, FILTER_VALIDATE_INT, array('options' => array('max_range' => 2147483647))) === false) {
+            throw new RestException(400, "badid must be a positive integer");
+        }
+        if (!(is_int($days) || is_string($days))
+            || !preg_match('/^[0-9]+$/D', (string) $days)
+            || $days < 7 || $days > 90) {
+            throw new RestException(400, "days must be an integer from 7 to 90");
+        }
+        $badid = (int) $badid;
+        $days = (int) $days;
+        $con = \pconnect();
+        $result = \query($con, 'SELECT name AS badname, ort FROM bad WHERE id = $1', array($badid));
+        $bad = \fetch_assoc($result);
+        if (!$bad) {
+            throw new RestException(404, "Bad not found");
+        }
+
+        // Use the same labels and ordering as get(), which supplies statng.php.
+        $result = \query($con, "
+            SELECT bk.id AS beckenid,
+                   CASE WHEN COUNT(*) OVER (PARTITION BY bk.name) = 1
+                        THEN bk.name ELSE kt.bezeichnung || ' ' || bk.name END AS beckenname
+            FROM becken bk
+            LEFT JOIN katalog kt ON bk.typ = kt.itemid AND kt.gruppe = 1
+            WHERE bk.badid = $1
+            ORDER BY kt.bezeichnung, beckenname", array($badid));
+        $becken = array();
+        $emptyTemperatures = array();
+        while ($row = \fetch_assoc($result)) {
+            $row['beckenid'] = (int) $row['beckenid'];
+            $becken[] = $row;
+            $emptyTemperatures[$row['beckenid']] = null;
+        }
+
+        $result = \query($con, '
+            SELECT MAX(t.datum) AS latest_date
+            FROM temperatur t JOIN becken bk ON bk.id = t.beckenid
+            WHERE bk.badid = $1', array($badid));
+        $latest = \fetch_assoc($result);
+        $end = $latest['latest_date'] ? strtotime($latest['latest_date']) : time();
+        $start = $end - $days * 86400;
+        $startDate = date('Y-m-d', $start);
+
+        $result = \query($con, "
+            SELECT t.beckenid, TO_CHAR(t.datum, 'YYYY-MM-DD') AS date,
+                   AVG(t.wert) / 10.0 AS temp
+            FROM temperatur t JOIN becken bk ON bk.id = t.beckenid
+            WHERE bk.badid = $1 AND t.datum > $2
+            GROUP BY t.beckenid, TO_CHAR(t.datum, 'YYYY-MM-DD')
+            ORDER BY date, t.beckenid", array($badid, $startDate));
+        $temperatures = array();
+        while ($row = \fetch_assoc($result)) {
+            $temperatures[$row['date']][$row['beckenid']] =
+                $row['temp'] === null ? null : (float) $row['temp'];
+        }
+
+        $data = array();
+        if ($becken) {
+            for ($t = $start; $t <= $end; $t += 86400) {
+                $date = date('Y-m-d', $t);
+                $data[] = array(
+                    'date' => $date,
+                    'temperatures' => (object) array_replace($emptyTemperatures, $temperatures[$date] ?? array())
+                );
+            }
+        }
+
+        return array(
+            'badid' => $badid,
+            'badname' => $bad['badname'],
+            'ort' => $bad['ort'],
+            'days' => $days,
+            'start' => $startDate,
+            'end' => date('Y-m-d', $end),
+            'becken' => $becken,
+            'data' => $data
+        );
+    }
+
+    /**
      * Update BAD
      *
      * Allows update of the following fields of BAD: 

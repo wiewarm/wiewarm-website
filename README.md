@@ -29,6 +29,20 @@ The password belongs to the BAD: the current schema stores it in
 `bad.password_hash`, not in `badmeister`. Updates always use a freshly salted
 SHA-512 crypt hash, matching `infra/cryptpw.php`, regardless of the previous hash.
 
+# Temperature history API
+
+`GET /api/v1/bad/235/timeseries?days=7` returns daily average temperatures
+in °C for each pool, matching `statng.php`. `days` defaults to 60 and accepts
+integers from 7 to 90; invalid values return 400 and unknown BAD IDs return 404.
+The range ends at the BAD's latest temperature reading (today if none exist),
+with both boundary dates included, so `days=7` normally returns eight dates.
+
+The response contains `badid`, `badname`, `ort`, `days`, `start`, `end`,
+`becken` (pool IDs and names), and `data`. Each data row has an ISO `date` and
+a `temperatures` object keyed by pool ID, for example
+`{"date":"2026-07-10","temperatures":{"11":21.5,"12":null}}`.
+Missing readings are `null`; a BAD without pools returns empty `becken` and `data` arrays.
+
 # AI Policy
 
  * Mir hätte fröid amne komplette Rewrite ufene moderne Stäck, aber müesst chli gschmackvou und durchdacht si. Gärn zersch imne Issue diskutiere.
