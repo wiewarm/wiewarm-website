@@ -1,18 +1,27 @@
 #!/bin/bash
-
-set -e
-set -u
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-cd ~/wiewarm-website
-git pull --ff
+set -euo pipefail
+cd "${HOME}/wiewarm-website"
+git pull --ff-only
+revision=$(git rev-parse --short HEAD)
+if podman image exists wiewarm-apache:latest; then
+  podman tag wiewarm-apache:latest wiewarm-apache:previous
+fi
 ./infra/podman-build.sh
-cp infra/wiewarm-apache.service  ~/.config/systemd/user/wiewarm-apache.service
+podman tag wiewarm-apache:latest "wiewarm-apache:$revision"
+podman build -f infra/Dockerfile.node -t "wiewarm-node:$revision" .
+mkdir -p "$HOME/.config/systemd/user"
+# The previous image reference and Git revision are needed for rollback.
+if test -f "$HOME/.config/wiewarm-node-image"; then
+  cp "$HOME/.config/wiewarm-node-image" "$HOME/.config/wiewarm-node-image.previous"
+fi
+printf 'WIEWARM_NODE_IMAGE=wiewarm-node:%s\n' "$revision" > "$HOME/.config/wiewarm-node-image"
+cp infra/wiewarm-node.service infra/wiewarm-apache.service "$HOME/.config/systemd/user/"
 systemctl --user daemon-reload
-sleep 2
+systemctl --user restart wiewarm-node.service
+curl --fail --retry 15 --retry-connrefused --retry-delay 2 http://127.0.0.1:3772/healthz
+podman run --rm -e APACHE_PORT=3771 -e APACHE_BIND=127.0.0.1 -e FRONTEND_ORIGIN=http://127.0.0.1:3772 \
+  -v "$PWD/infra/apache2.conf:/etc/apache2/apache2.conf:ro,Z" wiewarm-apache:latest apache2ctl -t
 systemctl --user restart wiewarm-apache.service
-sleep 3
-systemctl --user  --no-pager status wiewarm-apache.service
-
-# should also copy the crontab here but that would need sudo for this account
-# cp infra/${USER}_import_export.cron /etc/cron.d/${USER}_import_export
+curl --fail --retry 15 --retry-connrefused --retry-delay 2 http://127.0.0.1:3771/healthz
+curl --fail http://127.0.0.1:3771/api/v1/temperature/all_current.json/0 > /dev/null
+systemctl --user --no-pager status wiewarm-node.service wiewarm-apache.service

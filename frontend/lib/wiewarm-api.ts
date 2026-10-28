@@ -3,7 +3,7 @@ import { MAX_RANGE_DAYS, type TemperatureTimeseries, type TimeseriesPoint, type 
 
 // Override with WIEWARM_ORIGIN (e.g. https://beta.wiewarm.ch) to run against another environment.
 const API_ORIGIN = (process.env.WIEWARM_ORIGIN || 'https://www.wiewarm.ch').replace(/\/+$/, '');
-export const API_BASE = `${API_ORIGIN}/api/v1`;
+export const API_BASE = `${(process.env.WIEWARM_API_ORIGIN || API_ORIGIN).replace(/\/+$/, '')}/api/v1`;
 
 export class WiewarmApiError extends Error {
   constructor(message: string, readonly status?: number) {

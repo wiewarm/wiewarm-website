@@ -1,22 +1,36 @@
-# wiewarm.ch website
+# wiewarm.ch
 
-D'Desktop Website vo wiewarm.ch, in ihrem ganze Angular 1.x - PHP - 2010 Glanz. Neu ab Saison 2026 mit Postgres Bäckend und Open Source.
+The Next.js frontend lives in `frontend/`. Apache/PHP in `www_public/` serves
+`/api`, `/img`, and `/xmlData.php`; import jobs remain PHP and their directory
+remains blocked over HTTP. Internal Apache proxies other requests to Node.
+The external HTTPS vhost is unchanged.
 
+## Development
 
+Run `docker compose -f infra/docker-compose.yml up --build` and open
+http://localhost:3770. Development database passwords are `badi`.
+Node 22 is required for standalone frontend development:
+`cd frontend && npm ci && npm run dev`.
+Set `WIEWARM_API_ORIGIN=http://localhost:3770` when using the local PHP API.
+`WIEWARM_ORIGIN` controls public image URLs separately.
 
-# Todo Lischte
+## Production
 
- * e2e Tests z.B. robot + Selenimum für Angular + API
- * besseri Lösig für User-supplied Biudli (s3.wiewarm.ch oder so)
- * DB-schema manage so dass me Apassige cha in PRs mitlifere
- * AGENTS.md
-   
-# Mitmache
+Create `~/.wiewarm-node.env` (mode 600) containing a persistent, random
+`SESSION_SECRET`. Keep existing PHP secrets and image mounts.
+`infra/vps_deploy.sh` builds both services and checks Node before restarting
+internal Apache. Production ports 3771 and 3772 bind to loopback.
+Enable both user services and user lingering as appropriate for the VPS.
+The deployment script pulls the current branch; deploy only reviewed revisions.
 
- * `cd infra ; docker-compose up ; http://localhost:3770`
- * häcke in www_public
- * i dere lokale Umgäbig/DB si aui Passwörter `badi`
- * hesch öppis guets mach ä Pull Request
+Before rollout, record the previous Git revision and preserve the previous PHP
+image tag. For rollback, restore that revision/configuration and PHP image;
+restore `~/.config/wiewarm-node-image.previous` to `wiewarm-node-image`, then
+restart both user services. No database migration is required.
+
+Validate admin login, password changes, updates and image uploads against the
+development database before deployment. Production cookies require HTTPS;
+use frontend dev mode or a local HTTPS proxy for full admin testing.
 
 # Password API
 

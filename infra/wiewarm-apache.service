@@ -16,6 +16,8 @@ ExecStart=/bin/bash -lc '\
     --volume %h/wiewarm-images/img:/var/www/html/img:Z \
     --volume %h/wiewarm-website/infra/apache2.conf:/etc/apache2/apache2.conf:Z \
     --env-file %h/.podman-env \
+    --env APACHE_BIND=127.0.0.1 \
+    --env FRONTEND_ORIGIN=http://127.0.0.1:3772 \
     --env TZ=Europe/Zurich \
     --env DB_TYPE=postgres \
     --env POSTGRES_HOST=127.0.0.1 \

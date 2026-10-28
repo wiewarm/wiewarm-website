@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import type { Metadata } from 'next';
 import '@fontsource-variable/geist';
 import '@fontsource-variable/manrope';

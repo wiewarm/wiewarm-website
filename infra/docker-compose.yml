@@ -1,7 +1,15 @@
-version: '3.8'
 
 services:
 
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.node
+    environment:
+      WIEWARM_API_ORIGIN: http://apache-php:3770
+      WIEWARM_ORIGIN: http://localhost:3770
+      SESSION_SECRET: local-development-only-change-before-deploying
 
   ci-postgres:
     build:
@@ -28,6 +36,8 @@ services:
     environment:
       - TZ=Europe/Zurich
       - APACHE_PORT=3770
+      - APACHE_BIND=0.0.0.0
+      - FRONTEND_ORIGIN=http://frontend:3000
       - DB_TYPE=postgres
       - POSTGRES_HOST=ci-postgres
       - POSTGRES_DB=devwiewarm
