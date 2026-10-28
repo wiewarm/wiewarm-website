@@ -1,0 +1,301 @@
+/* Sommerfrische: bright lake blue, sunshine, and temperatures first. */
+.summer-only { display: none; }
+.skip-link { position: fixed; z-index: 100; top: .5rem; left: 1rem; padding: .8rem 1.1rem; transform: translateY(-160%); border-radius: .5rem; background: var(--foreground); color: var(--background); }
+.skip-link:focus { transform: translateY(0); }
+.result-summary { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; }
+.clear-filters { display: inline-flex; align-items: center; gap: .3rem; font-size: .78rem; color: var(--primary); }
+.clear-filters svg { width: .85rem; height: .85rem; }
+
+html[data-design='sommerfrische'] {
+  --background: #fffdf7;
+  --foreground: #003c49;
+  --card: #ffffff;
+  --card-foreground: #003c49;
+  --popover: #ffffff;
+  --popover-foreground: #003c49;
+  --primary: #006c78;
+  --primary-foreground: #ffffff;
+  --secondary: #ffde17;
+  --secondary-foreground: #006c78;
+  --muted: #f0f7f7;
+  --muted-foreground: #496470;
+  --accent: #ffe21b;
+  --accent-foreground: #003c49;
+  --destructive: #c7361b;
+  --border: #c8d8db;
+  --input: #9ebcc3;
+  --ring: #e4411c;
+  --radius: .6rem;
+  scroll-behavior: smooth;
+  scroll-padding-top: 1.5rem;
+
+  body { min-width: 0; }
+  .summer-only { display: flex; }
+  .page-frame { background: var(--background); }
+  .site-shell { width: min(1140px, calc(100% - 5rem)); }
+  .site-header { padding: .75rem 0; border-bottom: 1px solid var(--border); }
+  .header-inner { gap: 2rem; }
+  .brand { gap: .6rem; font-size: 1.65rem; font-weight: 780; letter-spacing: -.075em; }
+  .brand > span:last-child span { color: inherit; font-weight: 450; }
+  .brand-mark { width: 2.7rem; height: 2.7rem; border: 0; box-shadow: none; background: transparent; color: #eb431b; }
+  .brand-mark svg { width: 1.9rem; height: 1.5rem; stroke-width: 1.7; }
+  .brand-sun { transform: translateY(-.45rem); }
+  .brand-waves { transform: translateY(.5rem); background: var(--background); }
+  .header-nav { gap: 1.9rem; margin-left: auto; }
+  .header-nav a { font-size: .8rem; font-weight: 550; text-decoration: none; }
+  .header-nav a:hover { color: #ce3414; }
+  .header-tools { gap: .5rem; }
+  .design-selector, .font-selector { gap: .5rem; color: var(--muted-foreground); font-size: .69rem; font-weight: 500; }
+  .design-selector select, .font-selector select { min-width: 9.1rem; height: 2.15rem; padding-left: .7rem; padding-right: 1.2rem; border: 1px solid var(--border); border-radius: 2rem; background: transparent; font-size: .72rem; font-weight: 600; }
+  .home-main { padding-top: 0; padding-bottom: 0; }
+  .summer-hero { align-items: center; justify-content: space-between; gap: 2rem; margin: 1rem 0 1.2rem; padding: 1rem 1.6rem; border-radius: .8rem; background: #00bed0; }
+  .summer-hero-copy { flex: 1; min-width: 0; }
+  .summer-eyebrow { align-items: center; gap: .5rem; margin: 0 0 1.1rem; color: #42636c; font-size: .63rem; font-weight: 650; line-height: 1.5; letter-spacing: .12em; text-transform: uppercase; }
+  .summer-hero .summer-eyebrow { display: flex; margin-bottom: .45rem; color: #003c49; font-size: .58rem; font-weight: 750; }
+  .summer-eyebrow > span { width: .4rem; height: .4rem; border-radius: 50%; background: #ffdf17; }
+  .summer-hero h1 { margin: 0; font-size: clamp(1.8rem, 3.1vw, 2.65rem); line-height: 1.1; font-weight: 650; letter-spacing: -.055em; }
+  .water-word { position: relative; display: inline-block; color: #003c49; font-family: 'Fraunces Variable', Georgia, serif; font-style: italic; font-weight: 480; letter-spacing: -.065em; }
+  .water-word svg { position: absolute; inset: auto 0 -.12em; width: 100%; height: .2em; fill: none; stroke: #ffec16; stroke-width: 2; stroke-linecap: round; }
+  .summer-lead { margin: .65rem 0 0; color: #003c49; font-size: .8rem; font-weight: 500; line-height: 1.5; }
+  .summer-postcard { position: relative; flex: 0 0 11rem; min-width: 0; padding: .35rem .35rem .05rem; margin-right: .8rem; background: #fff; box-shadow: 3px 4px 0 #007d8c; transform: rotate(4deg); }
+  .postcard-art { overflow: hidden; }
+  .postcard-art img { display: block; width: 100%; height: auto; }
+  .postcard-caption { display: flex; justify-content: space-between; align-items: center; gap: .4rem; margin: .25rem .15rem; color: #005564; font-family: 'Fraunces Variable', Georgia, serif; font-style: italic; font-size: .65rem; }
+  .postcard-caption > span:last-child { font-family: sans-serif; font-size: 1rem; }
+  .postcard-stamp { position: absolute; top: -.65rem; right: -1.1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 3.8rem; height: 3.8rem; border: 1px solid #ffc400; border-radius: 50%; background: #ffe21b; outline: 1px dashed #825800; outline-offset: -5px; color: #003c49; text-align: center; transform: rotate(12deg); }
+  .postcard-stamp svg { width: .8rem; height: .8rem; margin-bottom: .15rem; stroke-width: 1.5; }
+  .postcard-stamp span { font-size: .44rem; line-height: 1.1; letter-spacing: .07em; }
+  .postcard-stamp strong { font-size: .65rem; letter-spacing: .03em; }
+  .postcard-stamp small { display: none; }
+  .finder-card { overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; scroll-margin-top: 1.2rem; }
+  .finder-heading { align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .65rem; }
+  .finder-heading h2 { margin: 0; font-size: 1.4rem; font-weight: 700; letter-spacing: -.04em; }
+  .finder-heading > span { display: flex; align-items: center; gap: .45rem; margin-bottom: .2rem; font-size: .73rem; color: #3c626c; }
+  .finder-heading > span svg { width: 1rem; height: 1rem; }
+  .filter-bar { display: flex; align-items: center; gap: .6rem; padding: .35rem; border: 1.5px solid #008397; border-radius: .6rem; background: #fff; box-shadow: 0 2px 0 #00bed0; }
+  .search-field { min-width: 0; display: flex; align-items: center; }
+  .search-field svg { top: auto; left: .8rem; width: 1.2rem; height: 1.2rem; color: #006b7b; }
+  .search-field input { height: 3rem; padding-left: 2.7rem; border: 0; border-radius: .4rem; background: transparent; box-shadow: none; font-size: .87rem; }
+  .search-field input::placeholder { color: #56737b; opacity: 1; }
+  .search-field input:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; box-shadow: none; }
+  .canton-filter { align-items: center; padding-left: 1rem; border-left: 1px solid var(--border); }
+  .canton-filter select { width: 9.5rem; height: 2.6rem; padding-right: .5rem; color: #004d61; background: transparent; font-family: inherit; font-size: .8rem; cursor: pointer; }
+  .search-submit { align-items: center; justify-content: center; gap: 1.3rem; min-height: 3rem; padding: .7rem 1.3rem; border: 0; border-radius: .5rem; background: #d93914; color: #ffffff; font: 550 .82rem var(--font-body); cursor: pointer; transition: background .2s; }
+  .search-submit:hover { background: #b72d0d; }
+  .search-submit svg { width: 1rem; height: 1rem; }
+  .quick-search { flex-wrap: wrap; align-items: center; gap: .45rem; margin: .65rem 0 .75rem; font-size: .7rem; }
+  .quick-search > span { margin-right: .15rem; color: #4b6c76; }
+  .quick-search a { display: inline-flex; align-items: center; gap: .6rem; padding: .34rem .65rem; border: 1px solid #7cb8c5; border-radius: 2rem; color: #005b72; text-decoration: none; transition: background .2s, border-color .2s; }
+  .quick-search a:hover, .quick-search a[aria-current] { background: #ffe21b; border-color: #e5b900; }
+  .quick-search a svg { width: .7rem; height: .7rem; }
+  .result-bar { min-height: 2.3rem; padding: 0 0 .55rem; gap: .75rem; }
+  .result-bar p { font-size: .8rem; color: #004d61; }
+  .result-bar strong { font-weight: 700; }
+  .result-hint { padding-left: .8rem; border-left: 1px solid var(--border); color: #5c757e; font-size: .72rem; }
+  .page-size-form { gap: .45rem; font-size: .7rem; }
+  .page-size-form > button { height: 1.9rem; min-height: 1.9rem; border: 1px solid var(--border); border-radius: .35rem; background: transparent; font-size: .7rem; box-shadow: none; }
+  .page-size-form > button:hover { background: #ffe21b; }
+  .finder-card > [data-slot='table-container'] { overflow: hidden; border: 1px solid var(--border); border-radius: .65rem; }
+  .temperature-table { width: 100%; min-width: 0; border: 0; }
+  .temperature-table th { height: 2.4rem; padding: .5rem 1rem; background: #004d61; color: #fff; }
+  .sort-link { gap: .2rem; color: #fff; font-size: .65rem; font-weight: 650; letter-spacing: .06em; white-space: nowrap; }
+  .sort-link svg { width: .75rem; height: .75rem; }
+  .temperature-table td { height: 3.5rem; padding: .6rem 1rem; color: #405c65; font-size: .8rem; white-space: normal; border-bottom: 1px solid #dae4e4; }
+  .temperature-table tbody tr { background: #ffffff; transition: background .15s; }
+  .temperature-table tbody tr:nth-child(even) { background: #ffffff; }
+  .temperature-table tbody tr:hover { background: #f0fbfc; }
+  .temperature-table tbody tr:last-child td { border-bottom: 0; }
+  .temperature-table .location-cell { color: #003c49; font-weight: 550; }
+  .temperature-table .pool-link { color: #006c78; font-size: .85rem; font-weight: 650; text-decoration: none; }
+  .temperature-table .pool-link:hover { text-decoration: underline; }
+  .temperature-table td:nth-child(2) { max-width: 13rem; }
+  .temperature-table td:nth-child(3) { max-width: 12rem; font-size: .78rem; }
+  .temperature-table td:nth-child(5) { font-size: .73rem; white-space: nowrap; }
+  .outdated-reading { margin-top: .25rem; color: #ad4816; font-size: .6rem; }
+  .temperature-value { position: relative; min-width: 5rem; justify-content: flex-start; padding: 0 0 .22rem; border: 0; border-radius: 0; color: #006e73; background: none; font-size: 1.4rem; font-weight: 750; letter-spacing: -.045em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .temperature-value::after { position: absolute; bottom: -.12rem; left: 0; content: ''; width: 1.2rem; height: 3px; border-radius: 2px; background: #174edf; }
+  .temperature-value[data-warmth='cool'] { color: #174edf; }
+  .temperature-value[data-warmth='mild']::after { width: 2.1rem; background: #00a696; }
+  .temperature-value[data-warmth='warm'] { color: #c73a15; }
+  .temperature-value[data-warmth='warm']::after { width: 3rem; background: #ff751c; }
+  .canton-pill { min-width: 1.8rem; padding: .17rem .3rem; border: 1px solid #c8d8db; border-radius: .25rem; color: #365f6d; background: transparent; font-size: .6rem; font-weight: 600; }
+  .table-pagination { margin-top: .5rem; padding: .8rem 0; border-top: 0; }
+  .table-pagination ul { width: 100%; justify-content: space-between; }
+  .table-pagination a { height: 2rem; padding: .3rem .7rem; border: 1px solid var(--border); border-radius: .35rem; font-size: .74rem; }
+  .table-pagination a:hover { background: #ffe21b; }
+  .page-indicator { font-size: .72rem; }
+  .measurement-note { align-items: flex-start; justify-content: center; gap: .4rem; margin: .4rem 0 0; color: #54727b; font-size: .65rem; line-height: 1.6; }
+  .measurement-note svg { flex-shrink: 0; width: .9rem; height: .9rem; margin-top: .05rem; }
+  .empty-state { padding: 3.5rem 1rem; border: 1px dashed #008fa6; border-radius: .7rem; }
+  .empty-state h2 { font-weight: 550; }
+  .empty-state p { max-width: 28rem; margin-block: .75rem 1.25rem; font-size: .85rem; }
+  .summer-signoff { align-items: center; gap: 1.7rem; padding: 1.7rem 2.4rem; margin: 3.2rem 0 0; border-radius: .7rem; background: #ffdf17; }
+  .signoff-sun { width: 5rem; height: 5rem; flex-shrink: 0; color: #d73e13; transform: rotate(-12deg); }
+  .summer-signoff p { margin: 0 0 .4rem; font-size: 1.25rem; font-weight: 430; letter-spacing: -.035em; line-height: 1.3; }
+  .summer-signoff strong { font-weight: 600; }
+  .summer-signoff span { color: #365455; font-size: .72rem; }
+  .summer-signoff a { display: grid; place-items: center; width: 2.3rem; height: 2.3rem; margin-left: auto; border: 1px solid #006c78; border-radius: 50%; }
+  .summer-signoff a:hover { background: #ffbd12; }
+  .summer-signoff a svg { width: 1rem; height: 1rem; }
+  .site-footer { margin-top: 3.5rem; padding: 2rem 0 1.4rem; border-top: 1px solid var(--border); background: #004d61; color: #ffffff; }
+  .summer-footer-intro { align-items: center; justify-content: space-between; gap: 2rem; padding-bottom: 1.7rem; }
+  .summer-footer-intro > div { display: flex; align-items: center; gap: .8rem; }
+  .summer-footer-intro > div svg { width: 1.8rem; height: 1.8rem; color: #19d9dc; }
+  .summer-footer-intro > div p { margin: 0; font-size: .85rem; line-height: 1.5; letter-spacing: -.02em; }
+  .summer-footer-intro strong { color: #ffe21b; font-weight: 600; }
+  .summer-footer-intro > p { margin: 0; font-size: .7rem; line-height: 1.8; }
+  .footer-love { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; font-size: .66rem; }
+  .footer-love svg { width: .85rem; height: .85rem; color: #ff8157; }
+  .footer-inner { padding-top: 1rem; border-top: 1px solid #3a7c8d; font-size: .63rem; }
+  .footer-inner a { color: inherit; }
+  .footer-inner a:hover { color: #ce3414; }
+  .detail-main { padding-top: 2rem; }
+  .back-link { margin-bottom: 2rem; font-size: .8rem; font-weight: 500; }
+  .detail-hero { margin-bottom: 2rem; }
+  .detail-hero .summer-eyebrow { display: flex; }
+  .detail-hero .summer-eyebrow svg { width: 1rem; height: 1rem; }
+  .detail-hero h1 { max-width: 55rem; font-weight: 550; line-height: 1.1; }
+  .detail-card, .contact-card, .weather-card, .error-card { border: 1px solid var(--border); border-radius: .7rem; background: #ffffff; box-shadow: none; }
+  .section-icon { border: 0; background: #00bed0; color: #003c49; }
+  .section-icon.sunny { background: #ffe21b; }
+  .section-heading h2, .contact-card h2, .weather-card h2 { font-weight: 580; font-size: 1.2rem; }
+  .section-heading p { font-size: .65rem; font-weight: 600; }
+  .basin-table th { background: #004d61; color: #ffffff; font-size: .7rem; }
+  .basin-table td { padding-block: 1rem; font-size: .8rem; }
+  .detail-temp { font-weight: 600; }
+  .notice-list article { border-left: 2px solid #ff8b13; border-radius: .3rem; background: #fff8d5; }
+  .uv-reading, .weather-reading { border: 0; background: #ffe21b; }
+  .button-link { border-radius: .45rem; background: #006c78; box-shadow: none; font-weight: 550; }
+  .preformatted, .contact-card address, .contact-links { font-size: .85rem; }
+}
+
+@media (min-width: 1001px) {
+  html[data-design='sommerfrische'] .temperature-table th:nth-child(1) { width: 15%; }
+  html[data-design='sommerfrische'] .temperature-table th:nth-child(2) { width: 23%; }
+  html[data-design='sommerfrische'] .temperature-table th:nth-child(3) { width: 22%; }
+}
+
+@media (max-width: 1000px) {
+  html[data-design='sommerfrische'] {
+    .site-shell { width: calc(100% - 3rem); }
+    .header-nav { gap: 1.2rem; }
+    .header-nav a:last-child { display: none; }
+    .header-inner { gap: 1rem; }
+    .summer-hero { gap: 1.25rem; padding: .85rem 1.25rem; }
+    .summer-hero h1 { font-size: 2.05rem; }
+    .summer-postcard { flex-basis: 9rem; }
+    .temperature-table th, .temperature-table td { padding-inline: .7rem; }
+    .temperature-table th:nth-child(6), .temperature-table td:nth-child(6) { display: none; }
+    .result-hint, .footer-love { display: none; }
+    .summer-footer-intro { gap: 1rem; }
+  }
+}
+
+@media (max-width: 760px) {
+  html[data-design='sommerfrische'] {
+    .site-shell { width: calc(100% - 2rem); }
+    .site-header { padding-block: .65rem; }
+    .header-inner { align-items: center; }
+    .brand { font-size: 1.4rem; gap: .3rem; }
+    .brand-mark { width: 2.25rem; }
+    .brand-mark svg { width: 1.6rem; }
+    .header-nav { display: none; }
+    .header-tools { width: auto; }
+    .design-selector, .font-selector { width: auto; }
+    .design-selector > span, .font-selector > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .design-selector select, .font-selector select { width: 8.5rem; min-width: 0; font-size: .67rem; }
+    .home-main { padding-top: 0; }
+    .summer-hero { gap: 1rem; align-items: center; padding: 1rem; margin: .75rem 0 1rem; }
+    .summer-hero-copy { flex: 1; }
+    .summer-hero h1 { font-size: 1.8rem; }
+    .summer-eyebrow { font-size: .57rem; }
+    .summer-hero .summer-eyebrow { display: none; }
+    .summer-lead { margin-top: .5rem; font-size: .72rem; }
+    .summer-postcard { flex: 0 0 6.5rem; margin: 0 .2rem 0 0; }
+    .postcard-art img { height: 75px; object-fit: cover; object-position: center 60%; }
+    .postcard-stamp { display: none; }
+    .postcard-caption { font-size: .5rem; margin: .2rem .1rem; }
+    .postcard-caption > span:last-child { font-size: .8rem; }
+    .finder-heading h2 { font-size: 1.2rem; }
+    .finder-heading > span { display: none; }
+    .filter-bar { display: grid; grid-template-columns: 1fr auto; gap: .2rem; padding: .35rem; }
+    .search-field { grid-column: 1 / -1; }
+    .search-field input { height: 2.8rem; font-size: .82rem; }
+    .canton-filter { padding-left: .65rem; border-left: 0; }
+    .canton-filter select { width: 100%; }
+    .search-submit { min-height: 2.7rem; padding: .6rem .9rem; gap: .8rem; font-size: .75rem; }
+    .quick-search { gap: .4rem; margin-bottom: .65rem; }
+    .quick-search > span { font-size: .63rem; }
+    .quick-search a { padding: .28rem .55rem; font-size: .65rem; }
+    .quick-search a svg { display: none; }
+    .result-bar { flex-direction: row; align-items: center; flex-wrap: wrap; gap: .75rem; }
+    .result-summary { gap: .4rem; }
+    .page-size-form { gap: .3rem; }
+    .page-size-form label { font-size: .65rem; }
+    .page-size-form > button { font-size: .65rem; }
+    .finder-card > [data-slot='table-container'] { border: 0; border-radius: 0; overflow: visible; }
+    .temperature-table, .temperature-table tbody { display: block; }
+    .temperature-table thead { display: block; padding: .65rem .65rem; margin-bottom: 0; border-radius: .45rem .45rem 0 0; background: #004d61; }
+    .temperature-table thead tr { display: flex; justify-content: space-between; gap: .3rem; border: 0; }
+    .temperature-table th { display: block; width: auto; height: auto; padding: 0; border: 0; background: transparent; }
+    .temperature-table th:nth-child(3), .temperature-table th:nth-child(7) { display: none; }
+    .sort-link { font-size: .57rem; }
+    .temperature-table tbody tr { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .15rem .7rem; padding: .7rem .75rem; border: 1px solid var(--border); border-top: 0; border-radius: 0; }
+    .temperature-table tbody tr:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 .45rem .45rem; }
+    .temperature-table td { display: block; height: auto; max-width: none; padding: 0; border: 0; line-height: 1.5; }
+    .temperature-table .location-cell { grid-row: 2; grid-column: 1; padding-right: 1.8rem; font-size: .72rem; font-weight: 400; }
+    .temperature-table td:nth-child(2) { grid-row: 1; grid-column: 1; max-width: none; }
+    .temperature-table .pool-link { display: inline-block; max-width: 100%; font-size: .87rem; overflow-wrap: anywhere; }
+    .temperature-table td:nth-child(3) { grid-row: 3; grid-column: 1; max-width: none; color: #54727b; font-size: .64rem; }
+    .temperature-table td:nth-child(4) { grid-row: 1 / 3; grid-column: 2; align-self: center; }
+    .temperature-value { min-width: 0; font-size: 1.4rem; }
+    .temperature-table td:nth-child(5) { grid-row: 3; grid-column: 2; align-self: end; text-align: right; font-size: .6rem; }
+    .temperature-table td:nth-child(7) { grid-row: 2; grid-column: 1; justify-self: end; align-self: center; }
+    .canton-pill { font-size: .55rem; min-width: 1.5rem; padding: .05rem .25rem; }
+    .measurement-note { justify-content: flex-start; font-size: .61rem; }
+    .summer-signoff { padding: 1.3rem 1rem; margin-top: 2rem; gap: .9rem; }
+    .signoff-sun { width: 3.8rem; height: 3.8rem; }
+    .summer-signoff p { font-size: 1.1rem; }
+    .summer-signoff span { display: block; max-width: 16rem; font-size: .64rem; line-height: 1.6; }
+    .summer-signoff a { flex-shrink: 0; width: 1.8rem; height: 1.8rem; }
+    .site-footer { margin-top: 2rem; }
+    .summer-footer-intro { align-items: flex-start; flex-direction: column; gap: 1.2rem; }
+    .footer-inner { gap: .6rem; }
+    .detail-main { padding-top: 1.5rem; }
+    .detail-sidebar { grid-row: auto; }
+    .detail-hero h1 { font-size: 2.5rem; }
+    .detail-card { padding: 1.1rem; }
+    .basin-table, .basin-table tbody { display: block; min-width: 0; }
+    .basin-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .basin-table tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .8rem; padding: 1rem 0; }
+    .basin-table td { padding: 0; white-space: normal; }
+    .basin-table td:nth-child(even) { text-align: right; }
+    .basin-table td:last-child { font-size: .7rem; color: var(--muted-foreground); }
+    .basin-table .detail-temp { font-size: 1.3rem; white-space: nowrap; }
+    .basin-table td small { font-size: .65rem; }
+  }
+}
+
+@media (max-width: 520px) {
+  html[data-design='sommerfrische'] {
+    .header-inner { gap: .5rem; }
+    .brand { font-size: 1.25rem; gap: .15rem; }
+    .brand-mark { width: 1.8rem; }
+    .design-selector select, .font-selector select { width: 7.5rem; }
+    .summer-hero { gap: .7rem; padding: .85rem; }
+    .summer-hero h1 { font-size: clamp(1.3rem, 6vw, 1.75rem); }
+    .summer-lead { font-size: .67rem; }
+    .summer-postcard { flex-basis: 4.5rem; padding: .25rem; }
+    .postcard-art img { height: 64px; }
+    .postcard-caption { display: none; }
+    .quick-search > span { display: none; }
+    .quick-search { row-gap: .4rem; }
+    .result-bar { padding-bottom: .45rem; }
+    .outdated-reading { justify-content: flex-end; font-size: .55rem; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-design='sommerfrische'] { scroll-behavior: auto; }
+  html[data-design='sommerfrische'] * { transition: none !important; }
+}

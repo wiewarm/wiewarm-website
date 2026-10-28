@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" fill="none">
+  <defs>
+    <clipPath id="frame"><rect width="640" height="420" rx="3"/></clipPath>
+    <pattern id="ripples" width="116" height="55" patternUnits="userSpaceOnUse"><path d="M10 21q16-5 32 0m32 24q12-4 24 0" stroke="#e4f0d8" stroke-width="2" stroke-linecap="round" opacity=".35"/></pattern>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".065"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+  </defs>
+  <g clip-path="url(#frame)">
+    <path fill="#b5f0ff" d="M0 0h640v420H0z"/>
+    <circle cx="443" cy="74" r="36" fill="#ffdc00"/>
+    <path d="m0 173 55-64 48 34 80-108 71 90 44-39 54 69 66-57 86 91 68-58 68 55v78H0Z" fill="#2489ae"/>
+    <path d="m134 100 49-65 41 52-24-7-14 13-15-14-17 23Z" fill="#ffffff"/>
+    <path d="m276 113 22-27 33 42-22-9-9 6Z" fill="#ffffff"/>
+    <path d="M0 161q66-39 131 4t132-4q76-27 151 17t132-17q55-16 94 3v91H0Z" fill="#008966"/>
+    <path d="M0 203q94-34 175-9t131-6q56-20 118 10t113 3q61-29 103-10v229H0Z" fill="#0085bd"/>
+    <path d="M0 245q105-30 205-5t194-9q99-20 241 3v186H0Z" fill="#009fce"/>
+    <path d="M0 305q107-25 256 0t384-11v126H0Z" fill="#00bed0"/>
+    <path d="M0 209h640v211H0z" fill="url(#ripples)"/>
+    <path d="M0 190q66-29 107-18l-33 23-74 21Z" fill="#00614c"/>
+    <g fill="#00614c"><path d="m33 107-13 63h26Z"/><path d="m49 121-12 52h23Z"/><path d="m11 134-11 43h22Z"/></g>
+    <g fill="#f3e9ce"><path d="M66 167h21v14H66z"/><path d="M89 171h19v11H89z"/></g>
+    <path d="m63 168 14-9 13 9m-4 4 13-9 12 9" fill="#ef491b"/>
+    <path d="M518 205h27m-24 6h18M120 215h48m-42 6h28M360 292h38M303 361h56m-45 7h20" stroke="#d4e6cd" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+    <!-- A tiny sail and a pair of unhurried swimmers. -->
+    <path d="m355 167-1 49h-28Z" fill="#fff5dc"/>
+    <path d="m359 181 15 34h-15Z" fill="#ffcf00"/>
+    <path d="M326 219h51l-8 7h-33Z" fill="#004d61"/>
+    <path d="M354 165v57" stroke="#004d61" stroke-width="2"/>
+    <ellipse cx="205" cy="275" rx="20" ry="3" fill="#007a9b"/>
+    <path d="m196 272 15-7 14 6" stroke="#f6d2a6" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="192" cy="269" r="5" fill="#ff6026"/>
+    <path d="m211 265 5-11 11 2" stroke="#f6d2a6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M177 280h19m22-1h15" stroke="#dcebd5" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="412" cy="326" rx="15" ry="3" fill="#007a9b"/>
+    <circle cx="412" cy="315" r="6" fill="#eac299"/>
+    <path d="M406 313a6 6 0 0 1 12 0" fill="#ff421e"/>
+    <path d="m404 323-10 4m25-4 11 4" stroke="#eac299" stroke-width="4" stroke-linecap="round"/>
+    <!-- Warm wooden boards, a striped parasol, and a towel left on the jetty. -->
+    <path d="m467 328 173-35v127H354Z" fill="#f3b456"/>
+    <path d="m467 328 173-35v10l-165 35-100 82h-21Z" fill="#ffdb79"/>
+    <path d="m477 341 163-34m-181 49 181-37m-200 53 200-42m-222 60 222-49m-245 68 245-55m-184 66 184-44m-118 44 118-29" stroke="#c98628" stroke-width="1.5"/>
+    <path d="m501 344 59-13 25 39-60 15Z" fill="#f7ebcf"/>
+    <path d="m510 342 8-2 25 40-8 2m17-49 8-2 25 39-8 2" fill="#ff4820"/>
+    <path d="m547 233 17 116" stroke="#6f785e" stroke-width="4"/>
+    <path d="M472 252q13-74 73-65 57 6 79 43l-152 22Z" fill="#fff0d2"/>
+    <path d="M472 252q15-64 73-65-31 22-38 61Zm73-65q25 14 43 48l-42 6q-1-32-1-54Zm0 0q55 6 79 43l-17 3q-31-37-62-46Z" fill="#ff4820"/>
+    <path d="M472 252q8 12 20-3 10 13 22-3 13 12 25-4 15 11 25-3 15 10 26-4 14 8 23-4 10 7 11-1" stroke="#be2c13" stroke-width="2"/>
+    <path d="m543 185-1-7" stroke="#6f785e" stroke-width="3" stroke-linecap="round"/>
+    <g transform="translate(468 369) rotate(-16)"><ellipse rx="7" ry="13" fill="#275e53"/><path d="m-4-6 4 7 4-7" stroke="#f2dab2" stroke-width="2"/></g>
+    <g transform="translate(487 370) rotate(-5)"><ellipse rx="7" ry="13" fill="#275e53"/><path d="m-4-6 4 7 4-7" stroke="#f2dab2" stroke-width="2"/></g>
+    <!-- A little ladder into the blue. -->
+    <path d="M447 347v35q0 13-10 13m25-60v35q0 13-10 13m-5-27 15-10m-15 25 15-10" stroke="#e9e9cb" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 356q60-5 112 64H0Z" fill="#00844f"/>
+    <path d="M-7 338q26-1 46 82m-10-47 16-30m-7 54 32-27m-52 5-22-10m43 39 31-8" stroke="#ffdd23" stroke-width="3" stroke-linecap="round"/>
+    <path d="M562 74q8-9 16 0 8-9 16 0M115 72q6-6 12 0 6-6 12 0" stroke="#00607a" stroke-width="2" stroke-linecap="round"/>
+    <rect width="640" height="420" fill="transparent" filter="url(#paper)" opacity=".5"/>
+  </g>
+</svg>

@@ -1,0 +1,463 @@
+/*
+ * Visual variants live here so they can evolve independently of layout and
+ * application behavior. Swiss Lido is the default defined in globals.css.
+ */
+
+:is(html[data-design='first-try'], html[data-design='second-try']),
+:is(html[data-design='first-try'], html[data-design='second-try']) body {
+  --background: oklch(.975 .016 205); --foreground: oklch(.24 .055 230);
+  --card: oklch(1 0 0); --card-foreground: var(--foreground); --popover: oklch(1 0 0); --popover-foreground: var(--foreground);
+  --primary: oklch(.55 .135 216); --primary-foreground: oklch(1 0 0); --secondary: oklch(.92 .058 190); --secondary-foreground: oklch(.27 .07 215);
+  --muted: oklch(.95 .025 205); --muted-foreground: oklch(.48 .045 225); --accent: oklch(.86 .15 85); --accent-foreground: oklch(.28 .07 60);
+  --destructive: oklch(.58 .22 28); --border: oklch(.86 .04 210); --input: oklch(.85 .04 210); --ring: oklch(.62 .14 210); --radius: .8rem;
+}
+
+:is(html[data-design='first-try'], html[data-design='second-try']) .page-frame { background: radial-gradient(circle at 86% 5%, color-mix(in oklch, var(--accent) 28%, transparent) 0 8rem, transparent 8.1rem), linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .site-header { padding: 1rem 0; border-bottom: 0; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .brand { color: oklch(.28 .09 222); font-weight: 800; font-size: 1.4rem; letter-spacing: -.04em; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .brand > span:last-child span { color: var(--primary); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .brand-mark { border: 0; border-radius: 50%; color: oklch(.38 .12 214); background: var(--accent); box-shadow: 0 7px 20px oklch(.45 .13 211 / .16); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .font-selector, :is(html[data-design='first-try'], html[data-design='second-try']) .design-selector { color: var(--muted-foreground); font-weight: 750; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .font-selector select, :is(html[data-design='first-try'], html[data-design='second-try']) .design-selector select { border: 1px solid var(--border); border-radius: .65rem; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .eyebrow { color: oklch(.39 .105 210); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .finder-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.4rem; background: color-mix(in oklch, var(--card) 96%, transparent); box-shadow: 0 24px 70px oklch(.3 .08 220 / .12); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .filter-bar { background: oklch(.985 .008 200); border-bottom: 1px solid var(--border); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .search-field svg { color: var(--muted-foreground); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .search-field input { border: 1px solid var(--input); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-table { border-top: 1px solid var(--border); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-table th { color: var(--foreground); background: oklch(.95 .025 202); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-table tbody tr:nth-child(even) { background: oklch(.98 .012 205); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .sort-link { color: var(--muted-foreground); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .pool-link { color: oklch(.38 .12 215); font-weight: 680; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-value { border: 0; border-radius: 999px; color: oklch(.29 .08 214); background: var(--secondary); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .canton-pill { border-radius: .45rem; background: oklch(.93 .04 210); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .table-pagination { border-top: 1px solid var(--border); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .error-card { border: 0; border-radius: 1.5rem; box-shadow: 0 20px 60px oklch(.3 .08 220 / .12); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .back-link { color: var(--muted-foreground); font-weight: 500; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .detail-card, :is(html[data-design='first-try'], html[data-design='second-try']) .contact-card, :is(html[data-design='first-try'], html[data-design='second-try']) .weather-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.3rem; box-shadow: 0 16px 50px oklch(.3 .08 220 / .09); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .section-icon { border: 0; border-radius: .85rem; background: var(--secondary); color: oklch(.36 .11 215); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .section-icon.sunny { background: var(--secondary); color: oklch(.36 .11 215); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .basin-table th { color: var(--foreground); background: var(--muted); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .detail-temp { color: oklch(.36 .12 214); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .stale-label { color: oklch(.55 .14 47) !important; font-weight: 700; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .notice-list article { border-left: 0; border-radius: .9rem; background: color-mix(in oklch, var(--accent) 16%, white); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .contact-links a { color: oklch(.38 .115 214); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .uv-reading, :is(html[data-design='first-try'], html[data-design='second-try']) .weather-reading { border: 0; border-radius: 1rem; background: color-mix(in oklch, var(--accent) 48%, white); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .site-footer { margin-top: 0; color: var(--muted-foreground); background: transparent; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .footer-inner { border-top: 1px solid var(--border); padding-top: 1.3rem; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .footer-inner a { color: inherit; }
+
+/* Second Try replaces the flat circle with a light summer-orbit motif. */
+html[data-design='second-try'] .page-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 89% 3.5rem, transparent 0 3.9rem, oklch(.68 .105 198 / .2) 3.95rem 4.16rem, transparent 4.22rem 5.7rem, oklch(.86 .15 85 / .28) 5.76rem 6.12rem, transparent 6.18rem),
+    radial-gradient(circle at 78% 1.7rem, oklch(.7 .12 195 / .22) 0 .68rem, transparent .73rem),
+    radial-gradient(circle at 97% 9.2rem, oklch(.84 .16 78 / .34) 0 .52rem, transparent .58rem),
+    linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem);
+}
+html[data-design='second-try'] .page-frame > * { position: relative; z-index: 1; }
+html[data-design='second-try'] .page-frame::before {
+  position: absolute;
+  z-index: 0;
+  top: -9.5rem;
+  right: -7.5rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, oklch(.95 .035 198 / .94) 0 39%, transparent 39.5%),
+    repeating-conic-gradient(from 8deg, oklch(.86 .16 83 / .42) 0 7deg, transparent 7deg 17deg, oklch(.66 .12 195 / .28) 17deg 23deg, transparent 23deg 36deg);
+  content: '';
+  pointer-events: none;
+}
+html[data-design='second-try'] .page-frame::after {
+  position: absolute;
+  z-index: 0;
+  top: 7rem;
+  right: 17%;
+  width: .72rem;
+  height: .72rem;
+  border-radius: 50%;
+  background: oklch(.72 .15 35 / .65);
+  box-shadow: 3.5rem 3.2rem 0 .18rem oklch(.7 .12 195 / .4), -2.2rem 4.8rem 0 -.08rem oklch(.86 .16 83 / .62), 5.1rem 7rem 0 -.14rem oklch(.72 .15 35 / .48);
+  content: '';
+  pointer-events: none;
+}
+html[data-design='second-try'] .finder-card { position: relative; }
+html[data-design='second-try'] .finder-card::before { position: absolute; z-index: 2; inset: 0 0 auto; height: .34rem; background: linear-gradient(90deg, oklch(.68 .12 195), oklch(.86 .16 83) 58%, oklch(.72 .15 35)); content: ''; }
+html[data-design='second-try'] .temperature-value { background: linear-gradient(135deg, var(--secondary), color-mix(in oklch, var(--accent) 24%, white)); box-shadow: 0 3px 0 oklch(.68 .12 195 / .16); }
+
+/* Summer Swim: the proposal's ivory, mint, coral and teal visual language,
+ * applied to the established compact header and temperature-list layout. */
+html[data-design='summer-swim'],
+html[data-design='summer-swim'] body {
+  --background: #f7f5ed; --foreground: #153f3b;
+  --card: #ffffff; --card-foreground: #153f3b; --popover: #ffffff; --popover-foreground: #153f3b;
+  --primary: #2e7f79; --primary-foreground: #ffffff; --secondary: #bee9df; --secondary-foreground: #153f3b;
+  --muted: #edf1eb; --muted-foreground: #657672; --accent: #ffed73; --accent-foreground: #153f3b;
+  --destructive: #df675d; --border: #d5dad2; --input: #c8d3ce; --ring: #2e7f79; --radius: 1.15rem;
+}
+
+html[data-design='summer-swim'] .page-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 91% 4.5rem, #ffed73 0 3.9rem, transparent 3.95rem),
+    radial-gradient(circle at 82% 11rem, transparent 0 8.6rem, rgb(77 184 168 / .22) 8.65rem 9.85rem, transparent 9.9rem 13.4rem, rgb(190 233 223 / .68) 13.45rem 16.5rem, transparent 16.55rem),
+    #f7f5ed;
+}
+html[data-design='summer-swim'] .page-frame > * { position: relative; z-index: 1; }
+html[data-design='summer-swim'] .page-frame::before {
+  position: absolute;
+  z-index: 0;
+  top: 7.8rem;
+  right: 5.5%;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #ef806f;
+  box-shadow: -5.5rem 3.8rem 0 -.28rem #2e7f79, 2.8rem 7.4rem 0 -.42rem #ef806f;
+  content: '';
+  pointer-events: none;
+}
+html[data-design='summer-swim'] .site-header { padding: .95rem 0; border-bottom: 1px solid rgb(21 63 59 / .12); background: rgb(247 245 237 / .84); backdrop-filter: blur(14px); }
+html[data-design='summer-swim'] .brand { color: #153f3b; font-size: 1.4rem; font-weight: 850; letter-spacing: -.045em; }
+html[data-design='summer-swim'] .brand > span:last-child span { color: #2e7f79; }
+html[data-design='summer-swim'] .brand-mark { border: 0; color: #153f3b; background: #ef806f; box-shadow: none; }
+html[data-design='summer-swim'] .font-selector, html[data-design='summer-swim'] .design-selector { color: #526d68; font-weight: 720; }
+html[data-design='summer-swim'] .font-selector select, html[data-design='summer-swim'] .design-selector select { border: 1px solid #c8d3ce; border-radius: .8rem; color: #153f3b; background: #fff; }
+html[data-design='summer-swim'] .finder-card { overflow: hidden; border: 1px solid #d5dad2; border-radius: 1.45rem; background: #fff; box-shadow: 0 24px 60px rgb(21 63 59 / .11); }
+html[data-design='summer-swim'] .filter-bar { border-bottom: 1px solid #a8d7cc; background: #bee9df; }
+html[data-design='summer-swim'] .search-field svg { color: #2e7f79; }
+html[data-design='summer-swim'] .search-field input { border: 1px solid #9fc8be; border-radius: .8rem; color: #153f3b; background: #fff; box-shadow: 0 3px 12px rgb(21 63 59 / .06); }
+html[data-design='summer-swim'] .temperature-table { border-top: 0; }
+html[data-design='summer-swim'] .temperature-table th { color: #fff; background: #2e7f79; }
+html[data-design='summer-swim'] body .temperature-table tbody tr { background: #fff; }
+html[data-design='summer-swim'] body .temperature-table tbody tr:nth-child(even) { background: #f3f7f3; }
+html[data-design='summer-swim'] .temperature-table td, html[data-design='summer-swim'] .temperature-table tr { border-color: #dde3dc; }
+html[data-design='summer-swim'] .sort-link { color: #fff; }
+html[data-design='summer-swim'] .pool-link, html[data-design='summer-swim'] .detail-temp, html[data-design='summer-swim'] .contact-links a { color: #236f69; font-weight: 750; }
+html[data-design='summer-swim'] .temperature-value { border: 0; border-radius: .7rem; color: #fff; background: #2e7f79; box-shadow: .2rem .2rem 0 #bee9df; }
+html[data-design='summer-swim'] .canton-pill { border-radius: 999px; color: #153f3b; background: #ef806f; font-weight: 800; }
+html[data-design='summer-swim'] .table-pagination { border-top: 1px solid #d5dad2; background: #fafaf6; }
+html[data-design='summer-swim'] .back-link { color: #526d68; font-weight: 650; }
+html[data-design='summer-swim'] .eyebrow, html[data-design='summer-swim'] .section-heading p { color: #2e7f79; }
+html[data-design='summer-swim'] .detail-card, html[data-design='summer-swim'] .weather-card, html[data-design='summer-swim'] .error-card { border: 1px solid #d5dad2; border-radius: 1.45rem; background: #fff; box-shadow: 0 18px 48px rgb(21 63 59 / .09); }
+html[data-design='summer-swim'] .contact-card { border: 0; border-radius: 1.45rem; color: #fff; background: #2e7f79; box-shadow: .75rem .85rem 0 #bee9df; transform: rotate(1.15deg); transform-origin: 50% 35%; }
+html[data-design='summer-swim'] .contact-card .section-heading p, html[data-design='summer-swim'] .contact-card .section-heading h2, html[data-design='summer-swim'] .contact-card .contact-links a, html[data-design='summer-swim'] .contact-card .eyebrow { color: #fff; }
+html[data-design='summer-swim'] .contact-card address span:last-child { margin-top: .2rem; font: 820 clamp(1.8rem, 3vw, 2.45rem)/1 var(--font-heading-face); letter-spacing: -.055em; }
+html[data-design='summer-swim'] .contact-card .section-icon { color: #153f3b; background: #fff; }
+html[data-design='summer-swim'] .contact-card .button-link { color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .section-icon { border: 0; border-radius: 50%; color: #153f3b; background: #ef806f; }
+html[data-design='summer-swim'] .section-icon.sunny { color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .basin-table th { color: #153f3b; background: #bee9df; }
+html[data-design='summer-swim'] .notice-list article { border-left: .35rem solid #ef806f; border-radius: .8rem; background: #fff8dc; }
+html[data-design='summer-swim'] .uv-reading, html[data-design='summer-swim'] .weather-reading { border: 0; border-radius: 1rem; color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .button-link { border-radius: .8rem; background: #2e7f79; box-shadow: none; }
+html[data-design='summer-swim'] .site-footer { color: #526d68; background: #f7f5ed; border-top: 1px solid #d5dad2; }
+html[data-design='summer-swim'] .footer-inner a { color: #236f69; }
+
+html[data-design='amiga'],
+html[data-design='amiga'] body {
+  --background: #160b2d; --foreground: #f8f5ff;
+  --card: #241448; --card-foreground: #f8f5ff; --popover: #241448; --popover-foreground: #f8f5ff;
+  --primary: #00e5ff; --primary-foreground: #130923; --secondary: #ff3cac; --secondary-foreground: #160b2d;
+  --muted: #382361; --muted-foreground: #d2c4ff; --accent: #fff200; --accent-foreground: #160b2d;
+  --destructive: #ff3cac; --border: #00e5ff; --input: #00e5ff; --ring: #fff200; --radius: 0;
+}
+
+html[data-design='amiga'] .page-frame { background: repeating-linear-gradient(0deg, rgb(255 255 255 / .025) 0 2px, transparent 2px 4px), linear-gradient(125deg, #ff3cac 0, #662d91 48%, #00b8d4 100%) top / 100% 10rem no-repeat, var(--background); }
+html[data-design='amiga'] .site-header { border-bottom: 4px solid #fff200; box-shadow: inset 0 -7px 0 #ff3cac; }
+html[data-design='amiga'] .brand { color: white; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; }
+html[data-design='amiga'] .brand > span:last-child span { color: #fff200; }
+html[data-design='amiga'] .brand-mark { border: 3px solid #160b2d; border-radius: 0; color: #160b2d; background: #fff200; box-shadow: 5px 5px 0 #00e5ff; }
+html[data-design='amiga'] .font-selector, html[data-design='amiga'] .design-selector { color: white; text-transform: uppercase; }
+html[data-design='amiga'] .font-selector select, html[data-design='amiga'] .design-selector select { border: 3px solid #00e5ff; border-radius: 0; color: white; background: #241448; box-shadow: 3px 3px 0 #fff200; }
+html[data-design='amiga'] .finder-card { border: 3px solid #00e5ff; border-radius: 0; background: var(--card); box-shadow: 9px 9px 0 #ff3cac; }
+html[data-design='amiga'] .filter-bar { background: #662d91; border-bottom: 3px solid #fff200; }
+html[data-design='amiga'] .search-field svg { color: #fff200; }
+html[data-design='amiga'] .search-field input { border: 3px solid #00e5ff; border-radius: 0; color: white; background: #160b2d; box-shadow: 4px 4px 0 #ff3cac; }
+html[data-design='amiga'] .search-field input::placeholder { color: #d2c4ff; }
+html[data-design='amiga'] .temperature-table { border-top: 3px solid #00e5ff; }
+html[data-design='amiga'] .temperature-table th { color: white; background: #662d91; }
+html[data-design='amiga'] body .temperature-table tbody tr { background: #241448; }
+html[data-design='amiga'] body .temperature-table tbody tr:nth-child(even) { background: #321b5a; }
+html[data-design='amiga'] .temperature-table td, html[data-design='amiga'] .temperature-table tr { border-color: #00e5ff; }
+html[data-design='amiga'] .sort-link { color: white; letter-spacing: .09em; }
+html[data-design='amiga'] .pool-link, html[data-design='amiga'] .detail-temp, html[data-design='amiga'] .contact-links a { color: #00e5ff; }
+html[data-design='amiga'] .temperature-value { border: 2px solid #160b2d; border-radius: 0; color: #160b2d; background: #fff200; box-shadow: 3px 3px 0 #ff3cac; }
+html[data-design='amiga'] .canton-pill { border-radius: 0; color: #160b2d; background: #00e5ff; }
+html[data-design='amiga'] .table-pagination { border-top: 3px solid #00e5ff; }
+html[data-design='amiga'] .back-link { color: white; text-transform: uppercase; }
+html[data-design='amiga'] .detail-card, html[data-design='amiga'] .contact-card, html[data-design='amiga'] .weather-card, html[data-design='amiga'] .error-card { border: 3px solid #00e5ff; border-radius: 0; color: white; background: #241448; box-shadow: 7px 7px 0 #ff3cac; }
+html[data-design='amiga'] .section-heading p, html[data-design='amiga'] .eyebrow { color: #fff200; letter-spacing: .12em; }
+html[data-design='amiga'] .section-icon { border: 2px solid #fff200; border-radius: 0; color: #160b2d; background: #00e5ff; box-shadow: 3px 3px 0 #ff3cac; }
+html[data-design='amiga'] .section-icon.sunny { background: #fff200; }
+html[data-design='amiga'] .basin-table th { color: white; background: #662d91; }
+html[data-design='amiga'] .notice-list article { border-left: .5rem solid #fff200; border-radius: 0; background: #382361; }
+html[data-design='amiga'] .preformatted { color: #f8f5ff; }
+html[data-design='amiga'] .uv-reading, html[data-design='amiga'] .weather-reading { border: 2px solid #fff200; border-radius: 0; color: #160b2d; background: #00e5ff; box-shadow: 3px 3px 0 #ff3cac; }
+html[data-design='amiga'] .button-link { border: 2px solid #160b2d; border-radius: 0; box-shadow: 4px 4px 0 #fff200; text-transform: uppercase; }
+html[data-design='amiga'] .site-footer { color: white; background: #662d91; border-top: 4px solid #00e5ff; }
+html[data-design='amiga'] .footer-inner a { color: #fff200; }
+
+/* Modern macOS: airy glass, quiet chrome and wallpaper-like color. */
+html[data-design='macos'],
+html[data-design='macos'] body {
+  --background: #f4f6fb; --foreground: #1d1d1f;
+  --card: rgb(255 255 255 / .78); --card-foreground: #1d1d1f; --popover: #fff; --popover-foreground: #1d1d1f;
+  --primary: #007aff; --primary-foreground: #fff; --secondary: #e8f3ff; --secondary-foreground: #005cc5;
+  --muted: #edf0f5; --muted-foreground: #6e6e73; --accent: #ffcc00; --accent-foreground: #1d1d1f;
+  --destructive: #ff3b30; --border: rgb(29 29 31 / .14); --input: rgb(29 29 31 / .18); --ring: #007aff; --radius: 1.15rem;
+}
+
+html[data-design='macos'] .page-frame { background: radial-gradient(circle at 8% 2%, rgb(105 223 255 / .58), transparent 30rem), radial-gradient(circle at 92% 12%, rgb(255 126 182 / .42), transparent 26rem), radial-gradient(circle at 58% 78%, rgb(177 128 255 / .24), transparent 30rem), #f4f6fb; }
+html[data-design='macos'] .site-header { margin-top: .7rem; border: 1px solid rgb(255 255 255 / .72); border-radius: 1.2rem; background: rgb(255 255 255 / .66); box-shadow: 0 10px 35px rgb(37 45 80 / .12); backdrop-filter: blur(22px) saturate(150%); }
+html[data-design='macos'] .header-inner { min-height: 4.5rem; }
+html[data-design='macos'] .brand { color: #1d1d1f; font-weight: 700; letter-spacing: -.035em; }
+html[data-design='macos'] .brand > span:last-child span { color: #007aff; }
+html[data-design='macos'] .brand-mark { border: 0; color: white; background: linear-gradient(145deg, #0a84ff, #5e5ce6); box-shadow: 0 6px 16px rgb(0 122 255 / .26); }
+html[data-design='macos'] .font-selector, html[data-design='macos'] .design-selector { color: #6e6e73; font-weight: 650; }
+html[data-design='macos'] .font-selector select, html[data-design='macos'] .design-selector select { border: 1px solid rgb(29 29 31 / .12); border-radius: .7rem; background: rgb(255 255 255 / .72); box-shadow: 0 2px 8px rgb(37 45 80 / .08); }
+html[data-design='macos'] .finder-card { position: relative; overflow: hidden; padding-top: 1.9rem; border: 1px solid rgb(255 255 255 / .85); border-radius: 1.3rem; background: rgb(255 255 255 / .74); box-shadow: 0 24px 70px rgb(37 45 80 / .16); backdrop-filter: blur(28px) saturate(155%); }
+html[data-design='macos'] .finder-card::before { position: absolute; z-index: 2; top: .65rem; left: .9rem; width: .68rem; height: .68rem; border-radius: 50%; background: #ff5f57; box-shadow: 1.15rem 0 #febc2e, 2.3rem 0 #28c840; content: ''; }
+html[data-design='macos'] .filter-bar { border-bottom: 1px solid var(--border); background: rgb(245 246 250 / .72); }
+html[data-design='macos'] .search-field input { border: 1px solid rgb(29 29 31 / .12); border-radius: .75rem; background: rgb(255 255 255 / .82); box-shadow: inset 0 1px 2px rgb(0 0 0 / .04), 0 1px 2px rgb(0 0 0 / .04); }
+html[data-design='macos'] .temperature-table th { color: #6e6e73; background: rgb(237 240 245 / .82); }
+html[data-design='macos'] body .temperature-table tbody tr:nth-child(even) { background: rgb(244 246 251 / .72); }
+html[data-design='macos'] .pool-link, html[data-design='macos'] .detail-temp, html[data-design='macos'] .contact-links a { color: #007aff; }
+html[data-design='macos'] .temperature-value { border: 0; border-radius: .65rem; color: #005cc5; background: #e8f3ff; }
+html[data-design='macos'] .canton-pill { border-radius: .45rem; color: #375b7f; background: #e8edf4; }
+html[data-design='macos'] .detail-card, html[data-design='macos'] .contact-card, html[data-design='macos'] .weather-card, html[data-design='macos'] .error-card { border: 1px solid rgb(255 255 255 / .84); border-radius: 1.3rem; background: rgb(255 255 255 / .76); box-shadow: 0 18px 55px rgb(37 45 80 / .13); backdrop-filter: blur(24px); }
+html[data-design='macos'] .section-icon { border: 0; border-radius: .75rem; color: #007aff; background: #e8f3ff; }
+html[data-design='macos'] .basin-table th { color: #6e6e73; background: #edf0f5; }
+html[data-design='macos'] .notice-list article { border-left-color: #ffcc00; border-radius: .75rem; background: rgb(255 204 0 / .12); }
+html[data-design='macos'] .button-link { border-radius: .75rem; background: #007aff; box-shadow: 0 6px 16px rgb(0 122 255 / .24); }
+html[data-design='macos'] .site-footer { color: #6e6e73; background: rgb(255 255 255 / .45); backdrop-filter: blur(16px); }
+html[data-design='macos'] .footer-inner a { color: #007aff; }
+
+/* Vintage 60s: warm print colors, chunky geometry and optimistic curves. */
+html[data-design='sixties'],
+html[data-design='sixties'] body {
+  --background: #f5e6c8; --foreground: #3b2b20;
+  --card: #fff7df; --card-foreground: #3b2b20; --popover: #fff7df; --popover-foreground: #3b2b20;
+  --primary: #d54b28; --primary-foreground: #fff7df; --secondary: #86a64a; --secondary-foreground: #24320e;
+  --muted: #ead8ad; --muted-foreground: #735a40; --accent: #f0a51a; --accent-foreground: #3b2b20;
+  --destructive: #b52c2c; --border: #3b2b20; --input: #3b2b20; --ring: #d54b28; --radius: 1.75rem;
+}
+
+html[data-design='sixties'] .page-frame { background: radial-gradient(circle at 8% 8%, #f0a51a 0 4.5rem, transparent 4.6rem), radial-gradient(circle at 90% 3%, #86a64a 0 8rem, transparent 8.1rem), repeating-linear-gradient(135deg, rgb(59 43 32 / .035) 0 2px, transparent 2px 9px), #f5e6c8; }
+html[data-design='sixties'] .site-header { border-bottom: .45rem solid #d54b28; background: #86a64a; }
+html[data-design='sixties'] .brand { color: #3b2b20; font-size: 1.55rem; font-weight: 900; letter-spacing: -.055em; }
+html[data-design='sixties'] .brand > span:last-child span { color: #fff7df; }
+html[data-design='sixties'] .brand-mark { border: 3px solid #3b2b20; border-radius: 50% 40% 55% 42%; color: #3b2b20; background: #f0a51a; transform: rotate(-5deg); }
+html[data-design='sixties'] .font-selector, html[data-design='sixties'] .design-selector { color: #3b2b20; }
+html[data-design='sixties'] .font-selector select, html[data-design='sixties'] .design-selector select { border: 3px solid #3b2b20; border-radius: 999px; color: #3b2b20; background: #fff7df; }
+html[data-design='sixties'] .finder-card { overflow: hidden; border: 3px solid #3b2b20; border-radius: 2.2rem 1rem 2.4rem 1.25rem; background: #fff7df; box-shadow: .65rem .65rem 0 #d54b28; transform: rotate(-.08deg); }
+html[data-design='sixties'] .filter-bar { border-bottom: 3px solid #3b2b20; background: #f0a51a; }
+html[data-design='sixties'] .search-field input { border: 3px solid #3b2b20; border-radius: 999px; color: #3b2b20; background: #fff7df; }
+html[data-design='sixties'] .temperature-table th { color: #fff7df; background: #d54b28; }
+html[data-design='sixties'] body .temperature-table tbody tr:nth-child(even) { background: #efe0bd; }
+html[data-design='sixties'] .pool-link, html[data-design='sixties'] .detail-temp, html[data-design='sixties'] .contact-links a { color: #b93d20; }
+html[data-design='sixties'] .temperature-value { border: 2px solid #3b2b20; border-radius: 999px 750px 900px 700px; color: #3b2b20; background: #f0a51a; }
+html[data-design='sixties'] .canton-pill { border: 2px solid #3b2b20; border-radius: 50%; color: #fff7df; background: #86a64a; }
+html[data-design='sixties'] .detail-card, html[data-design='sixties'] .contact-card, html[data-design='sixties'] .weather-card, html[data-design='sixties'] .error-card { border: 3px solid #3b2b20; border-radius: 2rem 1rem 2.25rem 1.2rem; background: #fff7df; box-shadow: .45rem .45rem 0 #86a64a; }
+html[data-design='sixties'] .section-heading p, html[data-design='sixties'] .eyebrow { color: #b93d20; }
+html[data-design='sixties'] .section-icon { border: 2px solid #3b2b20; border-radius: 50% 42% 55% 46%; color: #3b2b20; background: #f0a51a; transform: rotate(-4deg); }
+html[data-design='sixties'] .section-icon.sunny { background: #86a64a; }
+html[data-design='sixties'] .basin-table th { color: #fff7df; background: #86a64a; }
+html[data-design='sixties'] .notice-list article { border-left-color: #d54b28; border-radius: 1rem 2rem 1rem 1.5rem; background: #ead8ad; }
+html[data-design='sixties'] .button-link { border: 3px solid #3b2b20; border-radius: 999px; color: #fff7df; background: #d54b28; box-shadow: .3rem .3rem 0 #f0a51a; }
+html[data-design='sixties'] .site-footer { color: #fff7df; background: #3b2b20; }
+html[data-design='sixties'] .footer-inner a { color: #f0a51a; }
+
+/* MS-DOS: text-mode navy, phosphor cyan and strict rectangular UI. */
+html[data-design='ms-dos'],
+html[data-design='ms-dos'] body {
+  --background: #0000aa; --foreground: #ffffff;
+  --card: #0000aa; --card-foreground: #ffffff; --popover: #0000aa; --popover-foreground: #ffffff;
+  --primary: #00ffff; --primary-foreground: #000000; --secondary: #00aaaa; --secondary-foreground: #000000;
+  --muted: #000080; --muted-foreground: #c0c0c0; --accent: #ffff55; --accent-foreground: #000000;
+  --destructive: #ff5555; --border: #ffffff; --input: #ffffff; --ring: #ffff55; --radius: 0;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+html[data-design='ms-dos'] .page-frame { background: #0000aa; }
+html[data-design='ms-dos'] .site-header { border-bottom: 0; color: #000000; background: #c0c0c0; box-shadow: inset 0 -4px 0 #000000, inset 0 -6px 0 #ffffff; }
+html[data-design='ms-dos'] .brand { color: #000000; font-family: inherit; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
+html[data-design='ms-dos'] .brand > span:last-child::before { content: 'C:\\WWW\\'; }
+html[data-design='ms-dos'] .brand > span:last-child span { color: #0000aa; }
+html[data-design='ms-dos'] .brand-mark { border: 2px solid #000000; border-radius: 0; color: #000000; background: #00aaaa; box-shadow: inset -3px -3px 0 #008080, inset 3px 3px 0 #00ffff; }
+html[data-design='ms-dos'] .font-selector, html[data-design='ms-dos'] .design-selector { color: #000000; font-family: inherit; text-transform: uppercase; }
+html[data-design='ms-dos'] .font-selector select, html[data-design='ms-dos'] .design-selector select { border: 2px solid #000000; border-radius: 0; color: #ffffff; background: #0000aa; box-shadow: inset -2px -2px 0 #000080, inset 2px 2px 0 #00ffff; font-family: inherit; }
+html[data-design='ms-dos'] .finder-card { overflow: hidden; border: 2px solid #ffffff; border-radius: 0; background: #0000aa; box-shadow: 8px 8px 0 #000000; }
+html[data-design='ms-dos'] .finder-card::before { display: block; padding: .25rem .6rem; color: #000000; background: #00aaaa; font-weight: 700; content: ' WIEWARM.EXE '; text-align: center; }
+html[data-design='ms-dos'] .filter-bar { border-bottom: 2px solid #ffffff; background: #000080; }
+html[data-design='ms-dos'] .search-field svg { color: #ffff55; }
+html[data-design='ms-dos'] .search-field input { border: 2px solid #ffffff; border-radius: 0; color: #ffff55; background: #000000; box-shadow: none; font-family: inherit; caret-color: #ffff55; }
+html[data-design='ms-dos'] .search-field input::placeholder { color: #c0c0c0; }
+html[data-design='ms-dos'] .result-bar { color: #ffffff; }
+html[data-design='ms-dos'] .page-size-form input, html[data-design='ms-dos'] .page-size-form select, html[data-design='ms-dos'] .page-size-form button { border-radius: 0; font-family: inherit; }
+html[data-design='ms-dos'] .temperature-table { border-top: 2px solid #ffffff; font-family: inherit; }
+html[data-design='ms-dos'] .temperature-table th { color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] body .temperature-table tbody tr { color: #ffffff; background: #0000aa; }
+html[data-design='ms-dos'] body .temperature-table tbody tr:nth-child(even) { background: #000080; }
+html[data-design='ms-dos'] .temperature-table td, html[data-design='ms-dos'] .temperature-table tr { border-color: #00ffff; }
+html[data-design='ms-dos'] .sort-link { color: #000000; }
+html[data-design='ms-dos'] .pool-link, html[data-design='ms-dos'] .detail-temp, html[data-design='ms-dos'] .contact-links a { color: #00ffff; text-decoration: underline; }
+html[data-design='ms-dos'] .temperature-value { border: 0; border-radius: 0; color: #000000; background: #ffff55; }
+html[data-design='ms-dos'] .canton-pill { border-radius: 0; color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .table-pagination { border-top: 2px solid #ffffff; }
+html[data-design='ms-dos'] .back-link { color: #ffff55; text-decoration: underline; text-transform: uppercase; }
+html[data-design='ms-dos'] .detail-card, html[data-design='ms-dos'] .contact-card, html[data-design='ms-dos'] .weather-card, html[data-design='ms-dos'] .error-card { border: 2px solid #ffffff; border-radius: 0; color: #ffffff; background: #000080; box-shadow: 7px 7px 0 #000000; font-family: inherit; }
+html[data-design='ms-dos'] .section-heading p, html[data-design='ms-dos'] .eyebrow { color: #ffff55; }
+html[data-design='ms-dos'] .section-icon { border: 2px solid #ffffff; border-radius: 0; color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .basin-table th { color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .notice-list article { border-left: .5rem solid #ffff55; border-radius: 0; background: #0000aa; }
+html[data-design='ms-dos'] .preformatted { color: #ffffff; }
+html[data-design='ms-dos'] .uv-reading, html[data-design='ms-dos'] .weather-reading { border: 2px solid #ffffff; border-radius: 0; color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .button-link { border: 2px solid #ffffff; border-radius: 0; color: #000000; background: #c0c0c0; box-shadow: inset -3px -3px 0 #808080, inset 3px 3px 0 #ffffff; font-family: inherit; text-transform: uppercase; }
+html[data-design='ms-dos'] .site-footer { color: #c0c0c0; background: #000000; border-top: 2px solid #ffffff; font-family: inherit; }
+html[data-design='ms-dos'] .footer-inner a { color: #00ffff; }
+
+/* Goth: nocturnal cathedral tones, silver type and pointed ornament. */
+html[data-design='goth'],
+html[data-design='goth'] body {
+  --background: #09070c; --foreground: #eee9f1;
+  --card: #15101a; --card-foreground: #eee9f1; --popover: #15101a; --popover-foreground: #eee9f1;
+  --primary: #a51d4c; --primary-foreground: #fff6fa; --secondary: #392344; --secondary-foreground: #f3e9f5;
+  --muted: #211827; --muted-foreground: #b9aabd; --accent: #b59b62; --accent-foreground: #100c13;
+  --destructive: #c83955; --border: #79677f; --input: #79677f; --ring: #b59b62; --radius: 0;
+}
+
+html[data-design='goth'] .page-frame { background: radial-gradient(ellipse at 50% -8%, rgb(123 29 70 / .48), transparent 34rem), radial-gradient(ellipse at 90% 55%, rgb(55 34 74 / .32), transparent 30rem), repeating-linear-gradient(90deg, transparent 0 4.95rem, rgb(255 255 255 / .018) 5rem), #09070c; }
+html[data-design='goth'] .site-header { border-bottom: 1px solid #b59b62; background: rgb(9 7 12 / .92); box-shadow: 0 .35rem 0 #25142c, 0 .42rem 0 #79677f; }
+html[data-design='goth'] .brand { color: #eee9f1; font-size: 1.45rem; font-weight: 800; letter-spacing: .035em; text-transform: uppercase; }
+html[data-design='goth'] .brand > span:last-child span { color: #b59b62; }
+html[data-design='goth'] .brand-mark { border: 1px solid #b59b62; border-radius: 50% 50% 4% 4%; color: #eee9f1; background: #5c1535; box-shadow: 0 0 0 3px #09070c, 0 0 0 4px #79677f; }
+html[data-design='goth'] .font-selector, html[data-design='goth'] .design-selector { color: #b9aabd; letter-spacing: .08em; text-transform: uppercase; }
+html[data-design='goth'] .font-selector select, html[data-design='goth'] .design-selector select { border: 1px solid #79677f; border-radius: 0; color: #eee9f1; background: #15101a; box-shadow: inset 0 0 0 2px #09070c, 0 0 0 1px #392344; }
+html[data-design='goth'] .finder-card { position: relative; overflow: hidden; border: 1px solid #b59b62; border-radius: 0; background: #15101a; box-shadow: 0 0 0 5px #09070c, 0 0 0 6px #55445b, 0 1.5rem 4rem rgb(0 0 0 / .65); }
+html[data-design='goth'] .finder-card::before { display: block; height: .55rem; background: repeating-linear-gradient(135deg, #5c1535 0 .7rem, #1e1424 .7rem 1.4rem); border-bottom: 1px solid #b59b62; content: ''; }
+html[data-design='goth'] .filter-bar { border-bottom: 1px solid #79677f; background: #100c13; }
+html[data-design='goth'] .search-field svg { color: #b59b62; }
+html[data-design='goth'] .search-field input { border: 1px solid #79677f; border-radius: 0; color: #eee9f1; background: #09070c; box-shadow: inset 0 0 1.2rem rgb(92 21 53 / .22); }
+html[data-design='goth'] .search-field input::placeholder { color: #9a899f; }
+html[data-design='goth'] .result-bar { color: #d6cbd9; }
+html[data-design='goth'] .temperature-table { border-top: 1px solid #b59b62; }
+html[data-design='goth'] .temperature-table th { color: #eee9f1; background: #392344; border-bottom-color: #b59b62; }
+html[data-design='goth'] body .temperature-table tbody tr { color: #eee9f1; background: #15101a; }
+html[data-design='goth'] body .temperature-table tbody tr:nth-child(even) { background: #211827; }
+html[data-design='goth'] .temperature-table td, html[data-design='goth'] .temperature-table tr { border-color: #433649; }
+html[data-design='goth'] .sort-link { color: #eee9f1; letter-spacing: .1em; }
+html[data-design='goth'] .pool-link, html[data-design='goth'] .detail-temp, html[data-design='goth'] .contact-links a { color: #d7688f; text-decoration-color: #b59b62; }
+html[data-design='goth'] .temperature-value { border: 1px solid #b59b62; border-radius: 0; color: #fff6fa; background: #5c1535; box-shadow: inset 0 0 0 2px #24101a; }
+html[data-design='goth'] .canton-pill { border: 1px solid #79677f; border-radius: 0; color: #09070c; background: #b9aabd; }
+html[data-design='goth'] .table-pagination { border-top: 1px solid #b59b62; }
+html[data-design='goth'] .back-link { color: #b59b62; letter-spacing: .08em; text-transform: uppercase; }
+html[data-design='goth'] .detail-card, html[data-design='goth'] .contact-card, html[data-design='goth'] .weather-card, html[data-design='goth'] .error-card { position: relative; border: 1px solid #b59b62; border-radius: 0; color: #eee9f1; background: linear-gradient(145deg, #19121e, #100c13); box-shadow: 0 0 0 4px #09070c, 0 0 0 5px #55445b, .7rem .8rem 0 rgb(92 21 53 / .45); }
+html[data-design='goth'] .section-heading p, html[data-design='goth'] .eyebrow { color: #b59b62; letter-spacing: .13em; }
+html[data-design='goth'] .section-icon { border: 1px solid #b59b62; border-radius: 50% 50% 0 0; color: #eee9f1; background: #5c1535; box-shadow: inset 0 0 0 3px #24101a; }
+html[data-design='goth'] .section-icon.sunny { color: #09070c; background: #b59b62; }
+html[data-design='goth'] .basin-table th { color: #eee9f1; background: #392344; }
+html[data-design='goth'] .notice-list article { border-left: .35rem double #b59b62; border-radius: 0; background: #211827; }
+html[data-design='goth'] .preformatted { color: #eee9f1; }
+html[data-design='goth'] .uv-reading, html[data-design='goth'] .weather-reading { border: 1px solid #79677f; border-radius: 0; color: #eee9f1; background: #392344; }
+html[data-design='goth'] .button-link { border: 1px solid #b59b62; border-radius: 0; color: #fff6fa; background: #5c1535; box-shadow: inset 0 0 0 3px #24101a, .3rem .3rem 0 #09070c; letter-spacing: .06em; text-transform: uppercase; }
+html[data-design='goth'] .site-footer { color: #b9aabd; background: #09070c; border-top: 1px solid #55445b; }
+html[data-design='goth'] .footer-inner a { color: #b59b62; }
+
+/* Alpine Lake: sunlit sky fading into lake water, airy white cards and a warm apricot sun accent. */
+html[data-design='alpine-lake'],
+html[data-design='alpine-lake'] body {
+  --background: #f3f9fb; --foreground: #0b2a3c;
+  --card: #ffffff; --card-foreground: #0b2a3c; --popover: #ffffff; --popover-foreground: #0b2a3c;
+  --primary: #0b6f8f; --primary-foreground: #ffffff; --secondary: #d3eef4; --secondary-foreground: #0b4a63;
+  --muted: #eaf4f7; --muted-foreground: #4a6978; --accent: #ffb547; --accent-foreground: #5c3300;
+  --destructive: #d9482f; --border: #d6e7ec; --input: #bcd6de; --ring: #0b6f8f; --radius: 1rem;
+}
+
+html[data-design='alpine-lake'] .page-frame {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 92% 3rem, rgb(255 196 98 / .85) 0 2.6rem, rgb(255 196 98 / .3) 2.65rem 6rem, transparent 12rem),
+    linear-gradient(180deg, #bfe6f2 0, #dff3f8 9rem, var(--background) 16rem),
+    var(--background);
+}
+html[data-design='alpine-lake'] .page-frame > * { position: relative; z-index: 1; }
+html[data-design='alpine-lake'] .page-frame::before {
+  position: absolute;
+  z-index: 0;
+  inset: 5.6rem 0 auto;
+  height: 5.5rem;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f3f9fb' d='M0 70c120 30 240 30 360 0s240-30 360 0 240 30 360 0 240-30 360 0v50H0z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' fill-opacity='.55' d='M0 50c150-34 300-34 450 0s300 34 450 0 300-34 540 0v70H0z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+  content: '';
+  pointer-events: none;
+}
+html[data-design='alpine-lake'] .site-header { padding: 1.2rem 0 .9rem; border-bottom: 0; }
+html[data-design='alpine-lake'] .brand { color: var(--foreground); font-size: 1.4rem; font-weight: 800; letter-spacing: -.045em; }
+html[data-design='alpine-lake'] .brand > span:last-child span { color: var(--primary); }
+html[data-design='alpine-lake'] .brand-mark { border: 0; color: #5c3300; background: radial-gradient(circle at 35% 30%, #ffd98a, #ffb547 70%); box-shadow: 0 6px 18px rgb(255 160 40 / .45); }
+html[data-design='alpine-lake'] .font-selector, html[data-design='alpine-lake'] .design-selector { color: var(--muted-foreground); font-weight: 700; }
+html[data-design='alpine-lake'] .font-selector select, html[data-design='alpine-lake'] .design-selector select { border: 1px solid var(--input); border-radius: 999px; color: var(--foreground); background: rgb(255 255 255 / .85); }
+html[data-design='alpine-lake'] .eyebrow { color: var(--primary); }
+html[data-design='alpine-lake'] .finder-card { border: 1px solid rgb(11 42 60 / .06); border-radius: 1.6rem; background: var(--card); box-shadow: 0 1px 2px rgb(11 42 60 / .05), 0 30px 70px -28px rgb(11 90 120 / .38); }
+html[data-design='alpine-lake'] .filter-bar { padding: 1.25rem 1.3rem; border-bottom: 1px solid var(--border); background: var(--card); }
+html[data-design='alpine-lake'] .search-field svg { top: .98rem; left: 1.1rem; color: var(--primary); }
+html[data-design='alpine-lake'] .search-field input { height: 3.2rem; padding-left: 3rem; border: 1px solid transparent; border-radius: 999px; color: var(--foreground); background: var(--muted); }
+html[data-design='alpine-lake'] .search-field input:focus-visible { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgb(11 111 143 / .14); outline: 0; }
+html[data-design='alpine-lake'] .temperature-table { border-top: 0; }
+html[data-design='alpine-lake'] .temperature-table th { height: 2.9rem; color: var(--muted-foreground); background: #f1f8fa; }
+html[data-design='alpine-lake'] .temperature-table tbody tr:nth-child(even) { background: transparent; }
+html[data-design='alpine-lake'] .temperature-table tbody tr:hover { background: #f1f8fa; }
+html[data-design='alpine-lake'] .temperature-table td { padding-block: .95rem; }
+html[data-design='alpine-lake'] .sort-link { color: var(--muted-foreground); }
+html[data-design='alpine-lake'] .sort-link:hover { color: var(--primary); }
+html[data-design='alpine-lake'] .pool-link, html[data-design='alpine-lake'] .contact-links a { color: var(--primary); font-weight: 650; }
+html[data-design='alpine-lake'] .temperature-value { min-width: 4.2rem; border: 0; border-radius: 999px; color: var(--accent-foreground); background: linear-gradient(135deg, #ffe0a0, #ffb547); box-shadow: 0 4px 12px rgb(255 160 40 / .28); font-weight: 800; }
+html[data-design='alpine-lake'] .canton-pill { border-radius: .5rem; color: var(--secondary-foreground); background: var(--secondary); }
+html[data-design='alpine-lake'] .table-pagination { border-top: 1px solid var(--border); }
+html[data-design='alpine-lake'] .back-link { color: var(--primary); font-weight: 650; }
+html[data-design='alpine-lake'] .detail-card, html[data-design='alpine-lake'] .weather-card, html[data-design='alpine-lake'] .error-card { border: 1px solid rgb(11 42 60 / .06); border-radius: 1.5rem; background: var(--card); box-shadow: 0 1px 2px rgb(11 42 60 / .05), 0 24px 56px -26px rgb(11 90 120 / .32); }
+html[data-design='alpine-lake'] .contact-card { border: 0; border-radius: 1.5rem; color: #fff; background: linear-gradient(155deg, #0e86a8, #0a4f6b); box-shadow: 0 24px 56px -22px rgb(10 79 107 / .6); }
+html[data-design='alpine-lake'] .contact-card .section-heading p { color: rgb(255 255 255 / .75); }
+html[data-design='alpine-lake'] .contact-card .section-heading h2, html[data-design='alpine-lake'] .contact-card .contact-links a, html[data-design='alpine-lake'] .contact-card .eyebrow { color: #fff; }
+html[data-design='alpine-lake'] .contact-card .section-icon { color: var(--primary); background: #fff; }
+html[data-design='alpine-lake'] .contact-card .button-link { color: var(--foreground); background: #fff; box-shadow: none; }
+html[data-design='alpine-lake'] .section-icon { border: 0; border-radius: .9rem; color: var(--primary); background: var(--secondary); }
+html[data-design='alpine-lake'] .section-icon.sunny { color: var(--accent-foreground); background: #ffe3b0; }
+html[data-design='alpine-lake'] .basin-table th { color: var(--muted-foreground); background: #f1f8fa; }
+html[data-design='alpine-lake'] .detail-temp { color: var(--primary); }
+html[data-design='alpine-lake'] .notice-list article { border-left: .3rem solid var(--accent); border-radius: .9rem; background: #fff6e4; }
+html[data-design='alpine-lake'] .uv-reading, html[data-design='alpine-lake'] .weather-reading { border: 0; border-radius: 1rem; color: var(--foreground); background: linear-gradient(135deg, #fff2d3, #ffe0a0); }
+html[data-design='alpine-lake'] .button-link { border-radius: 999px; background: linear-gradient(135deg, #0e86a8, #0b6f8f); box-shadow: 0 8px 20px -8px rgb(11 111 143 / .7); }
+html[data-design='alpine-lake'] .site-footer { margin-top: 0; color: #b6d2dc; background: #0b2a3c; }
+html[data-design='alpine-lake'] .footer-inner a { color: #fff; }
+
+/* Mobile: two-line rows with the measurement time under the temperature, like Sommerfrische. */
+@media (max-width: 760px) {
+  html[data-design='alpine-lake'] .temperature-table, html[data-design='alpine-lake'] .temperature-table tbody, html[data-design='alpine-lake'] .temperature-table thead { display: block; }
+  html[data-design='alpine-lake'] .temperature-table thead tr { display: flex; justify-content: space-between; gap: .5rem; padding: .75rem .9rem; background: #f1f8fa; }
+  html[data-design='alpine-lake'] .temperature-table th { height: auto; padding: 0; background: transparent; }
+  html[data-design='alpine-lake'] .temperature-table th:nth-child(5) { display: block; }
+  html[data-design='alpine-lake'] .temperature-table tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .15rem .75rem; padding: .8rem .9rem; }
+  html[data-design='alpine-lake'] .temperature-table td { display: block; height: auto; padding: 0; border: 0; white-space: normal; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(2) { grid-row: 1; grid-column: 1; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(1) { grid-row: 2; grid-column: 1; color: var(--muted-foreground); font-size: .85rem; font-weight: 400; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(4) { grid-row: 1; grid-column: 2; justify-self: end; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(5) { display: block; grid-row: 2; grid-column: 2; justify-self: end; color: var(--muted-foreground); font-size: .75rem; white-space: nowrap; }
+}
+@media (max-width: 760px) {
+  .header-tools { width: min(15rem, 55vw); }
+  .font-selector, .design-selector { width: 100%; justify-content: space-between; }
+  .font-selector select, .design-selector select { min-width: 0; width: 10rem; }
+  html[data-design='summer-swim'] .contact-card { transform: rotate(.55deg); }
+}
