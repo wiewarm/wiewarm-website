@@ -221,11 +221,12 @@ class Bad {
     }
 
     /**
-     * Get daily average temperatures, as used by statng.php
+     * Get daily average temperatures
      *
      * The range ends at the latest reading across this BAD's pools, or today
      * if there are no readings. Both boundary dates are included.
-     * Missing readings are null; temperatures are in degrees Celsius.
+     * Missing readings are null; temperatures are in degrees Celsius,
+     * rounded to one decimal place.
      *
      * @url GET {badid}/timeseries
      * @param mixed $badid Numeric id of BAD
@@ -280,7 +281,7 @@ class Bad {
 
         $result = \query($con, "
             SELECT t.beckenid, TO_CHAR(t.datum, 'YYYY-MM-DD') AS date,
-                   AVG(t.wert) / 10.0 AS temp
+                   ROUND(AVG(t.wert) / 10.0, 1) AS temp
             FROM temperatur t JOIN becken bk ON bk.id = t.beckenid
             WHERE bk.badid = $1 AND t.datum > $2
             GROUP BY t.beckenid, TO_CHAR(t.datum, 'YYYY-MM-DD')
