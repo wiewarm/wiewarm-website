@@ -132,6 +132,7 @@
             'pincode',
             'password',
             'password_hash',
+            'new_password',
             'api_key',
             'secret_sudopw',
             'inputhash',
