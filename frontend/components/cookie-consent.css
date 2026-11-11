@@ -1,0 +1,18 @@
+/* Keep consent controls visible without a backdrop, focus trap or scroll lock. */
+.cookie-banner { position: fixed; inset: auto 0 0; z-index: 40; max-height: 65dvh; overflow-y: auto; border-top: 1px solid var(--border); background: var(--card); color: var(--foreground); box-shadow: 0 -4px 24px rgb(0 0 0 / .08); }
+.cookie-banner-inner { display: flex; align-items: center; gap: 1.5rem; padding-block: 1rem; }
+.cookie-banner-copy { flex: 1; min-width: 0; font-size: .875rem; line-height: 1.5; }
+.cookie-banner-copy h2 { margin: 0 0 .35rem; font-size: 1rem; font-weight: 750; }
+.cookie-banner-copy p { margin: .3rem 0 0; }
+.cookie-banner-details { color: var(--muted-foreground); font-size: .8rem; }
+.cookie-banner a, .cookie-settings-link { text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+.cookie-settings-link { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-align: left; }
+.cookie-banner-controls { display: grid; gap: .6rem; flex-shrink: 0; font-size: .875rem; }
+.cookie-banner-controls > .cookie-settings-link { justify-self: end; font-size: .8rem; }
+.cookie-banner-actions { display: flex; gap: .65rem; }
+.cookie-banner-actions button { flex: 1; min-height: 2.75rem; padding: .65rem 1rem; border: 1px solid var(--foreground); border-radius: .4rem; background: var(--card); color: var(--foreground); font: inherit; font-weight: 700; cursor: pointer; }
+.cookie-banner-actions button:hover { background: var(--muted); }
+@media (max-width: 760px) {
+  .cookie-banner-inner { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .cookie-banner-actions button { padding-inline: .65rem; }
+}
