@@ -1,4 +1,6 @@
 import { Heart, Waves } from 'lucide-react';
+import Link from 'next/link';
+import { CookieSettingsButton } from '@/components/cookie-consent';
 
 export function SiteFooter() {
   return <footer className="site-footer" id="ueber">
@@ -10,5 +12,6 @@ export function SiteFooter() {
     <div className="site-shell footer-inner">
     <p>© wiewarm.ch 2001–{new Date().getFullYear()}</p>
     <p>Daten unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>{' · '}<a href="https://github.com/wiewarm/wiewarm-website">Open Source</a></p>
+    <p><Link href="/datenschutz">Datenschutz</Link>{' · '}<CookieSettingsButton /></p>
   </div></footer>;
 }

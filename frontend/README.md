@@ -8,7 +8,7 @@ and swimming-location details using only the documented wiewarm REST API.
 
 Requirements:
 
-- Node.js 22.13 or newer
+- Node.js 26 LTS recommended (minimum 22.13)
 - npm
 
 Install dependencies and start the development server:

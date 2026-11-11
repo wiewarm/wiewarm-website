@@ -13,6 +13,8 @@ import '@fontsource-variable/fraunces';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { defaultDesign } from '@/lib/designs';
+import { CookieConsent } from '@/components/cookie-consent';
+import { analyticsId } from '@/lib/consent';
 import './globals.css';
 import './designs.css';
 import './sommerfrische.css';
@@ -27,6 +29,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="de-CH" data-design={defaultDesign} ><body>
     <a className="skip-link" href="#main-content">Zum Inhalt springen</a>
-    <div className="page-frame"><SiteHeader />{children}<SiteFooter /></div>
+    <CookieConsent measurementId={analyticsId(process.env)}>
+      <div className="page-frame"><SiteHeader />{children}<SiteFooter /></div>
+    </CookieConsent>
   </body></html>;
 }

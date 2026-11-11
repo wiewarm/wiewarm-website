@@ -22,7 +22,7 @@ export function SiteMenu() {
       <SheetDescription className="sr-only">Hauptnavigation von wiewarm.ch</SheetDescription>
       <nav aria-label="Hauptnavigation"><ul className="menu-list">
         {items.map(({ label, description, href, icon: Icon, ...rest }) => <li key={label}>
-          {'external' in rest
+          {href === '/admin' || 'external' in rest
             ? <a className="menu-item" href={href} rel="noopener" onClick={() => setOpen(false)}><Icon aria-hidden="true" /><span><strong>{label}</strong><small>{description}</small></span><ChevronRight aria-hidden="true" /></a>
             : <Link className="menu-item" href={href} onClick={() => setOpen(false)}><Icon aria-hidden="true" /><span><strong>{label}</strong><small>{description}</small></span><ChevronRight aria-hidden="true" /></Link>}
         </li>)}

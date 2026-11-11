@@ -7,12 +7,40 @@ The external HTTPS vhost is unchanged.
 
 ## Development
 
-Run `docker compose -f infra/docker-compose.yml up --build` and open
-http://localhost:3770. Development database passwords are `badi`.
-Node 22 is required for standalone frontend development:
-`cd frontend && npm ci && npm run dev`.
-Set `WIEWARM_API_ORIGIN=http://localhost:3770` when using the local PHP API.
-`WIEWARM_ORIGIN` controls public image URLs separately.
+From the repository root, with Docker Engine and Docker Compose installed:
+
+```bash
+docker compose -f infra/docker-compose.yml up --build -d --wait
+docker compose -f infra/docker-compose.yml logs -f
+```
+
+Open http://localhost:3770 once the database import and frontend startup finish.
+The first run downloads the development database and installs frontend packages,
+so it takes longer. The containers provide Node 26 LTS, PHP, and PostgreSQL;
+no host Node installation is needed. The frontend runs `next dev` with live
+reload from `frontend/`; PHP files are also mounted directly from the checkout.
+Development images are loaded directly from the local PHP server.
+Run frontend tests with `docker compose -f infra/docker-compose.yml exec frontend npm test`.
+
+The local database is `devwiewarm`. Its application account is `webuser` with
+password `badi`; its administrator account is `postgres` with password `postgres`.
+PostgreSQL is available at `localhost:3779`. Both published ports bind to localhost.
+Database data and container frontend dependencies/cache live in Docker volumes.
+Stop the environment with `docker compose -f infra/docker-compose.yml down`;
+this preserves those volumes. Adding `--volumes` deletes local database changes
+and causes a fresh database import on the next start.
+
+For an optional frontend running on the host, use Node 26 LTS (the package minimum
+is 22.13), leave the PHP/database containers running, and run:
+
+```bash
+cd frontend
+npm ci
+WIEWARM_API_ORIGIN=http://localhost:3770 WIEWARM_ORIGIN=http://localhost:3770 npm run dev
+```
+
+Then open http://localhost:3000. The API origin selects the backend for reads and
+writes; the public origin selects image URLs. Both commands above use the local API.
 
 ## Production
 
@@ -50,6 +78,30 @@ restart both user services. No database migration is required.
 Validate admin login, password changes, updates and image uploads against the
 development database before deployment. Production cookies require HTTPS;
 use frontend dev mode or a local HTTPS proxy for full admin testing.
+
+## Analytics and consent
+
+The frontend loads GA4 only after an explicit analytics opt-in. «Nur notwendige»
+is available on the first dialog with the same prominence as accepting. The footer
+links to privacy information and lets visitors withdraw consent. Choices expire
+after 180 days, and withdrawal also applies to other open tabs on the same origin.
+The admin area does not load the tracker. Do not add an unconditional Google tag
+to Apache, the layout, or a tag manager alongside this implementation.
+
+The existing public GA4 ID `G-SLQMWRY7SY` is used by default only for production
+builds whose `WIEWARM_ORIGIN` is `https://www.wiewarm.ch` or `https://wiewarm.ch`.
+Beta and localhost default to no analytics. `GOOGLE_ANALYTICS_ID=G-...` in the
+Node environment overrides this; an explicitly empty value disables it. This is
+a runtime setting, so changing it requires a container restart, not a build.
+The old Universal Analytics tag is not restored.
+
+Before enabling the property, review the privacy notice's operator details and
+the Google account's data processing/transfer settings and retention period.
+Disable Enhanced Measurement in the GA4 web stream: this integration sends its
+own page views with search parameters and fragments removed and does not need
+automatic form, search, click or history tracking. Keep Google Signals, advertising
+personalisation and user-provided data collection disabled in the account too.
+The consent dialog alone does not establish compliance for the whole deployment.
 
 # Password API
 

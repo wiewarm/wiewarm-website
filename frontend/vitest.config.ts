@@ -10,5 +10,10 @@ export default defineConfig({
       'server-only': fileURLToPath(new URL('./test/server-only.ts', import.meta.url)),
     },
   },
-  test: { environment: 'node', restoreMocks: true },
+  test: {
+    environment: 'node',
+    restoreMocks: true,
+    // Mocked API tests must not inherit the local deployment's origins.
+    env: { WIEWARM_ORIGIN: '', WIEWARM_API_ORIGIN: '' },
+  },
 });

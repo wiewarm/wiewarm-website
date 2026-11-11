@@ -289,3 +289,12 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .history-note { margin: 0; color: var(--muted-foreground); font-size: .78rem; }
 .history-empty { padding: 2rem 0; text-align: center; }
 @media (max-width: 760px) { .history-chart { height: 16rem; } }
+.cookie-dialog { width: min(36rem, calc(100vw - 2rem)); max-width: min(36rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); overflow-y: auto; padding: 1.5rem; gap: 1rem; line-height: 1.6; }
+.cookie-dialog-icon { width: 2rem; height: 2rem; color: var(--primary); }
+.cookie-dialog-title { font-size: 1.4rem; font-weight: 750; line-height: 1.2; }
+.cookie-dialog a, .cookie-settings-link { text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+.cookie-settings-link { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-align: left; }
+.cookie-dialog-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.cookie-dialog-actions button { flex: 1 1 12rem; min-height: 3rem; padding: .7rem 1rem; border: 2px solid var(--foreground); border-radius: .6rem; background: var(--card); color: var(--foreground); font: inherit; font-weight: 700; cursor: pointer; }
+.cookie-dialog-actions button:hover { background: var(--muted); }
+.footer-inner { flex-wrap: wrap; }
