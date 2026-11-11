@@ -118,7 +118,7 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
             {location.website ? <a href={location.website} target="_blank" rel="noreferrer"><ExternalLink aria-hidden="true" /> Website</a> : null}</div>
           <a className="button-link" href={directionsUrl(location)} target="_blank" rel="noreferrer"><MapPin aria-hidden="true" /> Route öffnen</a>
         </section> : null}
-        {(uvIsRecent || forecast.length) ? <section className="weather-card"><p className="eyebrow"><Sun aria-hidden="true" /> Wetterdaten</p>
+        {(uvIsRecent || forecast.length) ? <section className="weather-card"><p className="eyebrow"><Sun aria-hidden="true" /> Wetter</p>
           {uvIsRecent && location.uvValue !== null ? <div className="uv-reading"><span>UV {location.uvValue}</span><small>{location.uvDatePretty}{location.uvStationName ? ` · ${location.uvStationName}` : ''}</small></div> : null}
           {forecast.length ? <LocalForecast days={forecast} /> : null}
         </section> : null}
