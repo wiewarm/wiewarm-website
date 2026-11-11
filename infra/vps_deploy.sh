@@ -1,14 +1,17 @@
 #!/bin/bash
 set -euo pipefail
 cd "${HOME}/wiewarm-website"
+if ! test -r "$HOME/.wiewarm-node.env"; then
+  echo 'Create ~/.wiewarm-node.env with SESSION_SECRET and WIEWARM_ORIGIN before deploying (see README.md).' >&2
+  exit 1
+fi
 git pull --ff-only
 revision=$(git rev-parse --short HEAD)
 if podman image exists wiewarm-apache:latest; then
   podman tag wiewarm-apache:latest wiewarm-apache:previous
 fi
-./infra/podman-build.sh
-podman tag wiewarm-apache:latest "wiewarm-apache:$revision"
-podman build -f infra/Dockerfile.node -t "wiewarm-node:$revision" .
+./infra/podman-build.sh "$revision"
+podman tag "wiewarm-apache:$revision" wiewarm-apache:latest
 mkdir -p "$HOME/.config/systemd/user"
 # The previous image reference and Git revision are needed for rollback.
 if test -f "$HOME/.config/wiewarm-node-image"; then
