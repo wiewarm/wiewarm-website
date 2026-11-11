@@ -149,6 +149,16 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .contact-card .button-link { width: 100%; }
 .uv-reading, .weather-reading { display: grid; margin-top: 1rem; padding: 1rem; border: 1.5px solid var(--foreground); border-radius: .7rem; color: var(--foreground); background: var(--accent); }
 .uv-reading span, .weather-reading span { font: 800 1.5rem var(--font-heading-face); }.uv-reading small, .weather-reading small { color: var(--muted-foreground); }
+.forecast { margin-top: 1rem; }
+.forecast-list { display: grid; gap: .35rem; margin: 0; padding: 0; list-style: none; }
+.forecast-list li { display: grid; grid-template-columns: 3.6rem 1.4rem 1fr auto; align-items: center; gap: .5rem; padding: .55rem .75rem; font-size: .9rem; border-radius: .7rem; background: var(--accent); }
+.forecast-list time { font-weight: 400; }
+.forecast-list svg { width: 1.4rem; height: 1.4rem; }
+.forecast-temp { font: inherit; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.forecast-rain { display: inline-flex; font-size: .8rem; white-space: nowrap; align-items: center; gap: .2rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.forecast-rain svg { width: .85rem; height: .85rem; }
+.forecast-source { margin: .75rem 0 0; color: var(--muted-foreground); font-size: .78rem; }
+.forecast-source a { text-decoration: underline; }
 .muted-copy { color: var(--muted-foreground); }
 .site-footer { margin-top: 2rem; padding: 1.8rem 0; color: white; background: var(--foreground); font-size: .85rem; }
 .footer-inner { padding-top: 0; }.footer-inner p { margin: 0; }.footer-inner a { color: white; }

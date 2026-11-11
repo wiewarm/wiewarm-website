@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button';
 import { TemperatureHistory } from '@/components/temperature-history';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ImageGallery } from '@/components/image-gallery';
+import { LocalForecast } from '@/components/local-forecast';
 import { formatReadingDate } from '@/lib/format-date';
 import { formatTemperature } from '@/lib/format-temperature';
+import { getLocalForecast } from '@/lib/meteoswiss';
 import { getSwimmingLocation, getTemperatureTimeseries, latestLocationNews, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
 
 type RouteParams = { identifier: string };
@@ -59,13 +61,19 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
   }
 
   // History is optional: the page still renders when the timeseries is unavailable.
-  const series = await getTemperatureTimeseries(location.badid).catch((error: unknown) => {
-    console.warn('Temperature history unavailable', error instanceof Error ? error.message : error);
-    return null;
-  });
+  const [series, forecast] = await Promise.all([
+    getTemperatureTimeseries(location.badid).catch((error: unknown) => {
+      console.warn('Temperature history unavailable', error instanceof Error ? error.message : error);
+      return null;
+    }),
+    // The forecast is optional too.
+    getLocalForecast(location.postalCode).catch((error: unknown) => {
+      console.warn('Weather forecast unavailable', error instanceof Error ? error.message : error);
+      return [];
+    }),
+  ]);
 
   const addressLines = [location.address1, location.address2, [location.postalCode, location.city].filter(Boolean).join(' ')].filter(Boolean);
-  const recentWeather = location.weather.filter((entry) => isRecent(entry.date, 3));
   const uvIsRecent = location.uvDate && isRecent(location.uvDate, 7);
   const latestNews = latestLocationNews(location.notices, 1);
   const visibleNotices = latestNews.length ? [...latestNews, ...location.notices.filter((notice) => !latestNews.some((item) => item.date === notice.date && item.info === notice.info))] : location.notices;
@@ -110,9 +118,9 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
             {location.website ? <a href={location.website} target="_blank" rel="noreferrer"><ExternalLink aria-hidden="true" /> Website</a> : null}</div>
           <a className="button-link" href={directionsUrl(location)} target="_blank" rel="noreferrer"><MapPin aria-hidden="true" /> Route öffnen</a>
         </section> : null}
-        {(uvIsRecent || recentWeather.length) ? <section className="weather-card"><p className="eyebrow"><Sun aria-hidden="true" /> Wetterdaten</p><h2>Sonne & Wasser</h2>
+        {(uvIsRecent || forecast.length) ? <section className="weather-card"><p className="eyebrow"><Sun aria-hidden="true" /> Wetterdaten</p>
           {uvIsRecent && location.uvValue !== null ? <div className="uv-reading"><span>UV {location.uvValue}</span><small>{location.uvDatePretty}{location.uvStationName ? ` · ${location.uvStationName}` : ''}</small></div> : null}
-          {recentWeather.map((entry) => <div className="weather-reading" key={entry.date}><span>{formatTemperature(entry.temperature)}</span><small>{entry.datePretty}</small></div>)}
+          {forecast.length ? <LocalForecast days={forecast} /> : null}
         </section> : null}
       </aside>
     </div>

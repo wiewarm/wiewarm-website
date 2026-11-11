@@ -152,6 +152,10 @@ html[data-design='summer-swim'] .contact-card .section-heading p, html[data-desi
 html[data-design='summer-swim'] .contact-card address span:last-child { margin-top: .2rem; font: 820 clamp(1.8rem, 3vw, 2.45rem)/1 var(--font-heading-face); letter-spacing: -.055em; }
 html[data-design='summer-swim'] .contact-card .section-icon { color: #153f3b; background: #fff; }
 html[data-design='summer-swim'] .contact-card .button-link { color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .weather-card { border: 0; color: #fff; background: #2e7f79; box-shadow: .75rem .85rem 0 #bee9df; }
+html[data-design='summer-swim'] .weather-card h2, html[data-design='summer-swim'] .weather-card .eyebrow, html[data-design='summer-swim'] .forecast-source a { color: #fff; }
+html[data-design='summer-swim'] .forecast-list li { background: rgb(255 255 255 / .16); }
+html[data-design='summer-swim'] .forecast-rain, html[data-design='summer-swim'] .forecast-source { color: rgb(255 255 255 / .8); }
 html[data-design='summer-swim'] .section-icon { border: 0; border-radius: 50%; color: #153f3b; background: #ef806f; }
 html[data-design='summer-swim'] .section-icon.sunny { color: #153f3b; background: #ffed73; }
 html[data-design='summer-swim'] .basin-table th { color: #153f3b; background: #bee9df; }
@@ -432,6 +436,10 @@ html[data-design='alpine-lake'] .contact-card .section-heading p { color: rgb(25
 html[data-design='alpine-lake'] .contact-card .section-heading h2, html[data-design='alpine-lake'] .contact-card .contact-links a, html[data-design='alpine-lake'] .contact-card .eyebrow { color: #fff; }
 html[data-design='alpine-lake'] .contact-card .section-icon { color: var(--primary); background: #fff; }
 html[data-design='alpine-lake'] .contact-card .button-link { color: var(--foreground); background: #fff; box-shadow: none; }
+html[data-design='alpine-lake'] .weather-card { border: 0; color: #fff; background: linear-gradient(155deg, #0e86a8, #0a4f6b); box-shadow: 0 24px 56px -22px rgb(10 79 107 / .6); }
+html[data-design='alpine-lake'] .weather-card h2, html[data-design='alpine-lake'] .weather-card .eyebrow, html[data-design='alpine-lake'] .forecast-source a { color: #fff; }
+html[data-design='alpine-lake'] .forecast-list li { background: rgb(255 255 255 / .14); }
+html[data-design='alpine-lake'] .forecast-rain, html[data-design='alpine-lake'] .forecast-source { color: rgb(255 255 255 / .75); }
 html[data-design='alpine-lake'] .section-icon { border: 0; border-radius: .9rem; color: var(--primary); background: var(--secondary); }
 html[data-design='alpine-lake'] .section-icon.sunny { color: var(--accent-foreground); background: #ffe3b0; }
 html[data-design='alpine-lake'] .basin-table th { color: var(--muted-foreground); background: #f1f8fa; }
