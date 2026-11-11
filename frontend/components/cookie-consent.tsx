@@ -1,10 +1,9 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { ShieldCheck } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
+import './cookie-consent.css';
 import { CONSENT_KEY, CONSENT_SECONDS, isPrivatePath, parseConsent, type Consent } from '@/lib/consent';
 import { startAnalytics, stopAnalytics, trackPage } from '@/lib/analytics';
 
@@ -25,6 +24,15 @@ export function CookieConsent({ measurementId, children }: { measurementId: stri
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
   const path = usePathname();
+  const bannerRef = useRef<HTMLElement>(null);
+  const [bannerHeight, setBannerHeight] = useState(0);
+
+  useEffect(() => {
+    if (!open || !bannerRef.current) return;
+    const observer = new ResizeObserver(([entry]) => setBannerHeight(entry.target.getBoundingClientRect().height));
+    observer.observe(bannerRef.current);
+    return () => observer.disconnect();
+  }, [open]);
 
   useEffect(() => {
     function sync() {
@@ -89,24 +97,29 @@ export function CookieConsent({ measurementId, children }: { measurementId: stri
 
   return <ConsentContext.Provider value={() => setOpen(true)}>
     {children}
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="cookie-dialog" showCloseButton={false}>
-        <ShieldCheck aria-hidden="true" className="cookie-dialog-icon" />
-        <DialogTitle className="cookie-dialog-title">Deine Privatsphäre am Wasser</DialogTitle>
-        <DialogDescription>
-          Wir speichern, was für Anmeldung, Cookie-Auswahl und Deine gewählten Einstellungen nötig ist.
-          {measurementId ? ' Nur mit Deiner Zustimmung nutzen wir Google Analytics für Besuchsstatistiken.' : ' Auf dieser Umgebung ist Google Analytics ausgeschaltet.'}
-        </DialogDescription>
-        {measurementId && <p>Google erhält Nutzungs- und Gerätedaten sowie Deine IP-Adresse; eine Verarbeitung in den USA ist möglich. Werbung ist ausgeschaltet.</p>}
-        {error && <p role="alert">{error}</p>}
-        <div className="cookie-dialog-actions">
-          <button type="button" onClick={() => choose(false)}>Nur notwendige</button>
-          {measurementId && <button type="button" onClick={() => choose(true)}>Analyse erlauben</button>}
+    {open && <>
+      <div aria-hidden="true" style={{ height: bannerHeight }} />
+      <section ref={bannerRef} className="cookie-banner" aria-labelledby="cookie-banner-title">
+        <div className="site-shell cookie-banner-inner">
+          <div className="cookie-banner-copy">
+            <h2 id="cookie-banner-title">Cookies und Datenschutz</h2>
+            <p>Wir verwenden notwendige Speicherung für Anmeldung und Einstellungen.
+              {measurementId ? ' Google Analytics für Besuchsstatistiken laden wir nur mit Deiner Zustimmung. Dabei erhält Google Nutzungs- und Gerätedaten sowie Deine IP-Adresse; eine Verarbeitung in den USA ist möglich. Werbung ist ausgeschaltet.' : ' Google Analytics ist auf dieser Umgebung ausgeschaltet.'}
+            </p>
+            <p className="cookie-banner-details">Deine Auswahl gilt für 180 Tage und lässt sich jederzeit über «Cookie-Einstellungen» ändern.{' '}
+              <Link href="/datenschutz">Mehr zum Datenschutz</Link>
+            </p>
+            {error && <p role="alert">{error}</p>}
+          </div>
+          <div className="cookie-banner-controls">
+            <div className="cookie-banner-actions">
+              <button type="button" onClick={() => choose(false)}>Nur notwendige</button>
+              {measurementId && <button type="button" onClick={() => choose(true)}>Analyse erlauben</button>}
+            </div>
+            <button type="button" className="cookie-settings-link" onClick={() => setOpen(false)}>Ohne Änderung schliessen</button>
+          </div>
         </div>
-        <p>«Nur notwendige» blockiert Google Analytics vollständig. Deine Auswahl gilt für 180 Tage. Du kannst sie jederzeit unten über «Cookie-Einstellungen» ändern oder widerrufen.</p>
-        <Link href="/datenschutz" onClick={() => setOpen(false)}>Mehr zum Datenschutz</Link>
-        <button type="button" className="cookie-settings-link" onClick={() => setOpen(false)}>Ohne Änderung schliessen</button>
-      </DialogContent>
-    </Dialog>
+      </section>
+    </>}
   </ConsentContext.Provider>;
 }

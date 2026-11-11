@@ -82,7 +82,7 @@ use frontend dev mode or a local HTTPS proxy for full admin testing.
 ## Analytics and consent
 
 The frontend loads GA4 only after an explicit analytics opt-in. «Nur notwendige»
-is available on the first dialog with the same prominence as accepting. The footer
+is available directly in a non-blocking bottom banner with the same prominence as accepting. The footer
 links to privacy information and lets visitors withdraw consent. Choices expire
 after 180 days, and withdrawal also applies to other open tabs on the same origin.
 The admin area does not load the tracker. Do not add an unconditional Google tag
@@ -101,7 +101,7 @@ Disable Enhanced Measurement in the GA4 web stream: this integration sends its
 own page views with search parameters and fragments removed and does not need
 automatic form, search, click or history tracking. Keep Google Signals, advertising
 personalisation and user-provided data collection disabled in the account too.
-The consent dialog alone does not establish compliance for the whole deployment.
+The consent banner alone does not establish compliance for the whole deployment.
 
 # Password API
 
