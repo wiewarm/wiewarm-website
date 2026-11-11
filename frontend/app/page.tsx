@@ -7,6 +7,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationNext, Paginati
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatTemperature } from '@/lib/format-temperature';
+import { formatReadingDate } from '@/lib/format-date';
 import { getCurrentTemperatures } from '@/lib/wiewarm-api';
 import { filterAndSortTemperatures, parseTemperatureQuery, toQueryString, type SortColumn, type TemperatureQuery } from '@/lib/temperature-query';
 
@@ -71,7 +72,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
         <TableCell className="location-cell">{row.ort}</TableCell>
         <TableCell><Link className="pool-link" href={`/bad/${encodeURIComponent(row.badidText)}`}>{row.bad}</Link></TableCell>
         <TableCell>{row.becken}</TableCell><TableCell><span className="temperature-value" data-warmth={row.temp >= 22 ? 'warm' : row.temp >= 16 ? 'mild' : 'cool'}>{formatTemperature(row.temp)}</span></TableCell>
-        <TableCell><time dateTime={row.date}>{row.datePretty}</time>{Date.now() - Date.parse(row.date) > 7 * 86_400_000 ? <small className="summer-only outdated-reading">Älterer Messwert</small> : null}</TableCell><TableCell>{row.plz || '–'}</TableCell>
+        <TableCell><time dateTime={row.date}>{formatReadingDate(row.datePretty, row.date)}</time>{Date.now() - Date.parse(row.date) > 7 * 86_400_000 ? <small className="summer-only outdated-reading">Älterer Messwert</small> : null}</TableCell><TableCell>{row.plz || '–'}</TableCell>
         <TableCell><span className="canton-pill">{row.kanton || '–'}</span></TableCell>
       </TableRow>)}</TableBody></Table> : <div className="empty-state"><Search aria-hidden="true" /><h2>Hier ist es noch ganz still.</h2><p>Für diese Suche haben wir keine Messwerte. Versuche einen anderen Ort.</p><Link className="button-link" href="/#temperaturen">Alle Temperaturen anzeigen <ArrowRight aria-hidden="true" /></Link></div>}
 

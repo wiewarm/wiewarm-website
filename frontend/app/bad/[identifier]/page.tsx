@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { TemperatureHistory } from '@/components/temperature-history';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ImageGallery } from '@/components/image-gallery';
+import { formatReadingDate } from '@/lib/format-date';
 import { formatTemperature } from '@/lib/format-temperature';
 import { getSwimmingLocation, getTemperatureTimeseries, latestLocationNews, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
 
@@ -82,13 +83,13 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
             <TableBody>{location.basins.map((basin) => <TableRow key={basin.beckenid}><TableCell><strong>{basin.name}</strong><small>{basin.type}</small></TableCell>
               <TableCell><span className="detail-temp">{formatTemperature(basin.temp)}</span></TableCell>
               <TableCell><Badge variant={basin.status.toLocaleLowerCase('de-CH').includes('geöffnet') ? 'default' : 'secondary'}>{basin.status || 'Unbekannt'}</Badge></TableCell>
-              <TableCell><time dateTime={basin.date}>{basin.datePretty || '–'}</time>{isStale(basin) ? <small className="stale-label">Älterer Messwert</small> : null}</TableCell>
+              <TableCell><time dateTime={basin.date}>{basin.date ? formatReadingDate(basin.datePretty, basin.date) : '–'}</time>{isStale(basin) ? <small className="stale-label">Älterer Messwert</small> : null}</TableCell>
             </TableRow>)}</TableBody></Table> : <p className="muted-copy">Keine Beckenangaben verfügbar.</p>}
 
         </section>
 
         {visibleNotices.length ? <section className="detail-card" aria-labelledby="notices-heading"><div className="section-heading"><div className="section-icon"><Info aria-hidden="true" /></div><div><p>Gut zu wissen</p><h2 id="notices-heading">Aktuelle Mitteilungen</h2></div></div>
-          <div className="notice-list">{visibleNotices.map((notice, index) => <article key={`${notice.date}-${index}`}><time dateTime={notice.date}>{notice.datePretty}</time><p>{notice.info}</p></article>)}</div>
+          <div className="notice-list">{visibleNotices.map((notice, index) => <article key={`${notice.date}-${index}`}><time dateTime={notice.date}>{formatReadingDate(notice.datePretty, notice.date)}</time><p>{notice.info}</p></article>)}</div>
         </section> : null}
 
         {(location.openingHours || location.prices || location.images.length || location.info) ? <section className="info-grid">
