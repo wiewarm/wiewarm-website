@@ -10,6 +10,7 @@ ExecStartPre=-/usr/bin/podman rm -i -f wiewarm-apache
 ExecStart=/bin/bash -lc '\
   . %h/.secrets.sh && \
   . %h/.env.sh && \
+  ENV_NODE_PORT="$${ENV_NODE_PORT:-$$((ENV_APACHE_PORT + 10))}" && \
   exec /usr/bin/podman run \
     --name wiewarm-apache \
     --volume %h/wiewarm-website/www_public:/var/www/html:Z \
@@ -17,7 +18,7 @@ ExecStart=/bin/bash -lc '\
     --volume %h/wiewarm-website/infra/apache2.conf:/etc/apache2/apache2.conf:Z \
     --env-file %h/.podman-env \
     --env APACHE_BIND=127.0.0.1 \
-    --env FRONTEND_ORIGIN=http://127.0.0.1:3772 \
+    --env FRONTEND_ORIGIN="http://127.0.0.1:$$ENV_NODE_PORT" \
     --env TZ=Europe/Zurich \
     --env DB_TYPE=postgres \
     --env POSTGRES_HOST=127.0.0.1 \

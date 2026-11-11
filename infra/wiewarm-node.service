@@ -6,7 +6,14 @@ After=network-online.target
 Environment=WIEWARM_NODE_IMAGE=wiewarm-node:latest
 EnvironmentFile=-%h/.config/wiewarm-node-image
 ExecStartPre=-/usr/bin/podman rm -f wiewarm-node
-ExecStart=/usr/bin/podman run --rm --name wiewarm-node --network host --env-file %h/.wiewarm-node.env --env PORT=3772 --env HOSTNAME=127.0.0.1 --env WIEWARM_API_ORIGIN=http://127.0.0.1:3771 ${WIEWARM_NODE_IMAGE}
+ExecStart=/bin/bash -lc '\
+  . %h/.env.sh && \
+  ENV_NODE_PORT="$${ENV_NODE_PORT:-$$((ENV_APACHE_PORT + 10))}" && \
+  exec /usr/bin/podman run --rm --name wiewarm-node --network host \
+    --env-file %h/.wiewarm-node.env \
+    --env PORT="$$ENV_NODE_PORT" --env HOSTNAME=127.0.0.1 \
+    --env WIEWARM_API_ORIGIN="http://127.0.0.1:$$ENV_APACHE_PORT" \
+    "$$WIEWARM_NODE_IMAGE"'
 ExecStop=/usr/bin/podman stop -t 20 wiewarm-node
 Restart=always
 RestartSec=5
