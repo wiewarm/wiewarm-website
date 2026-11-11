@@ -114,7 +114,7 @@ export function CookieConsent({ measurementId, children }: { measurementId: stri
           <div className="cookie-banner-controls">
             <div className="cookie-banner-actions">
               <button type="button" onClick={() => choose(false)}>Nur notwendige</button>
-              {measurementId && <button type="button" onClick={() => choose(true)}>Analyse erlauben</button>}
+              {measurementId && <button type="button" onClick={() => choose(true)}>Alle</button>}
             </div>
             <button type="button" className="cookie-settings-link" onClick={() => setOpen(false)}>Ohne Änderung schliessen</button>
           </div>

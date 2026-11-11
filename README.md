@@ -81,18 +81,18 @@ use frontend dev mode or a local HTTPS proxy for full admin testing.
 
 ## Analytics and consent
 
-The frontend loads GA4 only after an explicit analytics opt-in. «Nur notwendige»
+The frontend loads GA4 only after an explicit opt-in with «Alle». «Nur notwendige»
 is available directly in a non-blocking bottom banner with the same prominence as accepting. The footer
 links to privacy information and lets visitors withdraw consent. Choices expire
 after 180 days, and withdrawal also applies to other open tabs on the same origin.
 The admin area does not load the tracker. Do not add an unconditional Google tag
 to Apache, the layout, or a tag manager alongside this implementation.
 
-The existing public GA4 ID `G-SLQMWRY7SY` is used by default only for production
-builds whose `WIEWARM_ORIGIN` is `https://www.wiewarm.ch` or `https://wiewarm.ch`.
-Beta and localhost default to no analytics. `GOOGLE_ANALYTICS_ID=G-...` in the
-Node environment overrides this; an explicitly empty value disables it. This is
-a runtime setting, so changing it requires a container restart, not a build.
+The existing public GA4 ID `G-SLQMWRY7SY` is the default on production, beta and
+localhost, always behind consent. `GOOGLE_ANALYTICS_ID=G-...` in the Node
+container environment overrides it (for example, with a separate test property);
+an explicitly empty value disables analytics. This is a runtime setting, so
+changing it requires a container restart, not a build.
 The old Universal Analytics tag is not restored.
 
 Before enabling the property, review the privacy notice's operator details and

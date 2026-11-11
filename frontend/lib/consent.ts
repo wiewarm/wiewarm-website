@@ -20,15 +20,8 @@ export function parseConsent(value: string | null, now = Date.now()): Consent | 
 }
 
 export function analyticsId(env: Record<string, string | undefined>): string {
-  // Restore the existing public GA4 property only on the production website.
-  // An explicit empty value disables analytics; beta/local need an explicit ID.
-  let id = env.GOOGLE_ANALYTICS_ID;
-  if (id === undefined && env.NODE_ENV === 'production') {
-    try {
-      const host = new URL(env.WIEWARM_ORIGIN || 'https://www.wiewarm.ch').hostname;
-      if (['www.wiewarm.ch', 'wiewarm.ch'].includes(host)) id = 'G-SLQMWRY7SY';
-    } catch { /* Invalid origins must not enable analytics. */ }
-  }
+  // All environments offer the same opt-in. An explicit empty value disables it.
+  const id = env.GOOGLE_ANALYTICS_ID ?? 'G-SLQMWRY7SY';
   return id && /^G-[A-Z0-9]+$/.test(id) ? id : '';
 }
 

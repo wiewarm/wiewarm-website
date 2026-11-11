@@ -19,11 +19,11 @@ describe('consent validation', () => {
 });
 
 describe('analytics deployment configuration', () => {
-  it('restores the GA4 property on production only', () => {
+  it('offers the same consent-controlled GA4 property in all environments', () => {
     expect(analyticsId({ NODE_ENV: 'production', WIEWARM_ORIGIN: 'https://www.wiewarm.ch' })).toBe('G-SLQMWRY7SY');
-    expect(analyticsId({ NODE_ENV: 'production', WIEWARM_ORIGIN: 'https://beta.wiewarm.ch' })).toBe('');
-    expect(analyticsId({ NODE_ENV: 'production', WIEWARM_ORIGIN: 'http://localhost:3770' })).toBe('');
-    expect(analyticsId({ NODE_ENV: 'development' })).toBe('');
+    expect(analyticsId({ NODE_ENV: 'production', WIEWARM_ORIGIN: 'https://beta.wiewarm.ch' })).toBe('G-SLQMWRY7SY');
+    expect(analyticsId({ NODE_ENV: 'production', WIEWARM_ORIGIN: 'http://localhost:3770' })).toBe('G-SLQMWRY7SY');
+    expect(analyticsId({ NODE_ENV: 'development' })).toBe('G-SLQMWRY7SY');
   });
   it('supports explicit enable/disable without accepting arbitrary script URLs or obsolete tags', () => {
     expect(analyticsId({ GOOGLE_ANALYTICS_ID: 'G-TEST123' })).toBe('G-TEST123');

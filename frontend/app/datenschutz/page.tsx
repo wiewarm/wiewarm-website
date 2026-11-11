@@ -29,7 +29,7 @@ export default function PrivacyPage() {
       </section>
       <section className="detail-card info-card info-wide">
         <h2>Freiwillige Nutzungsanalyse</h2>
-        <p>{analyticsEnabled ? 'Google Analytics 4 ist auf dieser Website verfügbar, wird aber erst nach «Analyse erlauben» geladen.' : 'Google Analytics ist auf dieser Umgebung ausgeschaltet. Es werden keine Google-Analytics-Skripte geladen.'}</p>
+        <p>{analyticsEnabled ? 'Google Analytics 4 ist auf dieser Website verfügbar, wird aber erst nach «Alle» geladen.' : 'Google Analytics ist auf dieser Umgebung ausgeschaltet. Es werden keine Google-Analytics-Skripte geladen.'}</p>
         <p>Bei aktivierter Analyse und Deiner Einwilligung verarbeitet Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irland) Informationen über Seitenaufrufe, Deinen Browser und Dein Gerät sowie die beim Verbindungsaufbau übermittelte IP-Adresse. Dabei können Daten auch in den USA verarbeitet werden.</p>
         <p>Die Analyse beruht auf Deiner freiwilligen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, soweit anwendbar). Ohne Zustimmung laden wir den Google-Tag nicht und senden auch keine cookielosen Analyse-Anfragen. Der Login- und Verwaltungsbereich ist von unserer Analyse ausgeschlossen.</p>
         <p>Die Analyse-Cookies <code>_ga</code> und <code>_ga_…</code> dienen der Wiedererkennung von Besuchen. Wir begrenzen ihre Laufzeit auf 180 Tage ohne automatische Verlängerung. Werbefunktionen und Google Signals sind deaktiviert. Unsere Seitenaufruf-Ereignisse enthalten keine Suchparameter oder URL-Fragmente.</p>
