@@ -18,6 +18,7 @@ const team = [
 const apps = [
   ['19 Grad', 'https://itunes.apple.com/de/app/19-grad/id1253503792?mt=8', 'Temperatur-App für offene Gewässer (iPhone und Android)', 'smoca'],
   ['Badi App', 'https://apps.apple.com/ch/app/badi-app/id6504495943', 'iOS App inkl. Features im Login-Bereich', 'Stefan Schwinghammer'],
+  ['Badi Buddy – Schweiz', 'https://apps.apple.com/ch/app/badi-buddy-schweiz/id6825506967', 'iPhone-App zum Erfassen von Badebesuchen in Schweizer Seen, Flüssen und Badis – mit Wassertemperaturen und Punkten', 'Christian Baracchi'],
   ['GraphQL Wrapper', 'https://github.com/raphael-gosteli/wiewarm-GraphQL', 'GraphQL Wrapper für die wiewarm.ch API', 'Raphael Gosteli'],
   ['Wiewarm Android App', 'https://play.google.com/store/apps/details?id=ch.simonste.wiewarm', 'Neuer Android Client von Simon Steinmann', 'Simon Steinmann'],
   ['wiewarm-ha', 'https://github.com/eric-staedler/wiewarm-ha', 'Home Assistant Integration', 'Eric Staedler'],
