@@ -60,14 +60,14 @@ to the existing `ENV_APACHE_PORT`; Node calls the PHP API on that same internal 
 
 `infra/podman-build.sh` builds both PHP and Node images, tagged `latest` by
 default, or with the tag supplied as its first argument.
-`infra/vps_deploy.sh` builds both services and checks Node before restarting
-internal Apache. Both containers bind to loopback.
+`infra/vps_deploy.sh` builds and enables both user services for autostart, and
+checks Node before restarting internal Apache. Both containers bind to loopback.
 Keep `ENV_APACHE_PORT` in `~/.env.sh` aligned with the external HTTPS proxy:
 production uses 3771 and beta uses 3772 on the current VPS. Node defaults to
 `ENV_APACHE_PORT + 10` (3781 for production, 3782 for beta). Set `ENV_NODE_PORT`
 in the same file if another free port is needed. Separate users run the two
 deployments with their own service configuration, secrets, and database settings.
-Enable both user services and user lingering as appropriate for the VPS.
+Enable user lingering as appropriate for the VPS so services start at boot without a login.
 The deployment script pulls the current branch; deploy only reviewed revisions.
 
 Before rollout, record the previous Git revision and preserve the previous PHP

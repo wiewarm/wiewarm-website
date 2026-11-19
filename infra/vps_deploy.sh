@@ -23,6 +23,7 @@ fi
 printf 'WIEWARM_NODE_IMAGE=wiewarm-node:%s\n' "$revision" > "$HOME/.config/wiewarm-node-image"
 cp infra/wiewarm-node.service infra/wiewarm-apache.service "$HOME/.config/systemd/user/"
 systemctl --user daemon-reload
+systemctl --user enable wiewarm-node.service wiewarm-apache.service
 systemctl --user restart wiewarm-node.service
 curl --fail --retry 15 --retry-connrefused --retry-delay 2 "http://127.0.0.1:$ENV_NODE_PORT/healthz"
 podman run --rm -e "APACHE_PORT=$ENV_APACHE_PORT" -e APACHE_BIND=127.0.0.1 -e "FRONTEND_ORIGIN=http://127.0.0.1:$ENV_NODE_PORT" \
