@@ -210,7 +210,9 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .info-card ul { margin: 0 0 .85rem; padding-left: 1.2rem; }
 .info-card a { color: var(--primary); font-weight: 600; }
 .info-wide { grid-column: 1 / -1; }
-.info-subheading { margin-top: 1.6rem; }
+.info-card h2 { scroll-margin-top: 1.5rem; }
+.info-card .info-section-link { color: inherit; font-weight: inherit; }
+.info-section-link svg { display: inline-block; width: 1rem; height: 1rem; margin-left: .5rem; vertical-align: middle; color: var(--primary); }
 .info-team, .info-apps { padding: 0 !important; list-style: none; }
 .info-team li, .info-apps li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem 1rem; padding: .6rem 0; border-top: 1px solid var(--border); }
 .info-team small, .info-apps small { color: var(--muted-foreground); }
