@@ -41,7 +41,4 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN docker-php-source delete
 
 # Configure PHP
-RUN echo "display_errors = On\n" \
-         "error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED\n" \
-         "include_path = .:/var/www/html/api:/usr/local/lib/php:/usr/share/pear\n" \
-         > /usr/local/etc/php/conf.d/custom.ini 
+COPY php.ini /usr/local/etc/php/conf.d/custom.ini
