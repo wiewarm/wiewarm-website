@@ -1,5 +1,11 @@
 #!/bin/bash
 set -euo pipefail
+# Opt in to refreshing base images while retaining reusable build layers.
+export WIEWARM_PULL_BASE_IMAGES="${WIEWARM_PULL_BASE_IMAGES:-0}"
+case "$WIEWARM_PULL_BASE_IMAGES" in
+  0|1) ;;
+  *) echo 'WIEWARM_PULL_BASE_IMAGES must be 0 or 1.' >&2; exit 1 ;;
+esac
 cd "${HOME}/wiewarm-website"
 if ! test -r "$HOME/.wiewarm-node.env"; then
   echo 'Create ~/.wiewarm-node.env with SESSION_SECRET and WIEWARM_ORIGIN before deploying (see README.md).' >&2

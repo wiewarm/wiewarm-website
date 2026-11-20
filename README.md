@@ -70,6 +70,12 @@ deployments with their own service configuration, secrets, and database settings
 Enable user lingering as appropriate for the VPS so services start at boot without a login.
 The deployment script pulls the current branch; deploy only reviewed revisions.
 
+To refresh PHP and Node base images during a deployment, run
+`WIEWARM_PULL_BASE_IMAGES=1 ./infra/vps_deploy.sh` from the remote checkout.
+This forces a registry pull while retaining build caching; layers are rebuilt
+when their base image changes. The default (`0`) keeps the normal build behavior.
+The same flag works with `infra/podman-build.sh` for a build without deployment.
+
 Before rollout, record the previous Git revision and preserve the previous PHP
 image tag. For rollback, restore that revision/configuration and PHP image;
 restore `~/.config/wiewarm-node-image.previous` to `wiewarm-node-image`, then
